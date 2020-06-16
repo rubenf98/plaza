@@ -25,3 +25,4 @@ Route::post('login', 'AuthController@login');
 Route::apiResource('bloco', 'BlocoController');
 Route::apiResource('edificio', 'EdificioController');
 Route::apiResource('fracao', 'FracaoController');
+Route::apiResource('user', 'UserController');

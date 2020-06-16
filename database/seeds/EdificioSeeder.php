@@ -13,7 +13,7 @@ class EdificioSeeder extends Seeder
     public function run()
     {
         Edificio::Create([
-            "morada" => "Estrada bla bla bla sadsad",
+            "morada" => "Caminho Municipal Ti Clara",
             "nome" => "Plaza II"
         ]);
     }

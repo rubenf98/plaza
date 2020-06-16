@@ -4,7 +4,7 @@ namespace App\Http\Resources;
 
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class BlocoResource extends JsonResource
+class UserResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -16,10 +16,8 @@ class BlocoResource extends JsonResource
     {
         return [
             'id' => $this->id,
-            'nome' => $this->nome,
+            'nome' => $this->name,
             'divida' => $this->divida,
-            'dividas' => $this->dividas,
-            'fracaos' => FracaoResource::collection($this->fracaos),
         ];
     }
 }

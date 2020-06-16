@@ -16,6 +16,7 @@ class CreateUsersTable extends Migration
         Schema::create('users', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('user_estado_id')->unsigned();
+            $table->integer('divida_id')->unsigned()->nullable();
             $table->string('name');
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
@@ -24,6 +25,9 @@ class CreateUsersTable extends Migration
             $table->boolean('ativo');
             $table->rememberToken();
             $table->timestamps();
+
+            $table->foreign('divida_id')->references('id')->on('dividas')->onDelete('set null');
+            $table->foreign('user_estado_id')->references('id')->on('user_estados');
         });
     }
 

@@ -37,15 +37,15 @@ class User extends Authenticatable implements JWTSubject
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
-    
+
     public function getJWTIdentifier()
     {
-      return $this->getKey();
+        return $this->getKey();
     }
 
     public function getJWTCustomClaims()
     {
-      return [];
+        return [];
     }
 
     public function userEstado()
@@ -56,5 +56,10 @@ class User extends Authenticatable implements JWTSubject
     public function fracao()
     {
         return $this->hasMany('App\Fracao');
+    }
+
+    public function divida()
+    {
+        return $this->morphOne('App\Divida', 'dividable');
     }
 }
