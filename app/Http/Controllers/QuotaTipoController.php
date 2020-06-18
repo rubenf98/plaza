@@ -2,11 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Fracao;
-use App\Http\Resources\FracaoResource;
+use App\QuotaTipo;
 use Illuminate\Http\Request;
 
-class FracaoController extends Controller
+class QuotaTipoController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,7 +14,7 @@ class FracaoController extends Controller
      */
     public function index()
     {
-        return FracaoResource::collection(Fracao::all());
+        //
     }
 
     /**
@@ -42,21 +41,21 @@ class FracaoController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Fracao  $fracao
+     * @param  \App\QuotaTipo  $quotaTipo
      * @return \Illuminate\Http\Response
      */
-    public function show(Fracao $fracao)
+    public function show(QuotaTipo $quotaTipo)
     {
-        return Fracao::getQuotas($fracao);
+        //
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Fracao  $fracao
+     * @param  \App\QuotaTipo  $quotaTipo
      * @return \Illuminate\Http\Response
      */
-    public function edit(Fracao $fracao)
+    public function edit(QuotaTipo $quotaTipo)
     {
         //
     }
@@ -65,10 +64,10 @@ class FracaoController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Fracao  $fracao
+     * @param  \App\QuotaTipo  $quotaTipo
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Fracao $fracao)
+    public function update(Request $request, QuotaTipo $quotaTipo)
     {
         //
     }
@@ -76,10 +75,10 @@ class FracaoController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Fracao  $fracao
+     * @param  \App\QuotaTipo  $quotaTipo
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Fracao $fracao)
+    public function destroy(QuotaTipo $quotaTipo)
     {
         //
     }

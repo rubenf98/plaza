@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateQuotasTable extends Migration
+class CreateQuotaTiposTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,10 @@ class CreateQuotasTable extends Migration
      */
     public function up()
     {
-        Schema::create('quotas', function (Blueprint $table) {
+        Schema::create('quota_tipos', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('quota_tipos_id')->unsigned();
-            $table->decimal('valor', 6, 2);
+            $table->string('nome');
             $table->timestamps();
-
-            $table->foreign('quota_tipos_id')->references('id')->on('quota_tipos')->onDelete('cascade');
         });
     }
 
@@ -30,6 +27,6 @@ class CreateQuotasTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('quotas');
+        Schema::dropIfExists('quota_tipos');
     }
 }

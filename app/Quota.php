@@ -8,8 +8,13 @@ class Quota extends Model
 {
     //
 
-    public function transacaos()
+    public function quotaTipo()
     {
-        return $this->morphToMany('App\Transacao', 'transacao_destinoables');
+        return $this->belongsTo('App\QuotaTipo');
+    }
+
+    public function fracaos()
+    {
+        return $this->belongsToMany('App\Fracao', 'fracao_has_quotas')->withPivot('data', 'estado');
     }
 }

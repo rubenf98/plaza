@@ -17,5 +17,8 @@ class DatabaseSeeder extends Seeder
         $this->call(BlocoSeeder::class);
         $this->call(UserSeeder::class);
         $this->call(FracaoSeeder::class);
+        $this->call(QuotaTipoSeeder::class);
+        $this->call(QuotaSeeder::class);
+        $this->call(FracaoHasQuotaSeeder::class);
     }
 }
