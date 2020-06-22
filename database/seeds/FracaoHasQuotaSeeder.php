@@ -14,7 +14,7 @@ class FracaoHasQuotaSeeder extends Seeder
      */
     public function run()
     {
-        $fracaos = Fracao::all();
+        $fracaos = Fracao::where('fracao_estado_id', 1)->get();
         $year = Carbon::now()->format('Y');
 
         // give each post some tags

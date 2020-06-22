@@ -39,6 +39,8 @@ return array(
     'App\\Http\\Middleware\\TrimStrings' => $baseDir . '/app/Http/Middleware/TrimStrings.php',
     'App\\Http\\Middleware\\TrustProxies' => $baseDir . '/app/Http/Middleware/TrustProxies.php',
     'App\\Http\\Middleware\\VerifyCsrfToken' => $baseDir . '/app/Http/Middleware/VerifyCsrfToken.php',
+    'App\\Http\\Requests\\LoginRequest' => $baseDir . '/app/Http/Requests/LoginRequest.php',
+    'App\\Http\\Requests\\RegisterRequest' => $baseDir . '/app/Http/Requests/RegisterRequest.php',
     'App\\Http\\Resources\\BlocoResource' => $baseDir . '/app/Http/Resources/BlocoResource.php',
     'App\\Http\\Resources\\EdificioResource' => $baseDir . '/app/Http/Resources/EdificioResource.php',
     'App\\Http\\Resources\\FracaoEstadoResource' => $baseDir . '/app/Http/Resources/FracaoEstadoResource.php',

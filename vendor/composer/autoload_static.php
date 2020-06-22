@@ -549,6 +549,8 @@ class ComposerStaticInita596b44802c0bc6401825cb5284d19e5
         'App\\Http\\Middleware\\TrimStrings' => __DIR__ . '/../..' . '/app/Http/Middleware/TrimStrings.php',
         'App\\Http\\Middleware\\TrustProxies' => __DIR__ . '/../..' . '/app/Http/Middleware/TrustProxies.php',
         'App\\Http\\Middleware\\VerifyCsrfToken' => __DIR__ . '/../..' . '/app/Http/Middleware/VerifyCsrfToken.php',
+        'App\\Http\\Requests\\LoginRequest' => __DIR__ . '/../..' . '/app/Http/Requests/LoginRequest.php',
+        'App\\Http\\Requests\\RegisterRequest' => __DIR__ . '/../..' . '/app/Http/Requests/RegisterRequest.php',
         'App\\Http\\Resources\\BlocoResource' => __DIR__ . '/../..' . '/app/Http/Resources/BlocoResource.php',
         'App\\Http\\Resources\\EdificioResource' => __DIR__ . '/../..' . '/app/Http/Resources/EdificioResource.php',
         'App\\Http\\Resources\\FracaoEstadoResource' => __DIR__ . '/../..' . '/app/Http/Resources/FracaoEstadoResource.php',
