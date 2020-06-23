@@ -4,7 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\LoginRequest;
 use App\Http\Requests\RegisterRequest;
+use App\Http\Requests\ResetRecoverPasswordRequest;
+use App\Mail\RecoverPasswordMail;
 use App\Mail\RegisterMail;
+use App\Mail\ResetPasswordMail;
 use Illuminate\Support\Facades\Lang;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Mail;
@@ -25,8 +28,6 @@ class AuthController extends Controller
             'password' => bcrypt($validator['password']),
         ]);
 
-        $verification_code = Str::random(35);
-        DB::table('password_resets')->insert(['email' => $user->email, 'token' => $verification_code]);
         Mail::to($user->email)->send(new RegisterMail($validator['password']));
 
         DB::commit();
@@ -76,6 +77,63 @@ class AuthController extends Controller
                 'error' => Lang::get('messages.logout.fail')
             ], 500);
         }
+    }
+
+    public function resetPassword(ResetRecoverPasswordRequest $request)
+    {
+        $validator = $request->validated();
+
+        $verification_code = Str::random(35);
+
+        DB::table('password_resets')->updateOrInsert(
+            ['email' => $validator['email']],
+            ['token' => $verification_code]
+        );
+
+        Mail::to($validator['email'])->send(new ResetPasswordMail($validator['email'], $verification_code));
+
+        return response()->json([
+            'success' => true,
+            'message' => Lang::get('messages.resetPassword.success')
+        ]);
+    }
+
+    public function recoverPassword(ResetRecoverPasswordRequest $request)
+    {
+        $validator = $request->validated();
+
+        if ($request->has('token')) {
+            $query = DB::table('password_resets')->where('email', $validator['email'])->where('token', $request->token);
+            $row = $query->first();
+
+            if ($row) {
+                $password = Str::random(16);
+
+                $user = User::where('email', $validator['email'])->first();
+                $user->update([
+                    'password' => bcrypt($password)
+                ]);
+
+                Mail::to($user->email)->send(new RecoverPasswordMail($password));
+
+                $query->delete();
+
+                return response()->json([
+                    'success' => true,
+                    'message' => Lang::get('messages.recoverPassword.success')
+                ]);
+            }
+        }
+
+        return response()->json([
+            'success' => false,
+            'message' => Lang::get('messages.recoverPassword.fail')
+        ]);
+    }
+
+    public function refresh()
+    {
+        return $this->respondWithToken(auth()->refresh());
     }
 
     protected function respondWithToken($token)

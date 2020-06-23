@@ -16,4 +16,13 @@ return [
         'success' => 'Logout efetuado com sucesso.',
         'fail' => 'Logout falhou, por favor tente novamente',
     ],
+
+    'resetPassword' => [
+        'success' => 'Foi enviado um email com um código de reset! Verifique o seu email para completar o processo.',
+    ],
+
+    'recoverPassword' => [
+        'success' => 'Foi criada uma nova palavra-passe! Verifique o seu email para completar o processo.',
+        'fail' => 'Combinação de token e email fornecidos inválidos',
+    ],
 ];

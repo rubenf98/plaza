@@ -5,9 +5,8 @@ namespace App\Http\Requests;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Http\Exceptions\HttpResponseException;
 use Illuminate\Contracts\Validation\Validator;
-use Illuminate\Support\Str;
 
-class RegisterRequest extends FormRequest
+class ResetRecoverPasswordRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -19,14 +18,6 @@ class RegisterRequest extends FormRequest
         return true;
     }
 
-    protected function prepareForValidation()
-    {
-        $password = Str::random(16);
-
-        $this->merge([
-            'password' => $password
-        ]);
-    }
 
     /**
      * Get the validation rules that apply to the request.
@@ -36,8 +27,7 @@ class RegisterRequest extends FormRequest
     public function rules()
     {
         return [
-            'email' => 'required|email|unique:users',
-            'password' => 'required|string|min:6',
+            'email' => 'required|email|exists:users,email',
         ];
     }
 

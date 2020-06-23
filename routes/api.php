@@ -20,6 +20,11 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 Route::post('register', 'AuthController@register');
 Route::post('login', 'AuthController@login');
+Route::get('logout', 'AuthController@logout');
+Route::prefix('password')->group(function () {
+    Route::get('recover', 'AuthController@recoverPassword');
+    Route::post('reset', 'AuthController@resetPassword');
+});
 
 
 Route::apiResource('bloco', 'BlocoController');
