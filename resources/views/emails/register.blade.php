@@ -1,7 +1,5 @@
 <div class="email-container">
-    <div class="image-container flex-center">
-        <img src="https://www.priberam.com/wp-content/uploads/LOGO-PRIBERAM-CORES.png">
-    </div>
+    @include('emails.common.header')
 
     <h1 class="title">Bem vindo!</h1>
     <div class="text">
@@ -17,13 +15,7 @@
         (Caso não tenha efetuado registo nesta plataforma, pode ignorar este email)
     </div>
 
-    <div class="footer-container text">
-        Outra informação importante, que não comunicamos por email, está disponível após login.
-    </div>
-    <br>
-    <div class="footer-container text">
-        Cumprimentos, <p class="footer">Administração Plaza II</p>
-    </div>
+    @include('emails.common.footer')
 </div>
 
 <style>
@@ -62,7 +54,6 @@
 
     .password-container {
         color: rgb(236, 1, 140);
-        text-decoration: underline;
         margin-top: 30px;
         font-size: 1.2em;
         font-weight: bold;

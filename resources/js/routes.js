@@ -1,5 +1,5 @@
 import React from "react";
-import { Router, Route, Switch } from "react-router-dom";
+import { Router, Route, Switch, HashRouter } from "react-router-dom";
 import { createBrowserHistory } from "history";
 
 //public pages
