@@ -1,0 +1,62 @@
+import { types } from "./types";
+
+export const initialState = {
+    isAuthenticated: false,
+    loading: false,
+    currentUser: {}
+}
+
+export default (state = initialState, action = {}) => {
+    switch (action.type) {
+        case `${types.LOGIN}_PENDING`:
+        case `${types.LOGOUT}_PENDING`:
+        case `${types.ME}_PENDING`:
+        case `${types.UPDATE_ME}_PENDING`:
+            return {
+                ...state,
+                loading: true
+            };
+
+        case `${types.LOGOUT}_REJECTED`:
+            return {
+                ...state,
+                loading: false
+            };
+
+        case `${types.UPDATE_ME}_REJECTED`:
+        case `${types.ME}_REJECTED`:
+        case `${types.LOGIN}_REJECTED`:
+        case `${types.LOGOUT}_FULFILLED`:
+            return {
+                ...state,
+                loading: false,
+                isAuthenticated: false,
+                currentUser: {}
+            };
+
+        case `${types.LOGIN_SUCCESS}`:
+            return {
+                ...state,
+                loading: false,
+                isAuthenticated: true,
+            };
+
+        case `${types.UPDATE_ME}_FULFILLED`:
+            return {
+                ...state,
+                loading: false,
+                currentUser: action.payload.data.data
+            };
+
+        case `${types.ME}_FULFILLED`:
+        case `${types.LOGIN}_FULFILLED`:
+            return {
+                ...state,
+                loading: false,
+                isAuthenticated: true,
+                currentUser: action.payload.data.data
+            };
+        default:
+            return state
+    }
+}

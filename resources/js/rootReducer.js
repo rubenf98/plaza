@@ -1,9 +1,13 @@
 import { combineReducers } from 'redux'
 
-import post from './redux/post'
+import bloco from './redux/bloco'
+import user from './redux/user'
+import auth from './redux/auth'
 
 const rootReducer = combineReducers({
-    post
+    bloco,
+    user,
+    auth
 })
 
 export default rootReducer

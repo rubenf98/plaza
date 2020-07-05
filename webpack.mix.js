@@ -13,3 +13,13 @@ const mix = require('laravel-mix');
 
 mix.react('resources/js/app.js', 'public/js')
     .sass('resources/sass/app.scss', 'public/css');
+
+//Setting root folders for easier importing
+mix.webpackConfig({
+    resolve: {
+        modules: [
+            path.resolve(__dirname, 'resources/assets/js'),
+            'node_modules'
+        ]
+    }
+});

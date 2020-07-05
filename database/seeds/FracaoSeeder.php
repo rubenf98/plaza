@@ -17,30 +17,39 @@ class FracaoSeeder extends Seeder
             "bloco_id" => 3,
             "area" => 23,
             "user_id" => 1,
-            "nome" => "BE"
+            "nome" => "AA"
         ]);
 
         Fracao::Create([
             "fracao_estado_id" => 1,
             "bloco_id" => 3,
             "area" => 23,
-            "user_id" => 1,
-            "nome" => "BA"
+            "user_id" => 2,
+            "nome" => "BB"
         ]);
 
         Fracao::Create([
             "fracao_estado_id" => 2,
             "bloco_id" => 3,
             "area" => 27,
-            "nome" => "BB"
+            "nome" => "CC"
         ]);
 
         Fracao::Create([
             "fracao_estado_id" => 1,
             "bloco_id" => 3,
             "area" => 27,
+            "user_id" => 3,
+            "nome" => "DD"
+        ]);
+
+
+        Fracao::Create([
+            "fracao_estado_id" => 1,
+            "bloco_id" => 3,
+            "area" => 23,
             "user_id" => 1,
-            "nome" => "BD"
+            "nome" => "EE"
         ]);
     }
 }

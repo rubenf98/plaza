@@ -18,6 +18,11 @@ class BlocoController extends Controller
         return BlocoResource::collection(Bloco::all());
     }
 
+    public function selector()
+    {
+        return BlocoResource::collection(Bloco::all());
+    }
+
     /**
      * Store a newly created resource in storage.
      *

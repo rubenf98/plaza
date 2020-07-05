@@ -18,16 +18,26 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
+Route::group(['middleware' => 'api'], function () {
+    Route::post('login', 'AuthController@login');
+    Route::post('logout', 'AuthController@logout');
+    Route::post('refresh', 'AuthController@refresh');
+    Route::get('me', 'AuthController@me');
+    Route::put('me', 'AuthController@updateMe');
+});
+
 Route::post('register', 'AuthController@register');
-Route::post('login', 'AuthController@login');
-Route::get('logout', 'AuthController@logout');
 Route::prefix('password')->group(function () {
     Route::get('recover', 'AuthController@recoverPassword');
     Route::post('reset', 'AuthController@resetPassword');
 });
 
+Route::prefix('selector')->group(function () {
+    Route::get('blocos', 'BlocoController@selector');
+});
 
-Route::apiResource('bloco', 'BlocoController');
+
+Route::apiResource('blocos', 'BlocoController');
 Route::apiResource('edificio', 'EdificioController');
 Route::apiResource('fracao', 'FracaoController');
-Route::apiResource('user', 'UserController');
+Route::apiResource('users', 'UserController');

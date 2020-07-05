@@ -52,7 +52,7 @@ class User extends Authenticatable implements JWTSubject
         return $this->belongsTo('App\UserEstado');
     }
 
-    public function fracao()
+    public function fracaos()
     {
         return $this->hasMany('App\Fracao');
     }

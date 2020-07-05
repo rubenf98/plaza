@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Fracao;
 use App\Http\Requests\LoginRequest;
 use App\Http\Requests\RegisterRequest;
 use App\Http\Requests\ResetRecoverPasswordRequest;
+use App\Http\Requests\UpdateMeRequest;
+use App\Http\Resources\UserResource;
 use App\Mail\RecoverPasswordMail;
 use App\Mail\RegisterMail;
 use App\Mail\ResetPasswordMail;
@@ -12,12 +15,23 @@ use Illuminate\Support\Facades\Lang;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Mail;
 use DB;
+use JWTAuth;
 use Illuminate\Http\Request;
 use App\User;
 
 
 class AuthController extends Controller
 {
+    /**
+     * Create a new AuthController instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('auth:api', ['except' => ['login']]);
+    }
+
     public function register(RegisterRequest $request)
     {
         $validator = $request->validated();
@@ -43,7 +57,7 @@ class AuthController extends Controller
         $validator = $request->validated();
 
         try {
-            if (!$token = auth()->attempt($validator)) {
+            if (!$token = JWTAuth::attempt($validator)) {
                 return response()->json([
                     'success' => false,
                     'message' => Lang::get('messages.login.failCredentials')
@@ -59,13 +73,22 @@ class AuthController extends Controller
             );
         }
 
-        return $this->respondWithToken($token);
+        $user = JWTAuth::setToken($token)->user();
+        $login = false;
+
+        if (!$user->login) {
+            $user->login = true;
+            $user->save();
+            $login = true;
+        }
+
+        return $this->respondWithToken($token, $login);
     }
 
-    public function logout()
+    public function logout(Request $request)
     {
         try {
-            auth()->logout();
+            JWTAuth::parseToken()->invalidate($request->header('Authorization'));
 
             return response()->json([
                 'success' => true,
@@ -136,11 +159,32 @@ class AuthController extends Controller
         return $this->respondWithToken(auth()->refresh());
     }
 
-    protected function respondWithToken($token)
+    public function me(Request $request)
+    {
+        return $this->respondWithToken($request->header('Authorization'));
+    }
+
+    public function updateMe(UpdateMeRequest $request)
+    {
+        $validator = $request->validated();
+        $validator['password'] = bcrypt($validator['password']);
+        DB::beginTransaction();
+        $user = User::find($validator['user_id']);
+        $fracao = Fracao::find($validator['fracao_id']);
+        $user->update($validator);
+        $fracao->user_id = $validator['user_id'];
+        $fracao->save();
+        DB::commit();
+        return new UserResource($user);
+    }
+
+    protected function respondWithToken($token, $login = false)
     {
         return response()->json([
+            'data' => new UserResource(JWTAuth::setToken($token)->user()),
             'access_token' => $token,
             'token_type' => 'bearer',
+            'login' => $login,
         ]);
     }
 }
