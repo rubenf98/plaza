@@ -2,6 +2,7 @@ import { types } from "./types";
 import axios from "axios";
 import jwtDecode from "jwt-decode";
 import { history } from "../../routes";
+import { success } from "../../redux/notification/actions";
 
 export const login = data => {
     return (dispatch) => {
@@ -16,6 +17,19 @@ export const login = data => {
             localStorage.setItem("token", token);
             setAuthorizationToken(token);
             login ? history.push("/login/first") : history.push("/");
+        })
+    }
+};
+
+export const register = data => {
+    return (dispatch) => {
+        const response = dispatch({
+            type: types.REGISTER,
+            payload: axios.post(`${window.location.origin}/api/register`, data)
+        })
+
+        response.then((res) => {
+            dispatch(success("Conta criada", res.value.data.message));
         })
     }
 };

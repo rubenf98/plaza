@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import NavBar from "../common/NavBar";
+import Notification from "../common/Notification";
 import PageFooter from "../common/PageFooter";
 import { withRouter } from "react-router";
 import { Layout } from 'antd';
@@ -9,20 +10,21 @@ const { Header, Footer, Content } = Layout;
 class PageLayout extends Component {
     render() {
         return (
-            <div>
-                <Header>
+            <div className="layout">
+                <header className="layout-header">
                     <NavBar />
-                </Header>
+                </header>
 
-                <Content>
-                    <div>
-                        {this.props.children}
-                    </div>
-                </Content>
+                <section className="layout-content">
+                    <Notification></Notification>
 
-                <Footer>
+                    {this.props.children}
+
+                </section>
+
+                <footer className="layout-footer" >
                     <PageFooter />
-                </Footer>
+                </footer>
             </div>
         );
     }

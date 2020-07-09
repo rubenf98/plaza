@@ -7,3 +7,20 @@
 @import "home";
 @import "login";
 @import "firstLogin";
+@import "navBar";
+
+.layout {
+    height: 100vh;
+    display: flex;
+
+    /* Direction of the items, can be row or column */
+    flex-direction: column;
+
+    .layout-header .layout-footer {
+        height: 70px;
+    }
+
+    .layout-content {
+        flex: 1;
+    }
+}

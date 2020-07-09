@@ -9,6 +9,7 @@ export const initialState = {
 export default (state = initialState, action = {}) => {
     switch (action.type) {
         case `${types.LOGIN}_PENDING`:
+        case `${types.REGISTER}_PENDING`:
         case `${types.LOGOUT}_PENDING`:
         case `${types.ME}_PENDING`:
         case `${types.UPDATE_ME}_PENDING`:
@@ -17,6 +18,8 @@ export default (state = initialState, action = {}) => {
                 loading: true
             };
 
+        case `${types.REGISTER}_REJECTED`:
+        case `${types.REGISTER}_FULFILLED`:
         case `${types.LOGOUT}_REJECTED`:
             return {
                 ...state,
