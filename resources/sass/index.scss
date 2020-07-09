@@ -8,6 +8,11 @@
 @import "login";
 @import "firstLogin";
 @import "navBar";
+@import "footer";
+
+.body {
+    font-family: "Lora", serif;
+}
 
 .layout {
     height: 100vh;

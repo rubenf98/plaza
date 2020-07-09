@@ -17,3 +17,36 @@
         }
     }
 }
+
+.contact-container {
+    width: 100%;
+    margin: 0 auto;
+    background: #fafafa;
+    display: flex;
+    align-items: center;
+
+    .contact {
+        max-width: 1140px;
+        width: 70%;
+        height: 100%;
+        line-height: 1.1;
+        font-weight: 500;
+        font-size: 4em;
+        padding: 30px 15px;
+        margin: auto;
+    }
+}
+
+.homepage-content-container {
+    max-width: 1140px;
+    margin: auto;
+
+    .section-title {
+        font-size: 4em;
+        text-align: center;
+        font-weight: bold;
+        line-height: 1.5;
+        color: rgba(0, 0, 0, 0.7);
+        font-weight: 400;
+    }
+}

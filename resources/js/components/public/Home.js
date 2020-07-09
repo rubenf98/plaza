@@ -1,6 +1,6 @@
 import React from 'react'
 import { Link } from "react-router-dom";
-import { Row } from "antd";
+import { Row, Col } from "antd";
 import { Parallax } from 'react-parallax';
 import RegisterForm from "./RegisterForm";
 
@@ -19,55 +19,45 @@ class Home extends React.Component {
                         </div>
                     </Row>
                 </Parallax>
+                <div className="contact-container">
+                    <Row className="contact" type="flex" justify="space-between" align="middle">
+                        <Row className="contact-icon" type="flex">
+                            <Col>
+                                <div>1</div>
+                            </Col>
+                            <Col>
+                                <div>2</div>
+                            </Col>
+                        </Row>
 
+                        <Row className="contact-icon" type="flex">
+                            <Col>
+                                <div>1</div>
+                            </Col>
+                            <Col>
+                                <div>2</div>
+                            </Col>
+                        </Row>
 
-                <h1>
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse voluptatibus quidem, excepturi tempore quae architecto ipsam facere veniam facilis iusto reprehenderit, temporibus cum et reiciendis quis quod, quas veritatis labore?
-                </h1>
-                <h1>
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse voluptatibus quidem, excepturi tempore quae architecto ipsam facere veniam facilis iusto reprehenderit, temporibus cum et reiciendis quis quod, quas veritatis labore?
-                </h1>
-                <h1>
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse voluptatibus quidem, excepturi tempore quae architecto ipsam facere veniam facilis iusto reprehenderit, temporibus cum et reiciendis quis quod, quas veritatis labore?
-                </h1>
-                <h1>
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse voluptatibus quidem, excepturi tempore quae architecto ipsam facere veniam facilis iusto reprehenderit, temporibus cum et reiciendis quis quod, quas veritatis labore?
-                </h1>
-                <h1>
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse voluptatibus quidem, excepturi tempore quae architecto ipsam facere veniam facilis iusto reprehenderit, temporibus cum et reiciendis quis quod, quas veritatis labore?
-                </h1>
-                <h1>
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse voluptatibus quidem, excepturi tempore quae architecto ipsam facere veniam facilis iusto reprehenderit, temporibus cum et reiciendis quis quod, quas veritatis labore?
-                </h1>
-                <h1>
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse voluptatibus quidem, excepturi tempore quae architecto ipsam facere veniam facilis iusto reprehenderit, temporibus cum et reiciendis quis quod, quas veritatis labore?
-                </h1>
-                <h1>
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse voluptatibus quidem, excepturi tempore quae architecto ipsam facere veniam facilis iusto reprehenderit, temporibus cum et reiciendis quis quod, quas veritatis labore?
-                </h1>
-                <h1>
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse voluptatibus quidem, excepturi tempore quae architecto ipsam facere veniam facilis iusto reprehenderit, temporibus cum et reiciendis quis quod, quas veritatis labore?
-                </h1>
-                <h1>
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse voluptatibus quidem, excepturi tempore quae architecto ipsam facere veniam facilis iusto reprehenderit, temporibus cum et reiciendis quis quod, quas veritatis labore?
-                </h1>
-                <h1>
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse voluptatibus quidem, excepturi tempore quae architecto ipsam facere veniam facilis iusto reprehenderit, temporibus cum et reiciendis quis quod, quas veritatis labore?
-                </h1>
-                <h1>
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse voluptatibus quidem, excepturi tempore quae architecto ipsam facere veniam facilis iusto reprehenderit, temporibus cum et reiciendis quis quod, quas veritatis labore?
-                </h1>
-                <h1>
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse voluptatibus quidem, excepturi tempore quae architecto ipsam facere veniam facilis iusto reprehenderit, temporibus cum et reiciendis quis quod, quas veritatis labore?
-                </h1>
-                <h1>
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse voluptatibus quidem, excepturi tempore quae architecto ipsam facere veniam facilis iusto reprehenderit, temporibus cum et reiciendis quis quod, quas veritatis labore?
-                </h1>
-                <ul>
-                    <li>
-                        <Link to="/example">Example</Link>
-                    </li>
-                </ul>
+                        <Row className="contact-icon" type="flex">
+                            <Col>
+                                <div>1</div>
+                            </Col>
+                            <Col>
+                                <div>2</div>
+                            </Col>
+                        </Row>
+
+                    </Row>
+                </div>
+
+                <div className="homepage-content-container">
+
+                    <h1 className="section-title">Círculares</h1>
+
+                    <h1 className="section-title">Notícias</h1>
+
+                </div>
             </div>
 
         );
