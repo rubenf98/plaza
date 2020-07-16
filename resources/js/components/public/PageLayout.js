@@ -22,7 +22,7 @@ class PageLayout extends Component {
 
                 </section>
 
-                <footer className="layout-footer" >
+                <footer style={{ display: "block" }} className="layout-footer" >
                     <PageFooter />
                 </footer>
             </div>

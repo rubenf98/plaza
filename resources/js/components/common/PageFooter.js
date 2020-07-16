@@ -9,13 +9,13 @@ let PageFooter = () => {
                 <div className="footer-title">
                     <h1>Lorem ipsum dolor sit, amet consectetur.</h1>
                 </div>
-                <div class="footer-register">
+                <div className="footer-register">
                     <Row type="flex" justify="space-around">
                         <Col span={16}>
                             <input className="register-input" type="text" name="email" value="" />
                         </Col>
                         <Col span={4}>
-                            <button className="register-button" type="submit">Subscribe</button>
+                            <button className="register-button" type="submit">Registar</button>
                         </Col>
                     </Row>
                 </div>

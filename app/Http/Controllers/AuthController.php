@@ -8,6 +8,7 @@ use App\Http\Requests\RegisterRequest;
 use App\Http\Requests\ResetRecoverPasswordRequest;
 use App\Http\Requests\UpdateMeRequest;
 use App\Http\Resources\UserResource;
+use App\Jobs\SendRegistrationEmail;
 use App\Mail\RecoverPasswordMail;
 use App\Mail\RegisterMail;
 use App\Mail\ResetPasswordMail;
@@ -42,9 +43,11 @@ class AuthController extends Controller
             'password' => bcrypt($validator['password']),
         ]);
 
-        Mail::to($user->email)->send(new RegisterMail($validator['password']));
-
         DB::commit();
+
+        SendRegistrationEmail::dispatch($user->email, $validator['password']);
+
+        //Mail::to($user->email)->queue(new RegisterMail($validator['password']));
 
         return response()->json([
             'success' => true,

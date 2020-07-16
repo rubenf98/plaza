@@ -39,13 +39,12 @@ class RegisterForm extends React.Component {
         //
     }
 
-    onFinish = values => {
+    onFinish = async (values) => {
         let form = this.formRef.current;
 
-        form.validateFields().then(values => {
-            this.props.register(values).then(() => {
-                form.resetFields();
-            });
+        form.validateFields().then(async (values) => {
+            await this.props.register(values);
+            form.resetFields();
         });
     }
 
@@ -65,7 +64,6 @@ class RegisterForm extends React.Component {
                             enterButton={<SendOutlined />}
                             size="large"
                         />
-
                     </Form.Item>
                 </Form >
             </div>

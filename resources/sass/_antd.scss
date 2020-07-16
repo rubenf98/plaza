@@ -1,0 +1,29 @@
+.ant-btn-primary,
+.ant-btn-primary {
+    background: $customAccent;
+    border-color: $customAccent;
+
+    &:hover,
+    &:focus {
+        color: #fff;
+        background: $lightenAccent;
+        border-color: $lightenAccent;
+    }
+}
+
+.ant-input-search-enter-button input:hover,
+.ant-input-search-enter-button input:focus {
+    border-color: $customAccent;
+}
+
+.ant-input:focus,
+.ant-input-focused {
+    border-color: $customAccent;
+    -webkit-box-shadow: 0 0 0 2px rgba($customAccent, 0.2);
+    box-shadow: 0 0 0 2px rgba($customAccent, 0.2);
+}
+
+.ant-input-affix-wrapper:hover {
+    border-color: #ff5600;
+    border-right-width: 1px !important;
+}

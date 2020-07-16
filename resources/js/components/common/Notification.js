@@ -8,13 +8,19 @@ class Notification extends Component {
         this.props.reset();
     };
 
-    openNotification = (message, description) => {
-        notification.success({
-            message: message,
-            description: description,
-            duration: 10,
-            onClose: this.handleClose
-        });
+    openNotification = (content) => {
+        content.type == "success" ?
+            notification.success({
+                message: content.message,
+                description: content.description,
+                duration: 10,
+                onClose: this.handleClose
+            }) : notification.error({
+                message: content.message,
+                description: content.description,
+                duration: 10,
+                onClose: this.handleClose
+            })
     };
 
     render() {
@@ -22,7 +28,7 @@ class Notification extends Component {
 
         return (
             <div>
-                {hasContent && this.openNotification(content.message, content.description)}
+                {hasContent && this.openNotification(content)}
             </div>
         );
     }

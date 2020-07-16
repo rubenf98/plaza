@@ -12,7 +12,6 @@ export const initialState = {
 export default (state = initialState, action = {}) => {
     switch (action.type) {
         case types.SUCCESS:
-            console.log(action.payload)
             return {
                 hasContent: true,
                 content: {
@@ -20,7 +19,6 @@ export default (state = initialState, action = {}) => {
                     message: action.payload.message,
                     description: action.payload.description
                 }
-
             };
 
         case types.ERROR:

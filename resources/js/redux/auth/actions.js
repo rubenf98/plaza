@@ -2,7 +2,7 @@ import { types } from "./types";
 import axios from "axios";
 import jwtDecode from "jwt-decode";
 import { history } from "../../routes";
-import { success } from "../../redux/notification/actions";
+import { success, error } from "../../redux/notification/actions";
 
 export const login = data => {
     return (dispatch) => {
@@ -28,9 +28,20 @@ export const register = data => {
             payload: axios.post(`${window.location.origin}/api/register`, data)
         })
 
-        response.then((res) => {
-            dispatch(success("Conta criada", res.value.data.message));
-        })
+        response.then(
+            res => {
+                dispatch(success("Conta criada", res.value.data.message));
+            },
+            err => {
+                let messages = [];
+
+                Object.values(err.response.data.message).map(function (message) {
+                    messages.push(message[0])
+                })
+
+                dispatch(error("Registo falhou", messages));
+            }
+        );
     }
 };
 
