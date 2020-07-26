@@ -41,11 +41,11 @@ let PageFooter = () => {
                     </div>
                     <div className="info-container">
                         <div className="info-title">
-                            contactos
+                            administradores
                     </div>
                         <div className="info-content">
-                            <p>example@example.com</p>
-                            <p>+969 872 128</p>
+                            <p>Marco Abreu</p>
+                            <p>Maurilio ...</p>
                         </div>
                     </div>
                 </Row>

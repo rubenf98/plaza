@@ -10,14 +10,21 @@
         display: block;
         margin: auto;
 
+        @media screen and (max-width: 1000px) {
+            width: 90%;
+        }
+
         .footer-title {
             display: block;
             padding: 100px 0;
-            padding-top: 100px;
-            padding-bottom: 100px;
             padding-top: 120px;
             text-align: center;
             width: 100%;
+
+            @media screen and (max-width: 1000px) {
+                padding: 80px 0;
+                padding-top: 100px;
+            }
 
             h1 {
                 color: black;
@@ -26,6 +33,11 @@
                 margin: 0;
                 width: 60%;
                 margin: auto;
+
+                @media screen and (max-width: 1000px) {
+                    width: 90%;
+                    font-size: 2em;
+                }
             }
         }
 
@@ -33,11 +45,16 @@
             display: block;
             text-align: center;
             width: 100%;
+            min-width: 250px;
             padding: 50px 40px;
             background: rgb(241, 241, 241);
 
+            @media screen and (max-width: 1000px) {
+                padding: 20px 15px;
+            }
+
             .register-input {
-                width: 80%;
+                width: 100%;
                 margin: auto;
                 background: transparent;
                 border: none;
@@ -52,6 +69,10 @@
                 position: relative;
                 width: 100%;
                 z-index: 1;
+
+                @media screen and (max-width: 1000px) {
+                    width: 100%;
+                }
             }
 
             .register-button {
@@ -77,9 +98,14 @@
 
         .footer-info {
             margin: 100px 0;
+
+            @media screen and (max-width: 1000px) {
+                margin: 80px 0;
+            }
             .info-container {
+                margin: 25px 0;
                 .info-title {
-                    font-size: 0.83vw;
+                    font-size: 1.2em;
                     line-height: normal;
                     color: #000;
                     letter-spacing: 0.1em;
@@ -89,7 +115,7 @@
                 }
 
                 .info-content {
-                    color: #989898;
+                    color: $customLightText;
                     line-height: 20px;
                     letter-spacing: 0.1em;
                     text-decoration: none;

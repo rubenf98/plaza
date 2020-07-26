@@ -20,5 +20,7 @@ class DatabaseSeeder extends Seeder
         $this->call(QuotaTipoSeeder::class);
         $this->call(QuotaSeeder::class);
         $this->call(FracaoHasQuotaSeeder::class);
+        $this->call(CircularTagSeeder::class);
+        $this->call(CircularSeeder::class);
     }
 }

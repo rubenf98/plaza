@@ -2,7 +2,8 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { logout } from "../../redux/auth/actions";
-import { Row, Col, Affix } from "antd";
+import { Row, Col, Affix, Button, Dropdown, Menu } from "antd";
+import { MenuOutlined } from '@ant-design/icons';
 
 let NavBar = ({ isAuthenticated, logout }) => {
 
@@ -18,25 +19,73 @@ let NavBar = ({ isAuthenticated, logout }) => {
                         </Row>
                     </Col>
                     <Col xs={12} lg={20}>
-                        <Row className="navbar-right" type="flex" justify="end">
+                        <Row className="big-navbar-right" type="flex" justify="end">
 
-                            <Link className="navbar-link" to="/">círculares <span className="slider"></span>  </Link>
-                            <Link className="navbar-link" to="/">notícias <span className="slider"></span>  </Link>
-                            <Link className="navbar-link" to="/">contactos <span className="slider"></span>  </Link>
+                            <Link className="navbar-link" to="/circulares">círculares <span className="slider"></span>  </Link>
+                            <Link className="navbar-link" to="/">informações <span className="slider"></span>  </Link>
                             {isAuthenticated ? (
-                                <Link
-                                    className="navbar-link"
-                                    to=""
-                                    onClick={() => { logout() }}
-                                >
-                                    Logout
-                                </Link>
+                                <React.Fragment>
+                                    <Link
+                                        className="navbar-link"
+                                        to="/painel"
+                                    >
+                                        <span className="slider"> </span>Painel Controlo
+                                    </Link>
+                                    <Link
+                                        className="navbar-link"
+                                        to=""
+                                        onClick={() => { logout() }}
+                                    >
+                                        <span className="slider"> </span>Logout
+                                    </Link>
+                                </React.Fragment>
                             ) :
                                 <React.Fragment>
                                     <Link className="navbar-link" to="/login">login <span className="slider"></span></Link>
                                 </React.Fragment>
                             }
 
+
+                        </Row>
+
+                        <Row className="small-navbar-right" type="flex" justify="end">
+
+
+
+                            <Dropdown
+                                overlay={
+                                    <Menu>
+                                        <Menu.Item key="1">
+                                            <Link className="navbar-link" to="/circulares">círculares </Link>
+                                        </Menu.Item>
+                                        <Menu.Item key="2">
+                                            <Link className="navbar-link" to="/">informações</Link>
+                                        </Menu.Item>
+                                        {isAuthenticated && (
+                                            <Menu.Item key="3">
+                                                <Link className="navbar-link" to="/painel">Painel Controlo</Link>
+                                            </Menu.Item>
+                                        )}
+                                        <Menu.Item key="4">
+                                            {isAuthenticated ? (
+                                                <Link className="navbar-link" to="" onClick={() => { logout() }}> Logout</Link>
+                                            ) :
+                                                <Link className="navbar-link" to="/login">login</Link>
+                                            }
+                                        </Menu.Item>
+                                    </Menu>
+
+                                }
+                                placement="bottomRight"
+                                trigger={['click']}>
+                                <Button
+                                    style={{ margin: "15px" }}
+                                    type="primary"
+                                    onClick={console.log("open")}
+                                >
+                                    <MenuOutlined />
+                                </Button>
+                            </Dropdown>
                         </Row>
                     </Col>
                 </Row>

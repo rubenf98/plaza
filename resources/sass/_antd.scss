@@ -24,6 +24,14 @@
 }
 
 .ant-input-affix-wrapper:hover {
-    border-color: #ff5600;
+    border-color: $customAccent;
     border-right-width: 1px !important;
+}
+
+.ant-spin {
+    color: $customAccent;
+
+    .ant-spin-dot-item {
+        background-color: $customAccent;
+    }
 }

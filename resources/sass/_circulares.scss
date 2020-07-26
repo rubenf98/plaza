@@ -1,0 +1,72 @@
+.circular-page-container {
+    margin: 80px auto !important;
+    .posts-container {
+        .post-container {
+            width: 33%;
+            min-width: 250px;
+            margin: 3% auto;
+            cursor: pointer;
+
+            &:hover {
+                .pdf-info {
+                    .title {
+                        color: $customAccent;
+                    }
+                }
+            }
+
+            .pdf-container {
+                width: 100%;
+                display: flex;
+                justify-content: center;
+            }
+
+            .pdf-info {
+                width: 90%;
+
+                .date {
+                    margin: 0 auto;
+                    font-weight: 0.9em;
+                    color: $customLightText;
+                }
+
+                .title {
+                    color: $customHeader;
+                    font-weight: bold;
+                    font-weight: 2em;
+                    margin: 0;
+                    text-overflow: ellipsis;
+                    overflow: hidden;
+                    white-space: nowrap;
+                    transition: 0.4s ease;
+                }
+            }
+        }
+    }
+
+    .filter-title {
+        color: $customHeader;
+        font-weight: bold;
+        border-bottom: 1px solid #f0e9ff;
+    }
+
+    .filter-container {
+        margin: 20px auto;
+        padding: 0px;
+        font-size: 1.2rem;
+        font-weight: 400;
+        line-height: 1.5;
+        text-align: left;
+
+        .filter {
+            transition: all 0.3s ease 0s;
+            padding-bottom: 12px;
+            list-style: none;
+            cursor: pointer;
+
+            &:hover {
+                color: $customAccent;
+            }
+        }
+    }
+}

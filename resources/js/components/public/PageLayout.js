@@ -6,8 +6,8 @@ import { withRouter } from "react-router";
 import { Layout } from 'antd';
 const { Header, Footer, Content } = Layout;
 
-
 class PageLayout extends Component {
+
     render() {
         return (
             <div className="layout">
@@ -19,12 +19,9 @@ class PageLayout extends Component {
                     <Notification></Notification>
 
                     {this.props.children}
-
                 </section>
 
-                <footer style={{ display: "block" }} className="layout-footer" >
-                    <PageFooter />
-                </footer>
+                
             </div>
         );
     }

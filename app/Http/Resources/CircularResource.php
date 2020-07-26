@@ -3,6 +3,7 @@
 namespace App\Http\Resources;
 
 use Illuminate\Http\Resources\Json\JsonResource;
+use Carbon\Carbon;
 
 class CircularResource extends JsonResource
 {
@@ -18,6 +19,7 @@ class CircularResource extends JsonResource
             'id' => $this->id,
             'titulo' => $this->titulo,
             'link' => $this->link,
+            'created_at' => $this->created_at->toFormattedDateString()
         ];
     }
 }

@@ -78,6 +78,7 @@ export const logout = data => {
 
         response.then((res) => {
             resetToken();
+            history.push("/");
         })
     }
 };

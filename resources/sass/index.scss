@@ -10,9 +10,15 @@
 @import "firstLogin";
 @import "navBar";
 @import "footer";
+@import "circulares";
 
 .body {
     font-family: "Lora", serif;
+}
+
+.page-container {
+    max-width: 1140px;
+    margin: auto;
 }
 
 .layout {
@@ -22,11 +28,22 @@
     /* Direction of the items, can be row or column */
     flex-direction: column;
 
-    .layout-header .layout-footer {
+    .page-dimensions {
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .layout-header {
         height: 70px;
     }
 
     .layout-content {
         flex: 1;
+    }
+
+    .dashboard-background {
+        background: rgb(245, 245, 245);
+        min-height: 100%;
     }
 }

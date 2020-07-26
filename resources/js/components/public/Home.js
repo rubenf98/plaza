@@ -1,11 +1,11 @@
 import React from 'react'
 import { Link } from "react-router-dom";
-import { Row, Col } from "antd";
+import { Row, Col, Button } from "antd";
 import { Parallax } from 'react-parallax';
-import { Document, Page } from 'react-pdf'
+import { Document } from 'react-pdf/dist/entry.webpack';
+import { Page } from 'react-pdf'
 import RegisterForm from "./RegisterForm";
-
-const img = "https://worldviews.co/wp-content/uploads/2019/12/featureelevator.jpg";
+import PageFooter from "../common/PageFooter";
 
 class Home extends React.Component {
 
@@ -23,84 +23,103 @@ class Home extends React.Component {
             },
         ]
         return (
-            <div className="homepage-container">
-                <Parallax
-                    bgImage="https://colorlib.com/preview/theme/publishingcompany/images/bg_1.jpg"
-                    strength={400}
-                >
-                    <Row className="homepage-header" type="flex" align="middle">
-                        <div className="header-container">
-                            <h1 className="header-title">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</h1>
-                            <RegisterForm></RegisterForm>
-                        </div>
-                    </Row>
-                </Parallax>
-                <div className="contact-container">
-                    <Row className="contact" type="flex" justify="space-around" align="middle">
-                        <Row className="contact-icon" type="flex">
-                            <Col>
-                                <div>1</div>
-                            </Col>
-                            <Col>
-                                <div>2</div>
-                            </Col>
+            <div className="page-dimensions">
+                <div className="homepage-container">
+                    <Parallax
+                        bgImage="/bg4.jpg"
+                        strength={500}
+                    >
+                        <Row className="homepage-header" type="flex" align="middle">
+                            <div className="header-container">
+                                <h1 className="header-title">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</h1>
+                                <RegisterForm></RegisterForm>
+                            </div>
                         </Row>
+                    </Parallax>
+                    <div className="contact-container">
+                        <Row className="contact" type="flex" justify="space-around" align="middle">
+                            <Row gutter={8} type="flex" align="middle">
+                                <Col className="contact-icon">
+                                    <img src="/icon/user.svg"></img>
+                                </Col>
+                                <Col>
+                                    <div className="administrator-container">
+                                        <div className="administrator-name">Marco Abreu</div>
+                                        <div className="administrator-contact">+ 1235 2355 98</div>
+                                    </div>
+                                </Col>
+                            </Row>
 
-                        <Row className="contact-icon" type="flex">
-                            <Col>
-                                <div>1</div>
-                            </Col>
-                            <Col>
-                                <div>2</div>
-                            </Col>
+                            <Row gutter={8} type="flex" align="middle">
+                                <Col className="contact-icon">
+                                    <img src="/icon/user.svg"></img>
+                                </Col>
+                                <Col>
+                                    <div className="administrator-container">
+                                        <div className="administrator-name">Maurilio ...</div>
+                                        <div className="administrator-contact">+ 1235 2355 98</div>
+                                    </div>
+                                </Col>
+                            </Row>
                         </Row>
-                    </Row>
-                </div>
+                    </div>
 
-                <div className="homepage-content-container">
+                    <div className="homepage-content-container">
 
-                    <h1 className="section-title">- Círculares</h1>
+                        <h1 className="section-title">Círculares</h1>
 
-                    <Row className="section-content" type="flex" justify="space-between" align="middle">
-                        {
-                            Object.values(placeholder).map(function (el, index) {
-                                return (
-                                    <div className="circular-container">
-                                        <div className="circular-image" key={index}>
-                                            <div>
-                                                <Document
-                                                    file={el.link}
-                                                >
-                                                    <Page pageNumber={2} renderMode="svg" width={300} />
-                                                </Document>
-                                            </div>
+                        <Row className="section-content" type="flex" justify="space-between" align="middle">
+                            {
+                                Object.values(placeholder).map(function (el, index) {
+                                    return (
+                                        <div className="circular-container">
+                                            <div className="circular-image" key={index}>
+                                                <div className="pdf-container">
+                                                    <Document
+                                                        file={el.link}
+                                                    >
+                                                        <Page pageNumber={2} renderMode="svg" width={300} />
+                                                    </Document>
+                                                </div>
 
-                                            <div className="circular-info">
-                                                <p className="date">
-                                                    02 Maio 2020
+                                                <div className="circular-info">
+                                                    <p className="date">
+                                                        02 Maio 2020
                                              </p>
 
-                                                <h1 className="title">
-                                                    Lorem ipsum dolor sit amet
+                                                    <h1 className="title">
+                                                        Lorem ipsum dolor sit amet
                                             </h1>
+                                                </div>
+
                                             </div>
-
                                         </div>
-                                    </div>
-                                )
+                                    )
 
-                            })
-                        }
+                                })
+                            }
+                        </Row>
 
-                    </Row>
+                        <Row type="flex" justify="center">
+                            <Button className="watch-more" type="primary" htmlType="submit">
+                                <Link className="watch-more-link" to="/circulares">
+                                    Ver mais
+                            </Link>
+                            </Button>
 
-                    <h1 className="section-title">Notícias -</h1>
+                        </Row>
+
+
+                        <h1 className="section-title">Informações</h1>
 
 
 
+                    </div>
                 </div>
+                <footer style={{ display: "block" }} className="layout-footer" >
+                    <PageFooter />
+                </footer>
             </div>
-
         );
     }
 }

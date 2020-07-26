@@ -15,7 +15,7 @@ class CircularController extends Controller
      */
     public function index()
     {
-        return CircularResource::collection(Circular::paginate(10));
+        return CircularResource::collection(Circular::latest()->paginate(6));
     }
 
     /**
