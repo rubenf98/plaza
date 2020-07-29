@@ -2,10 +2,21 @@
 
 namespace App\Http\Resources;
 
+use App\Quota;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class FracaoResource extends JsonResource
 {
+    private $quota;
+
+    public function __construct($resource)
+    {
+        parent::__construct($resource);
+        $this->resource = $resource;
+        $quota = $this->normalQuota();
+
+        $this->quota = $this->normalQuota()->first();
+    }
     /**
      * Transform the resource into an array.
      *
@@ -15,11 +26,15 @@ class FracaoResource extends JsonResource
     public function toArray($request)
     {
         return [
-            'id' => $this->id,
+            'key' => $this->id,
             'nome' => $this->nome,
             'area' => $this->area,
             'estado' => $this->fracaoEstado->estado,
-            'user' => $this->user
+            'user' => optional($this->user)->nome,
+            'quota' => (float) optional($this->quota)->valor,
+            'fundoComum' => optional($this->quota)->fundoComum,
+            'total' => optional($this->quota)->total,
+            'pagamentos' => $this->getNormalQuotas()
         ];
     }
 }

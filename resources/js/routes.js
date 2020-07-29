@@ -12,7 +12,7 @@ import FirstLogin from "./components/public/FirstLogin";
 import PageLayout from "./components/public/PageLayout";
 
 import DashboardHome from "./components/dashboard/DashboardHome";
-import Pagamentos from "./components/dashboard/Pagamentos";
+import Pagamentos from "./components/dashboard/PagamentosContent/Pagamentos";
 import Contas from "./components/dashboard/Contas";
 
 import PublicRoute from "./components/common/PublicRoute";

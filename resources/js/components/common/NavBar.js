@@ -49,9 +49,6 @@ let NavBar = ({ isAuthenticated, logout }) => {
                         </Row>
 
                         <Row className="small-navbar-right" type="flex" justify="end">
-
-
-
                             <Dropdown
                                 overlay={
                                     <Menu>

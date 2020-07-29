@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\QuotaResource;
 use App\Quota;
 use Illuminate\Http\Request;
 
@@ -14,7 +15,7 @@ class QuotaController extends Controller
      */
     public function index()
     {
-        //
+        return QuotaResource::collection(Quota::all());
     }
 
     /**

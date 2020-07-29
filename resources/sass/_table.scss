@@ -1,0 +1,69 @@
+.table-cell-background {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+}
+
+.ant-table {
+    overflow: auto;
+}
+
+.table-page-container {
+    display: flex;
+    justify-content: center;
+    width: 80%;
+    margin: auto;
+    max-width: 1300px;
+
+    @media screen and (max-width: 768px) {
+        width: 100%;
+    }
+}
+
+.table-container {
+    width: 100%;
+    box-shadow: 0 0 15px 0px rgba($color: #000000, $alpha: 0.2);
+    margin: 100px auto;
+    border-radius: 12px;
+
+    @media screen and (max-width: 768px) {
+        margin: auto;
+        box-shadow: none;
+        border-radius: 0;
+    }
+}
+
+.table-filter-container {
+    padding: 10px 15px;
+    background: white;
+}
+
+.table-legend-container {
+    width: 100%;
+    float: right;
+    background: white;
+    padding: 20px 15px;
+
+    .table-legend {
+        margin-left: 30px !important;
+
+        .table-cell-legend {
+            width: 15px;
+            height: 15px;
+            border-radius: 50%;
+            margin: 5px;
+        }
+
+        .pendente {
+            background: wheat;
+        }
+
+        .pago {
+            background: green;
+        }
+
+        .divida {
+            background: red;
+        }
+    }
+}
