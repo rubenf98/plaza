@@ -10,7 +10,9 @@ class FirstLogin extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            submitting: false
+            submitting: false,
+            options: null,
+            loadingOptions: true
         }
     }
 
@@ -32,7 +34,31 @@ class FirstLogin extends React.Component {
     };
 
     componentDidMount() {
-        this.props.fetchBlocoSelector()
+        let options = [];
+        let children = [];
+
+        this.props.fetchBlocoSelector().then((response) => {
+            response.action.payload.data.data.forEach((bloco) => {
+                bloco.fracaos.forEach((fracao) => {
+                    children.push({
+                        value: fracao.id,
+                        label: fracao.nome,
+                        disabled: fracao.user ? true : false
+                    });
+                });
+                options.push({
+                    value: "bloco-" + bloco.id,
+                    label: bloco.nome,
+                    children: children,
+                });
+                children = [];
+
+                this.setState({
+                    options: options,
+                    loadingOptions: false
+                });
+            });
+        });
     }
 
     onFinish = values => {
@@ -46,25 +72,7 @@ class FirstLogin extends React.Component {
     };
 
     render() {
-        const { selector, loading } = this.props;
-        let options = [];
-        let children = [];
-
-        selector.forEach((bloco) => {
-            bloco.fracaos.forEach((fracao) => {
-                children.push({
-                    value: fracao.id,
-                    label: fracao.nome,
-                    disabled: fracao.user ? true : false
-                });
-            });
-            options.push({
-                value: bloco.id,
-                label: bloco.nome,
-                children: children,
-            });
-            children = [];
-        });
+        const { loadingOptions, options } = this.state;
 
         return (
             <div className="first-login-form-container">
@@ -91,11 +99,15 @@ class FirstLogin extends React.Component {
                     </Form.Item>
 
                     <Form.Item hasFeedback name="fracao">
-                        <Cascader
-                            placeholder="Indique a sua fração"
-                            expandTrigger="hover"
-                            options={options}
-                        />
+                        {
+                            !loadingOptions &&
+                            <Cascader
+                                placeholder="Indique a sua fração"
+                                expandTrigger="hover"
+                                options={options}
+                            />
+                        }
+
                     </Form.Item>
 
                     <Form.Item>

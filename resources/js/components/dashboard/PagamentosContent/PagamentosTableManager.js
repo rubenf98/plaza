@@ -32,14 +32,17 @@ class PagamentosTableManager extends React.Component {
             {
                 title: 'Fundo Comum Reserva',
                 dataIndex: 'fundoComum',
+                render: (element) => <span className="euro">{element}</span>,
             },
             {
                 title: 'Valor da Quota',
                 dataIndex: 'quota',
+                render: (element) => <span className="euro">{element}</span>,
             },
             {
                 title: 'Total',
                 dataIndex: 'total',
+                render: (element) => <span className="euro">{element}</span>,
             },
         ];
     }
@@ -98,8 +101,9 @@ class PagamentosTableManager extends React.Component {
             if (!dates || dates.length === 0) {
                 return false;
             }
-            const tooLate = dates[0] && current.diff(dates[0], 'months') > 11;
-            const tooEarly = dates[1] && dates[1].diff(current, 'months') > 11;
+
+            const tooLate = dates[0] && current.year() != dates[0].year();
+            const tooEarly = dates[1] && current.year() != dates[1].year();
             return tooEarly || tooLate;
         };
 
@@ -178,24 +182,40 @@ class PagamentosTableManager extends React.Component {
                         :
                         <Table
                             style={{ width: "100%" }}
-                            rowSelection={rowSelection}
+                            rowSelection={true && rowSelection}
                             columns={this.columns}
+                            rowKey={(record) => record.id}
                             dataSource={data}
                             pagination={{
                                 total: data.length,
                                 pageSize: data.length,
                                 hideOnSinglePage: true
                             }}
-                            summary={() => (
-                                <Table.Summary.Row>
-                                    <Table.Summary.Cell></Table.Summary.Cell>
-                                    <Table.Summary.Cell></Table.Summary.Cell>
-                                    <Table.Summary.Cell>Total Mensal</Table.Summary.Cell>
-                                    <Table.Summary.Cell>64,17</Table.Summary.Cell>
-                                    <Table.Summary.Cell>641,48</Table.Summary.Cell>
-                                    <Table.Summary.Cell>705,65</Table.Summary.Cell>
-                                </Table.Summary.Row>
-                            )}>
+                            summary={data => {
+                                let totalFundoComumReserva = 0;
+                                let totalQuota = 0;
+                                let total = 0;
+
+                                data.forEach(element => {
+                                    totalFundoComumReserva += element.fundoComum;
+                                    totalQuota += element.quota;
+                                    total += element.total;
+                                });
+
+                                return (
+                                    <>
+                                        <Table.Summary.Row>
+                                            <Table.Summary.Cell></Table.Summary.Cell>
+                                            <Table.Summary.Cell></Table.Summary.Cell>
+                                            <Table.Summary.Cell className="bold">Total Mensal</Table.Summary.Cell>
+                                            <Table.Summary.Cell className="euro bold">{Math.round((totalFundoComumReserva + Number.EPSILON) * 100) / 100}</Table.Summary.Cell>
+                                            <Table.Summary.Cell className="euro bold">{Math.round((totalQuota + Number.EPSILON) * 100) / 100}</Table.Summary.Cell>
+                                            <Table.Summary.Cell className="euro bold">{Math.round((total + Number.EPSILON) * 100) / 100}</Table.Summary.Cell>
+                                        </Table.Summary.Row>
+                                    </>
+                                );
+                            }}
+                        >
                         </Table>
                 }
 

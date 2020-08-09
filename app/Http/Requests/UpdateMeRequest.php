@@ -44,7 +44,7 @@ class UpdateMeRequest extends FormRequest
         return [
             'user_id' => 'required|integer|exists:users,id',
             'nome' => 'required|string',
-            'password' => 'required|string|min:6',
+            'password' => 'required|string|min:4',
             'fracao_id' => 'required|integer|exists:fracaos,id',
         ];
     }

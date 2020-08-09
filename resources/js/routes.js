@@ -6,6 +6,7 @@ import ScrollToTop from "./components/common/ScrollToTop";
 
 //public pages
 import Home from "./components/public/Home";
+import Circulares from "./components/public/Circulares";
 import Circular from "./components/public/Circular";
 import Login from "./components/public/Login";
 import FirstLogin from "./components/public/FirstLogin";
@@ -26,7 +27,8 @@ const Routes = () => {
             <ScrollToTop>
                 <Switch>
                     <PageLayout>
-                        <Route exact path="/circulares" component={Circular} />
+                        <Route path="/circulares/:id" component={Circular} />
+                        <Route exact path="/circulares" component={Circulares} />
                         <Route exact path="/login/first" component={FirstLogin} />
                         <Route exact path="/login" component={Login} />
                         <Route exact path="/" component={Home} />

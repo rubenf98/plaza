@@ -1,109 +1,104 @@
 import React from 'react'
 import {
-    fetchCirculares
+    fetchCircular
 } from "../../redux/circular/actions";
 import { connect } from "react-redux";
-import { Row, Col, Spin } from "antd";
-import PaginationControls from "../common/PaginationControls";
+import { Row, Col, Spin, Button } from "antd";
 import { Document } from 'react-pdf/dist/entry.webpack';
 import { Page } from 'react-pdf'
 import PageFooter from "../common/PageFooter";
+import { LeftOutlined, RightOutlined, DownloadOutlined } from '@ant-design/icons';
+
+
+const options = {
+    cMapUrl: 'cmaps/',
+    cMapPacked: true,
+};
+
 
 class Circular extends React.Component {
-    constructor(props) {
-        super(props);
 
+    state = {
+        numPages: null,
+        pageNumber: 1,
     }
 
     componentDidMount() {
-        this.props.fetchCirculares();
+
+        this.props.fetchCircular(this.props.match.params.id);
     }
 
-    handlePageChange = (pageNumber) => {
-        this.props.fetchCirculares(pageNumber);
-        console.log('Page: ', pageNumber);
+    onDocumentLoadSuccess = (pdf) => {
+        console.log(pdf._pdfInfo);
+        this.setState({
+            numPages: pdf._pdfInfo.numPages,
+        })
     }
+
+    changePage = (offset) => {
+        this.setState({
+            pageNumber: this.state.pageNumber + offset,
+        })
+
+    }
+
+    previousPage = () => {
+        this.changePage(-1);
+    }
+
+    nextPage = () => {
+        this.changePage(1);
+    }
+
 
     render() {
-        const { circularData, circularMeta, circularLoading } = this.props;
+        let { circular } = this.props;
+        let { pageNumber, numPages } = this.state;
 
         return (
             <div className="page-dimensions">
-                <div className="circular-page-container page-container">
-                    <Row>
-                        <Col xl={18} md={24} xs={24}>
-                            {circularLoading ?
-                                <Row type="flex" justify="center" align="middle" style={{ height: "100%" }}>
-                                    <Spin size="large" />
-                                </Row>
-                                :
+                <div className="single-circular-page-container ">
+                    <div className="single-circular-container page-container">
+                        <Row type="flex" justify="center" className="pdf-document-container">
+                            <Document
+                                className="pdf-document"
+                                file={`${window.location.origin}/api/pdf/${circular.link}`}
+                                onLoadSuccess={this.onDocumentLoadSuccess}
+                            >
                                 <React.Fragment>
-                                    <Row className="posts-container" type="flex" justify="center" align="middle">
-                                        {
-                                            Object.values(circularData).map(function (el, index) {
-                                                return (
-                                                    <div className="post-container" key={index}>
-                                                        <div className="pdf-container">
-                                                            <Document
-                                                                file={`${window.location.origin}/api/pdf/${el.link}`}
-                                                            >
-                                                                <Page pageNumber={1} renderMode="svg" height={350} />
-                                                            </Document>
-                                                        </div>
 
-                                                        <div className="pdf-info">
-                                                            <h1 className="title">
-                                                                {el.titulo}
-                                                            </h1>
+                                    <Button type="primary" shape="circle" icon={<DownloadOutlined />} className="pdf-control download-button" />
+                                    <Page pageNumber={pageNumber} className="pdf" />
+                                    <Button
+                                        className="pdf-control left-button"
+                                        type="primary"
+                                        disabled={pageNumber <= 1}
+                                        onClick={this.previousPage}
+                                        shape="circle"
+                                        icon={<LeftOutlined />}
+                                    />
 
-                                                            <p className="date">
-                                                                {el.created_at}
-                                                            </p>
-                                                        </div>
-                                                    </div>
-                                                )
+                                    <div className="pdf-control page-info">
+                                        {pageNumber || (numPages ? 1 : '--')} de {numPages || '--'}
+                                    </div>
 
-                                            })
-                                        }
-
-                                    </Row>
-
-                                    <Row type="flex" justify="center" align="middle">
-                                        <PaginationControls meta={circularMeta} handlePageChange={this.handlePageChange} />
-                                    </Row>
+                                    <Button
+                                        className="pdf-control right-button"
+                                        type="primary"
+                                        disabled={pageNumber >= numPages}
+                                        onClick={this.nextPage}
+                                        shape="circle"
+                                        icon={<RightOutlined />}
+                                    />
                                 </React.Fragment>
-                            }
+                            </Document>
+                        </Row>
+                    </div>
 
-
-                        </Col>
-
-                        <Col xl={6} md={0} xs={0}>
-                            <h3 className="filter-title">
-                                Filtrar por:
-                        </h3>
-
-                            <ul className="filter-container">
-                                <li className="filter">Obras</li>
-                                <li className="filter">Limpezas</li>
-                                <li className="filter">Avisos</li>
-                                <li className="filter">Manutenção</li>
-                                <li className="filter">Reuniões</li>
-                                <li className="filter">Outros</li>
-                            </ul>
-
-                            <h3 className="filter-title">
-                                Recebe novidades
-                        </h3>
-
-                            <ul>
-                                <li>Form</li>
-                            </ul>
-                        </Col>
-                    </Row>
+                    <footer style={{ display: "block" }} className="layout-footer" >
+                        <PageFooter />
+                    </footer>
                 </div>
-                <footer style={{ display: "block" }} className="layout-footer" >
-                    <PageFooter />
-                </footer>
             </div>
         );
     }
@@ -111,15 +106,14 @@ class Circular extends React.Component {
 
 const mapDispatchToProps = dispatch => {
     return {
-        fetchCirculares: (page, filters) => dispatch(fetchCirculares(page, filters)),
+        fetchCircular: (id) => dispatch(fetchCircular(id)),
     };
 };
 
 const mapStateToProps = (state) => {
     return {
-        circularData: state.circular.data,
-        circularMeta: state.circular.meta,
-        circularLoading: state.circular.loading,
+        circular: state.circular.current,
+        loading: state.circular.loading,
     };
 };
 

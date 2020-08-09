@@ -29,7 +29,7 @@ class FracaoSeeder extends Seeder
         ]);
 
         Fracao::Create([
-            "fracao_estado_id" => 2,
+            "fracao_estado_id" => 1,
             "bloco_id" => 3,
             "area" => 27,
             "nome" => "CC"

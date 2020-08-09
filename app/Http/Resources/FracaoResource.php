@@ -26,7 +26,7 @@ class FracaoResource extends JsonResource
     public function toArray($request)
     {
         return [
-            'key' => $this->id,
+            'id' => $this->id,
             'nome' => $this->nome,
             'area' => $this->area,
             'estado' => $this->fracaoEstado->estado,

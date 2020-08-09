@@ -104,7 +104,7 @@ class Home extends React.Component {
                             <Button className="watch-more" type="primary" htmlType="submit">
                                 <Link className="watch-more-link" to="/circulares">
                                     Ver mais
-                            </Link>
+                                </Link>
                             </Button>
 
                         </Row>

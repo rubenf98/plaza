@@ -11,7 +11,7 @@ export const fetchCirculares = (page = 1, filters = {}) => ({
     )
 });
 
-export const fetchCircular = (filters = {}, id) => ({
+export const fetchCircular = (id) => ({
     type: types.FETCH_CIRCULAR,
     payload: axios.get(`${window.location.origin}/api/circular/${id}`),
 });

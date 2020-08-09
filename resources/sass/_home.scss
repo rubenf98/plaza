@@ -153,28 +153,16 @@
         height: 70px;
         margin: 60px auto;
         margin-top: 0;
-        background: none;
         border-radius: 5px;
         text-transform: capitalize;
         padding: 19px 47px;
         -moz-user-select: none;
         cursor: pointer;
-        border: 2px solid $customHeader;
         transition: 0.25s linear;
-
-        &:hover {
-            background: $customAccent;
-            border: 2px solid transparent;
-
-            .watch-more-link {
-                color: white;
-            }
-        }
 
         .watch-more-link {
             font-size: 1.2em;
             font-weight: bold;
-            color: $customHeader;
         }
     }
 }
