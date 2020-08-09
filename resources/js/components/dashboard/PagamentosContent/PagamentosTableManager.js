@@ -3,7 +3,7 @@ import React from 'react';
 import { connect } from "react-redux";
 import { Table, Button, Row, Spin, DatePicker, Col, Dropdown, Menu, Radio } from 'antd';
 import { colorConverter } from '../../../helper'
-import { fetchFracaos } from '../../../redux/fracao/actions';
+import { fetchFracaos, fetchFracao, setCurrentFracaos, finishCurrentFracaos } from '../../../redux/fracao/actions';
 import locale from 'antd/es/date-picker/locale/pt_PT';
 import { FilterOutlined } from '@ant-design/icons';
 
@@ -13,7 +13,7 @@ class PagamentosTableManager extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            selectedRowKeys: [], // Check here to configure the default column
+            selectedRowKeys: [],
             loading: false,
             loadingMonths: true,
             months: null,
@@ -66,19 +66,21 @@ class PagamentosTableManager extends React.Component {
         });
     }
 
-    start = () => {
+    handleEditClick = async () => {
         this.setState({ loading: true });
-        // ajax request after empty completing
-        setTimeout(() => {
-            this.setState({
-                selectedRowKeys: [],
-                loading: false,
-            });
-        }, 1000);
+        this.props.setCurrentFracaos();
+
+        this.state.selectedRowKeys.forEach((element, index) => {
+            this.props.fetchFracao(element)
+
+            if (index == this.state.selectedRowKeys.length - 1) {
+                this.setState({ selectedRowKeys: [], loading: false });
+                this.props.handleModalVisible(true);
+            }
+        });
     };
 
     onSelectChange = selectedRowKeys => {
-        console.log('selectedRowKeys changed: ', selectedRowKeys);
         this.setState({ selectedRowKeys });
     };
 
@@ -165,7 +167,10 @@ class PagamentosTableManager extends React.Component {
 
                     <Col xs={12} lg={4}>
                         <Row type="flex" justify="end">
-                            <Button type="primary" onClick={this.start} disabled={!hasSelected} loading={loading}>
+                            <Button type="primary"
+                                onClick={this.handleEditClick}
+                                disabled={!hasSelected}
+                                loading={loading}>
                                 Editar
                             </Button>
                         </Row>
@@ -242,12 +247,15 @@ class PagamentosTableManager extends React.Component {
 const mapDispatchToProps = dispatch => {
     return {
         fetchFracaos: (filters) => dispatch(fetchFracaos(filters)),
+        fetchFracao: (id) => dispatch(fetchFracao(id)),
+        setCurrentFracaos: () => dispatch(setCurrentFracaos()),
     };
 };
 
 const mapStateToProps = (state) => {
     return {
         data: state.fracao.data,
+        currentFracaos: state.fracao.currentFracaos,
         loading: state.fracao.loading,
     };
 };

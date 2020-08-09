@@ -47,7 +47,8 @@ class FracaoController extends Controller
      */
     public function show(Fracao $fracao)
     {
-        return Fracao::getQuotas($fracao);
+        return new FracaoResource($fracao);
+        //return Fracao::getQuotas($fracao);
     }
 
     /**
