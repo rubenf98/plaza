@@ -31,9 +31,6 @@ class FracaoResource extends JsonResource
             'area' => $this->area,
             'estado' => $this->fracaoEstado->estado,
             'user' => optional($this->user)->nome,
-            'quota' => (float) optional($this->quota)->valor,
-            'fundoComum' => optional($this->quota)->fundoComum,
-            'total' => optional($this->quota)->total,
             'pagamentos' => $this->getNormalQuotas()
         ];
     }
