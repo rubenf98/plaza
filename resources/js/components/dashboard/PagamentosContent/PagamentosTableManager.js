@@ -6,6 +6,8 @@ import { colorConverter } from '../../../helper'
 import { fetchFracaos, fetchFracao, setCurrentFracaos, finishCurrentFracaos } from '../../../redux/fracao/actions';
 import locale from 'antd/es/date-picker/locale/pt_PT';
 import { FilterOutlined } from '@ant-design/icons';
+import moment from 'moment';
+import CommonTable from '../../common/CommonTable';
 
 const { RangePicker } = DatePicker;
 
@@ -18,26 +20,35 @@ class PagamentosTableManager extends React.Component {
             loadingMonths: true,
             months: null,
             dates: null,
+            columns: [
+                {
+                    title: 'Fração',
+                    dataIndex: 'nome',
+                },
+                {
+                    title: 'Condómino',
+                    dataIndex: 'user',
+                },
+            ]
         }
         this.filters = {};
-        this.columns = [
-            {
-                title: 'Fração',
-                dataIndex: 'nome',
-            },
-            {
-                title: 'Condómino',
-                dataIndex: 'user',
-            },
-        ];
     }
 
-    componentDidMount() {
-        this.props.fetchFracaos().then((response) => {
+    async componentDidMount() {
+        let bloco = 'A';
+        await this.props.currentUser.fracaos[0] && (bloco = this.props.currentUser.fracaos[0].bloco);
+
+        this.filters = {
+            bloco: bloco
+        }
+
+        let columns = this.state.columns;
+
+        this.props.fetchFracaos(this.filters).then((response) => {
             Object.entries(response.action.payload.data.data[0].pagamentos).map((
                 element
             ) => {
-                this.columns.push({
+                columns.push({
                     title: element[0],
                     dataIndex: "pagamentos",
                     render: (code) => <div className="table-cell-background" style={{ background: code[element[0]] ? colorConverter[code[element[0]]] : "wheat" }}></div>,
@@ -46,6 +57,7 @@ class PagamentosTableManager extends React.Component {
 
             this.setState({
                 loadingMonths: false,
+                columns: columns
             });
 
         });
@@ -63,6 +75,59 @@ class PagamentosTableManager extends React.Component {
                 this.props.handleModalVisible(true);
             }
         });
+    };
+
+    handleFilterChange = e => {
+        this.filters = {
+            ...this.filters,
+            bloco: e.target.value
+        }
+        this.props.fetchFracaos(this.filters);
+    };
+
+    handleCalendarChange = e => {
+        this.setState({
+            dates: e
+        });
+        if (e) {
+            if (e[0] && e[1]) {
+                this.filters = {
+                    ...this.filters,
+                    startDate: moment(e[0]).format('YYYY-MM').toString(),
+                    endDate: moment(e[1]).format('YYYY-MM').toString()
+                }
+
+                let columns = [
+                    {
+                        title: 'Fração',
+                        dataIndex: 'nome',
+                    },
+                    {
+                        title: 'Condómino',
+                        dataIndex: 'user',
+                    },
+                ];
+
+
+                this.props.fetchFracaos(this.filters).then((response) => {
+                    Object.entries(response.action.payload.data.data[0].pagamentos).map((
+                        element
+                    ) => {
+                        columns.push({
+                            title: element[0],
+                            dataIndex: "pagamentos",
+                            render: (code) => <div className="table-cell-background" style={{ background: code[element[0]] ? colorConverter[code[element[0]]] : "wheat" }}></div>,
+                        })
+                    });
+
+                    this.setState({
+                        loadingMonths: false,
+                        columns: columns
+                    });
+
+                });
+            }
+        }
     };
 
     onSelectChange = selectedRowKeys => {
@@ -103,7 +168,10 @@ class PagamentosTableManager extends React.Component {
                                 overlay={
                                     <Menu>
                                         <Menu.ItemGroup title="Bloco">
-                                            <Radio.Group onChange={this.onChange}>
+                                            <Radio.Group
+                                                onChange={this.handleFilterChange}
+                                                defaultValue={this.filters.bloco}
+                                            >
                                                 <Radio style={radioStyle} value="A">
                                                     Bloco A
                                                 </Radio>
@@ -142,9 +210,7 @@ class PagamentosTableManager extends React.Component {
                                 locale={locale}
                                 disabledDate={disabledDate}
                                 onCalendarChange={value => {
-                                    this.setState({
-                                        dates: value
-                                    });
+                                    this.handleCalendarChange(value);
                                 }}
                             />
                         </Row>
@@ -170,11 +236,12 @@ class PagamentosTableManager extends React.Component {
                             <Spin size="large" />
                         </Row>
                         :
-                        <Table
+                        <CommonTable
                             style={{ width: "100%" }}
                             rowSelection={true && rowSelection}
-                            columns={this.columns}
+                            columns={this.state.columns}
                             rowKey={(record) => record.id}
+                            loading={this.props.loading}
                             dataSource={data}
                             pagination={{
                                 total: data.length,
@@ -182,7 +249,7 @@ class PagamentosTableManager extends React.Component {
                                 hideOnSinglePage: true
                             }}
                         >
-                        </Table>
+                        </CommonTable>
                 }
 
                 <Row className="table-legend-container" type="flex" justify="end" align="middle">
@@ -218,6 +285,7 @@ const mapStateToProps = (state) => {
         data: state.fracao.data,
         currentFracaos: state.fracao.currentFracaos,
         loading: state.fracao.loading,
+        currentUser: state.auth.currentUser,
     };
 };
 

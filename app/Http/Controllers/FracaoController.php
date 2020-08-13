@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Fracao;
 use App\Http\Resources\FracaoResource;
+use App\QueryFilters\FracaoFilters;
 use Illuminate\Http\Request;
 
 class FracaoController extends Controller
@@ -13,9 +14,11 @@ class FracaoController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        return FracaoResource::collection(Fracao::all());
+        $filters = FracaoFilters::hydrate($request->query());
+
+        return FracaoResource::collection(Fracao::filterBy($filters)->get());
     }
 
     /**

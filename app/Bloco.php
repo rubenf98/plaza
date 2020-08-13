@@ -3,9 +3,11 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Cerbero\QueryFilters\FiltersRecords;
 
 class Bloco extends Model
 {
+    use FiltersRecords;
     protected $fillable = [
         'nome'
     ];

@@ -13,17 +13,17 @@ class BlocoSeeder extends Seeder
     public function run()
     {
         Bloco::Create([
-            "nome" => "Bloco A",
+            "nome" => "A",
             "edificio_id" => 1,
         ]);
 
         Bloco::Create([
-            "nome" => "Bloco B",
+            "nome" => "B",
             "edificio_id" => 1,
         ]);
 
         Bloco::Create([
-            "nome" => "Bloco C",
+            "nome" => "C",
             "edificio_id" => 1,
         ]);
     }

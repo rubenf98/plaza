@@ -2,6 +2,7 @@
 
 namespace App;
 
+use Cerbero\QueryFilters\FiltersRecords;
 use Illuminate\Database\Eloquent\Model;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
@@ -9,6 +10,8 @@ use App\Quota;
 
 class Fracao extends Model
 {
+    use FiltersRecords;
+
     protected $fillable = [
         'area', 'nome'
     ];
@@ -38,14 +41,15 @@ class Fracao extends Model
         return Quota::NormalQuota($this->id);
     }
 
-    public function getNormalQuotas()
+    public function getNormalQuotas($startDate, $endDate)
     {
-        $date = Carbon::now()->subMonths(10);
+        $startDate ? $date = Carbon::createFromFormat('Y-m', $startDate) : $date = Carbon::now()->firstOfMonth()->subMonths(10);
+        $endDate ? $diff = $date->diffInMonths($endDate) + 1 : $diff = 11;
         $fracao_id = $this->id;
 
         $total = [];
 
-        for ($i = 0; $i <= 11; $i++) {
+        for ($i = 0; $i <= $diff; $i++) {
             $first = Carbon::now()->month($date->month)->year($date->year)->firstOfMonth();
             $last = Carbon::now()->month($date->month)->year($date->year)->lastOfMonth();
 
