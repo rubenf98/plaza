@@ -1,27 +1,32 @@
 import React from 'react'
+import {
+    fetchCirculares
+} from "../../redux/circular/actions";
+import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import { Row, Col, Button } from "antd";
 import { Parallax } from 'react-parallax';
-import { Document } from 'react-pdf/dist/entry.webpack';
-import { Page } from 'react-pdf'
 import RegisterForm from "./RegisterForm";
 import PageFooter from "../common/PageFooter";
+import LoadingContainer from "../common/LoadingContainer";
 
 class Home extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            filters: {
+                limit: 3
+            }
+        }
+    }
 
+    componentDidMount() {
+        this.props.fetchCirculares(1, this.state.filters);
+    }
 
     render() {
-        const placeholder = [
-            {
-                "link": "http://localhost:8000/api/pdf/CC"
-            },
-            {
-                "link": "http://localhost:8000/api/pdf/CC"
-            },
-            {
-                "link": "http://localhost:8000/api/pdf/CC"
-            },
-        ]
+        const { circularData, circularLoading } = this.props;
+
         return (
             <div className="page-dimensions">
                 <div className="homepage-container">
@@ -69,35 +74,40 @@ class Home extends React.Component {
                         <h1 className="section-title">Círculares</h1>
 
                         <Row className="section-content" type="flex" justify="space-between" align="middle">
-                            {
-                                Object.values(placeholder).map(function (el, index) {
-                                    return (
-                                        <div className="circular-container">
-                                            <div className="circular-image" key={index}>
-                                                <div className="pdf-container">
-                                                    <Document
-                                                        file={el.link}
-                                                    >
-                                                        <Page pageNumber={2} renderMode="svg" width={300} />
-                                                    </Document>
+                            <LoadingContainer loading={circularLoading} >
+                                {
+                                    Object.values(circularData).map(function (el, index) {
+                                        return (
+
+                                            <Link
+                                                className="circular-container"
+                                                key={index}
+                                                to={`/circulares/${el.id}`}
+
+                                            >
+                                                <div className="circular-image-container" key={index}>
+
+                                                    <img className="image" src={`${window.location.origin}/api/image/${el.link}`}></img>
+
+                                                    <div className="circular-info">
+                                                        <p className="date">
+                                                            {el.created_at}
+                                                        </p>
+
+                                                        <h1 className="title">
+                                                            {el.titulo}
+                                                        </h1>
+                                                    </div>
+
                                                 </div>
+                                            </Link>
 
-                                                <div className="circular-info">
-                                                    <p className="date">
-                                                        02 Maio 2020
-                                             </p>
 
-                                                    <h1 className="title">
-                                                        Lorem ipsum dolor sit amet
-                                            </h1>
-                                                </div>
+                                        )
 
-                                            </div>
-                                        </div>
-                                    )
-
-                                })
-                            }
+                                    })
+                                }
+                            </LoadingContainer>
                         </Row>
 
                         <Row type="flex" justify="center">
@@ -123,5 +133,17 @@ class Home extends React.Component {
         );
     }
 }
+const mapDispatchToProps = dispatch => {
+    return {
+        fetchCirculares: (page, filters) => dispatch(fetchCirculares(page, filters)),
+    };
+};
 
-export default Home
+const mapStateToProps = (state) => {
+    return {
+        circularData: state.circular.data,
+        circularLoading: state.circular.loading,
+    };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Home);

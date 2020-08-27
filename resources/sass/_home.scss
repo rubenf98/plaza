@@ -93,8 +93,8 @@
             &:hover {
                 box-shadow: 0 0 40px 0 rgba(0, 0, 0, 0.2);
 
-                .circular-image {
-                    .pdf-container {
+                .circular-image-container {
+                    .image {
                         transform: scale(1.1);
                     }
                 }
@@ -108,11 +108,12 @@
                 }
             }
 
-            .circular-image {
+            .circular-image-container {
                 overflow: hidden;
                 border-radius: 5px;
-                .pdf-container {
+                .image {
                     transition: 0.4s ease;
+                    width: 100%;
                 }
             }
 

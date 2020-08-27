@@ -1,5 +1,6 @@
 import React from "react";
 import { Form, Select, Col, Row, Spin } from "antd";
+import LoadingContainer from '../../common/LoadingContainer';
 
 const { Option } = Select;
 
@@ -35,56 +36,51 @@ class PagamentosForm extends React.Component {
 
         return (
             <div className="pagamentos-form-container">
-                {
-                    loading ?
-                        <Row type="flex" align="middle" justify="center" style={{ height: "500px" }}>
-                            <Spin size="large" />
-                        </Row>
 
-                        :
+                <LoadingContainer loading={loading}>
+                    <Form
+                        ref={this.props.formRef}
+                        hideRequiredMark={true}
+                        initialValues={initialValues}
+                    >
+                        {
+                            Object.values(currentFracaos).map((element, index) => {
+                                return (
+                                    <div key={index}>
+                                        <h1>{element.nome}</h1>
+                                        <Row>
+                                            {
+                                                Object.entries(element.pagamentos).map((el, i) => {
+                                                    return (
+                                                        <Col key={'inner-' + i} lg={4} xs={8}>
+                                                            <Form.Item
+                                                                name={element.id + '_' + el[0]}
+                                                                label={el[0]}
 
-                        <Form
-                            ref={this.props.formRef}
-                            hideRequiredMark={true}
-                            initialValues={initialValues}
-                        >
-                            {
-                                Object.values(currentFracaos).map((element, index) => {
-                                    return (
-                                        <div key={index}>
-                                            <h1>{element.nome}</h1>
-                                            <Row>
-                                                {
-                                                    Object.entries(element.pagamentos).map((el, i) => {
-                                                        return (
-                                                            <Col key={'inner-' + i} lg={4} xs={8}>
-                                                                <Form.Item
-                                                                    name={element.id + '_' + el[0]}
-                                                                    label={el[0]}
+                                                            >
+                                                                <Select style={{ width: "80%", minWidth: "80px" }} >
+                                                                    <Option value="pendente">Pendente</Option>
+                                                                    <Option value="pago">Pago</Option>
+                                                                    <Option value="Divida">Dívida</Option>
+                                                                </Select>
 
-                                                                >
-                                                                    <Select style={{ width: "80%", minWidth: "80px" }} >
-                                                                        <Option value="pendente">Pendente</Option>
-                                                                        <Option value="pago">Pago</Option>
-                                                                        <Option value="Divida">Dívida</Option>
-                                                                    </Select>
+                                                            </Form.Item>
+                                                        </Col>
+                                                    );
 
-                                                                </Form.Item>
-                                                            </Col>
-                                                        );
+                                                })
+                                            }
+                                        </Row>
 
-                                                    })
-                                                }
-                                            </Row>
+                                    </div>
 
-                                        </div>
+                                );
+                            })
+                        }
 
-                                    );
-                                })
-                            }
+                    </Form >
+                </LoadingContainer>
 
-                        </Form >
-                }
 
             </div>
         );

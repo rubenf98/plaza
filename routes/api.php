@@ -41,6 +41,7 @@ Route::prefix('selector')->group(function () {
 Route::apiResource('blocos', 'BlocoController');
 Route::apiResource('circular', 'CircularController');
 Route::apiResource('pdf', 'PDFController');
+Route::apiResource('image', 'ImageController');
 Route::apiResource('edificio', 'EdificioController');
 Route::apiResource('fracao', 'FracaoController');
 Route::apiResource('users', 'UserController');

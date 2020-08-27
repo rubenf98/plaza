@@ -7,7 +7,6 @@ import promise from 'redux-promise-middleware'
 import { composeWithDevTools } from 'redux-devtools-extension'
 import {
     me,
-    loginSuccess,
     setAuthorizationToken,
     refreshAuthorizationToken
 } from "./redux/auth/actions";

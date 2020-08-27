@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Circular;
 use App\Http\Resources\CircularResource;
 use Illuminate\Http\Request;
+use Spatie\PdfToImage\Pdf;
+
 
 class CircularController extends Controller
 {
@@ -13,9 +15,9 @@ class CircularController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        return CircularResource::collection(Circular::latest()->paginate(6));
+        return CircularResource::collection(Circular::latest()->paginate($request->limit ? $request->limit : 6));
     }
 
     /**
@@ -26,7 +28,15 @@ class CircularController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
+        if ($request->hasFile('pdf')->isValid()) {
+            $uniqueFileName = uniqid();
+            $pdfPath = public_path('circular') . $uniqueFileName . '.pdf';
+            $request->pdf->store($pdfPath);
+
+            $pdf = new Pdf($pdfPath);
+            $pdf->saveImage(public_path('circular'));
+        }
     }
 
     /**

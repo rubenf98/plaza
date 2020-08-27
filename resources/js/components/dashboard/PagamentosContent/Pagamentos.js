@@ -1,7 +1,7 @@
 
 import DashboardLayout from '../DashboardLayout';
 import React from 'react';
-import { Table, Button, Row, Spin } from 'antd';
+import { Row } from 'antd';
 import PagamentosTableManager from './PagamentosTableManager';
 import PagamentosModalManager from './PagamentosModalManager';
 

@@ -1,13 +1,14 @@
 import DashboardLayout from '../DashboardLayout';
 import React from 'react';
 import { connect } from "react-redux";
-import { Table, Button, Row, Spin, DatePicker, Col, Dropdown, Menu, Radio } from 'antd';
+import { Button, Row, DatePicker, Col, Dropdown, Menu, Radio } from 'antd';
 import { colorConverter } from '../../../helper'
-import { fetchFracaos, fetchFracao, setCurrentFracaos, finishCurrentFracaos } from '../../../redux/fracao/actions';
+import { fetchFracaos, fetchFracao, setCurrentFracaos } from '../../../redux/fracao/actions';
 import locale from 'antd/es/date-picker/locale/pt_PT';
 import { FilterOutlined } from '@ant-design/icons';
 import moment from 'moment';
 import CommonTable from '../../common/CommonTable';
+import LoadingContainer from '../../common/LoadingContainer';
 
 const { RangePicker } = DatePicker;
 
@@ -229,28 +230,23 @@ class PagamentosTableManager extends React.Component {
 
 
                 </Row>
-                {
-                    loadingMonths
-                        ?
-                        <Row type="flex" justify="center" align="middle" style={{ height: "100%" }}>
-                            <Spin size="large" />
-                        </Row>
-                        :
-                        <CommonTable
-                            style={{ width: "100%" }}
-                            rowSelection={true && rowSelection}
-                            columns={this.state.columns}
-                            rowKey={(record) => record.id}
-                            loading={this.props.loading}
-                            dataSource={data}
-                            pagination={{
-                                total: data.length,
-                                pageSize: data.length,
-                                hideOnSinglePage: true
-                            }}
-                        >
-                        </CommonTable>
-                }
+
+                <LoadingContainer loading={loadingMonths}>
+                    <CommonTable
+                        style={{ width: "100%" }}
+                        rowSelection={true && rowSelection}
+                        columns={this.state.columns}
+                        rowKey={(record) => record.id}
+                        loading={this.props.loading}
+                        dataSource={data}
+                        pagination={{
+                            total: data.length,
+                            pageSize: data.length,
+                            hideOnSinglePage: true
+                        }}
+                    >
+                    </CommonTable>
+                </LoadingContainer>
 
                 <Row className="table-legend-container" type="flex" justify="end" align="middle">
                     <Row className="table-legend" type="flex" align="middle">
