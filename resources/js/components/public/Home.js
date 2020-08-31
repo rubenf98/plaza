@@ -20,6 +20,32 @@ const AboutInfoContent = ({ img, text }) => (
     </Col>
 );
 
+const FAQContent = ({ question, answer }) => (
+    <Col lg={12} md={24}>
+        <h3 className="question">{question}</h3>
+        <p className="answer">{answer}</p>
+    </Col>
+);
+
+const Header = ({ title, subtitle }) => (
+    <div className="section-title-container">
+        <h1 className="section-title">{title}</h1>
+        <h1 className="section-subtitle">{subtitle}</h1>
+    </div>
+);
+
+const WatchMoreButton = ({ to }) => (
+    <Row type="flex" justify="center">
+        <Button className="watch-more" type="primary" htmlType="submit">
+            <Link className="watch-more-link" to={to}>
+                Ver mais
+            </Link>
+        </Button>
+    </Row>
+);
+
+
+
 class Home extends React.Component {
     constructor(props) {
         super(props);
@@ -45,37 +71,26 @@ class Home extends React.Component {
                         strength={500}
                     >
                         <Row className="homepage-header" type="flex" align="middle">
-                            <div className="header-container">
-                                <h1 className="header-title">A melhor gestão é realizada por quem conhece</h1>
-                                <RegisterForm></RegisterForm>
+                            <div className="header">
+                                <h1 className="title">A melhor gestão é realizada por quem conhece</h1>
+                                <RegisterForm ></RegisterForm>
                             </div>
                         </Row>
                     </Parallax>
-                    <div className="contact-container">
-                        <Row className="contact" type="flex" justify="space-around" align="middle">
-                            <Row gutter={8} type="flex" align="middle">
-                                <Col className="contact-icon">
-                                    <img src="/icon/user.svg"></img>
-                                </Col>
-                                <Col>
-                                    <div className="administrator-container">
-                                        <div className="administrator-name">Marco Abreu</div>
-                                        <div className="administrator-contact">962 860 429</div>
-                                    </div>
-                                </Col>
-                            </Row>
+                    <div className="homepage-content-container">
+                        <Row className="administrator-container " type="flex" justify="space-around" align="middle">
 
-                            <Row gutter={8} type="flex" align="middle">
-                                <Col className="contact-icon">
-                                    <img src="/icon/user.svg"></img>
-                                </Col>
-                                <Col>
-                                    <div className="administrator-container">
-                                        <div className="administrator-name">Maurílio Fernandes</div>
-                                        <div className="administrator-contact">966 169 159</div>
-                                    </div>
-                                </Col>
-                            </Row>
+                            <div className="administrator">
+                                <div className="name">Marco Abreu</div>
+                                <div className="contact">962 860 429</div>
+                            </div>
+
+                            <div className="administrator">
+                                <div className="name">Maurílio Fernandes</div>
+                                <div className="contact">966 169 159</div>
+                            </div>
+
+
                         </Row>
                     </div>
                     <div className="homepage-content-container">
@@ -114,8 +129,10 @@ class Home extends React.Component {
                     </div>
 
                     <div className="homepage-content-container">
-
-                        <h1 className="section-title">Círculares</h1>
+                        <Header
+                            title="Círculares"
+                            subtitle="Informações relativas a acontecimentos no condomínio"
+                        />
 
                         <Row className="section-content" type="flex" justify="space-between" align="middle">
                             <LoadingContainer loading={circularLoading} >
@@ -154,21 +171,54 @@ class Home extends React.Component {
                             </LoadingContainer>
                         </Row>
 
-                        <Row type="flex" justify="center">
-                            <Button className="watch-more" type="primary" htmlType="submit">
-                                <Link className="watch-more-link" to="/circulares">
-                                    Ver mais
-                                </Link>
-                            </Button>
-
-                        </Row>
-
-
-                        <h1 className="section-title">Informações</h1>
-
-
+                        <WatchMoreButton to="/circulares" />
 
                     </div>
+
+                    <div className="faq-homepage-container">
+                        <Header
+                            title="Perguntas frequentes"
+                            subtitle="Esclareça todas as suas dúvidas com facilidade"
+                        />
+
+                        <Row className="homepage-content-container">
+                            <FAQContent
+                                question="Can I accept both Paypal and Stripe?"
+                                answer="Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean."
+                            />
+                            <FAQContent
+                                question="Can I accept both Paypal and Stripe?"
+                                answer="Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean."
+                            />
+                            <FAQContent
+                                question="Can I accept both Paypal and Stripe?"
+                                answer="Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean."
+                            />
+                            <FAQContent
+                                question="Can I accept both Paypal and Stripe?"
+                                answer="Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean."
+                            />
+                            <FAQContent
+                                question="Can I accept both Paypal and Stripe?"
+                                answer="Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean."
+                            />
+                            <FAQContent
+                                question="Can I accept both Paypal and Stripe?"
+                                answer="Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean."
+                            />
+                        </Row>
+
+                        <WatchMoreButton to="/perguntas" />
+                    </div>
+
+
+
+
+                    <h1 className="section-title">Informações</h1>
+
+
+
+
                 </div>
                 <footer style={{ display: "block" }} className="layout-footer" >
                     <PageFooter />

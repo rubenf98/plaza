@@ -11,6 +11,7 @@ import Circular from "./components/public/Circular";
 import Login from "./components/public/Login";
 import FirstLogin from "./components/public/FirstLogin";
 import PageLayout from "./components/public/PageLayout";
+import FAQ from "./components/public/FAQ";
 
 import DashboardHome from "./components/dashboard/DashboardHome";
 import Pagamentos from "./components/dashboard/PagamentosContent/Pagamentos";
@@ -27,6 +28,7 @@ const Routes = () => {
             <ScrollToTop>
                 <Switch>
                     <PageLayout>
+                        <Route exact path="/perguntas" component={FAQ} />
                         <Route path="/circulares/:id" component={Circular} />
                         <Route exact path="/circulares" component={Circulares} />
                         <Route exact path="/login/first" component={FirstLogin} />

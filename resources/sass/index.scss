@@ -15,6 +15,7 @@
 @import "circular";
 @import "table";
 @import "helper";
+@import "faq";
 @import "dashboard";
 
 .body {
@@ -23,6 +24,7 @@
 
 .page-container {
     max-width: 1140px;
+    width: 90%;
     margin: auto;
 }
 

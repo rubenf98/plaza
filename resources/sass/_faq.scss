@@ -1,0 +1,94 @@
+.faq-page-container {
+    .faq-header {
+        height: 500px;
+        background: $customOffWhiteSection;
+        background: linear-gradient(
+            180deg,
+            $customOffWhiteSection,
+            rgba($customOffWhiteSection, 0.906582701439951) 80%,
+            rgba(255, 255, 255, 0) 100%
+        );
+
+        .header {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            margin: auto;
+            width: 50%;
+            text-align: center;
+            font-weight: bold;
+
+            @include lg {
+                width: 60%;
+            }
+
+            @include md {
+                width: 90%;
+            }
+
+            .title {
+                font-size: 3em;
+                font-weight: bold;
+            }
+
+            .faq-form-item {
+                margin: auto;
+                display: block;
+                width: 70%;
+                .search {
+                    box-shadow: 0 5px 5px 0 rgba($color: #000000, $alpha: 0.2);
+                }
+            }
+
+            .subtitle {
+                font-size: 1em;
+                color: gray;
+                margin-top: 10%;
+                font-weight: bold;
+            }
+        }
+    }
+
+    .category-container {
+        margin-bottom: 10%;
+
+        .category {
+            width: 20%;
+            min-width: 150px;
+            box-shadow: 0 0 3px 0 rgba($color: #000000, $alpha: 0.3);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            text-align: center;
+            padding: 30px;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: 0.2s ease;
+
+            &:hover {
+                border: 1px solid $customAccent;
+                box-shadow: 0 10px 20px 0 rgba($color: #000000, $alpha: 0.1);
+
+                .icon {
+                    color: $customAccent;
+                }
+            }
+            .icon {
+                transition: 0.2s ease;
+                font-size: 42px;
+            }
+        }
+    }
+
+    .page-title {
+        color: $customHeader;
+        font-weight: bold;
+        font-size: 3em;
+        text-align: center;
+        margin-bottom: 5%;
+    }
+
+    .faq-container {
+        margin-bottom: 10%;
+    }
+}
