@@ -1,0 +1,39 @@
+.dashboard-home-container {
+    .welcome-message {
+        font-size: 1.7em;
+        text-align: center;
+        padding-top: 3.125rem !important;
+        padding-bottom: 3.125rem !important;
+    }
+    .card-container {
+        width: 100%;
+        margin: auto;
+
+        @include lg {
+            width: 70%;
+        }
+
+        .card {
+            background: white;
+            width: 100%;
+            padding: 20px;
+            text-align: center;
+            min-width: 200px;
+            margin: 2%;
+            border-radius: 6px;
+
+            box-shadow: 0 0 1px 0 rgba($color: #000000, $alpha: 0.2);
+
+            img {
+                width: 100%;
+                max-width: 300px;
+            }
+
+            .card-text {
+                font-weight: bold;
+                margin: 15px auto;
+                font-size: 1.1em;
+            }
+        }
+    }
+}

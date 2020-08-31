@@ -9,6 +9,16 @@ import { Parallax } from 'react-parallax';
 import RegisterForm from "./RegisterForm";
 import PageFooter from "../common/PageFooter";
 import LoadingContainer from "../common/LoadingContainer";
+import { InfoCircleOutlined, QuestionCircleOutlined, FileOutlined, CommentOutlined } from '@ant-design/icons';
+
+const AboutInfoContent = ({ img, text }) => (
+    <Col sm={24} md={12} >
+        <Row type="flex" align="middle" className="info-container">
+            {img}
+            <div className="text">{text}</div>
+        </Row>
+    </Col>
+);
 
 class Home extends React.Component {
     constructor(props) {
@@ -36,7 +46,7 @@ class Home extends React.Component {
                     >
                         <Row className="homepage-header" type="flex" align="middle">
                             <div className="header-container">
-                                <h1 className="header-title">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</h1>
+                                <h1 className="header-title">A melhor gestão é realizada por quem conhece</h1>
                                 <RegisterForm></RegisterForm>
                             </div>
                         </Row>
@@ -50,7 +60,7 @@ class Home extends React.Component {
                                 <Col>
                                     <div className="administrator-container">
                                         <div className="administrator-name">Marco Abreu</div>
-                                        <div className="administrator-contact">+ 1235 2355 98</div>
+                                        <div className="administrator-contact">962 860 429</div>
                                     </div>
                                 </Col>
                             </Row>
@@ -61,11 +71,45 @@ class Home extends React.Component {
                                 </Col>
                                 <Col>
                                     <div className="administrator-container">
-                                        <div className="administrator-name">Maurilio ...</div>
-                                        <div className="administrator-contact">+ 1235 2355 98</div>
+                                        <div className="administrator-name">Maurílio Fernandes</div>
+                                        <div className="administrator-contact">966 169 159</div>
                                     </div>
                                 </Col>
                             </Row>
+                        </Row>
+                    </div>
+                    <div className="homepage-content-container">
+                        <Row className="about-container" gutter={32} type="flex" align="middle">
+                            <Col lg={12} md={24}>
+                                <div className="about-content">
+                                    <h1 className="subtitle"> Administração Plaza II</h1>
+                                    <h2 className="title"> Condomínio privado gerido por residentes!</h2>
+                                    <p>O seu condomínio é administrado cumprindo todos os requisitos legais e administrativos. As tarefas atribuídas ao administrador são desempenhadas com disciplina e atempadamente. </p>
+                                    <Row gutter={12}>
+                                        <AboutInfoContent
+                                            img={<InfoCircleOutlined className="icon" />}
+                                            text="Informação financeira e contabilística do condomínio"
+                                        />
+                                        <AboutInfoContent
+                                            img={<QuestionCircleOutlined className="icon" />}
+                                            text="Secção de perguntas e respostas mais frequentes"
+                                        />
+                                        <AboutInfoContent
+                                            img={<CommentOutlined className="icon" />}
+                                            text="Comunicaçao por e-mail e contacto telefónico"
+                                        />
+                                        <AboutInfoContent
+                                            img={<FileOutlined className="icon" />}
+                                            text="Apresentação de orçamentos pré-estabelecidos"
+                                        />
+                                    </Row>
+                                </div>
+                            </Col>
+                            <Col lg={12} md={24}>
+                                <img className="about-image" src="/icon/home-about.jpg">
+                                </img>
+                            </Col>
+
                         </Row>
                     </div>
 

@@ -3,6 +3,7 @@
 
 // Variables
 @import "variables";
+@import "functions";
 
 @import "antd";
 @import "home";
@@ -14,6 +15,7 @@
 @import "circular";
 @import "table";
 @import "helper";
+@import "dashboard";
 
 .body {
     font-family: "Lora", serif;

@@ -1,9 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
-import { Link } from "react-router-dom";
-import { Form, Input, notification, Row } from "antd";
+import { Form, Input, notification, Row, Button, Col } from "antd";
 import { SendOutlined } from '@ant-design/icons';
-import { history } from "../../routes";
 import { register } from "../../redux/auth/actions";
 
 const { Search } = Input;
@@ -53,18 +51,44 @@ class RegisterForm extends React.Component {
     };
 
     render() {
+        const { footer } = this.props;
 
         return (
             <div className="register-container">
                 <Form ref={this.formRef} layout="inline" hideRequiredMark={true} onFinishFailed={this.onFinishFailed}>
-                    <Form.Item name="email" rules={this.rules.email}>
-                        <Search
-                            onSearch={this.onFinish}
-                            placeholder="Introduza o seu email..."
-                            enterButton={<SendOutlined />}
-                            size="large"
-                        />
-                    </Form.Item>
+                    {
+                        footer ?
+                            <Row style={{ width: "100%" }} type="flex" justify="space-around">
+                                <Col span={18}>
+                                    <Form.Item name="email">
+                                        <Input
+                                            className="register-input"
+                                            type="email"
+                                            placeholder="Introduza o seu email..."
+                                        />
+                                    </Form.Item>
+                                </Col>
+                                <Col span={6}>
+                                    <Button
+                                        className="register-button"
+                                        onClick={this.onFinish}
+                                        size="large"
+                                    >
+                                        Register
+                                    </Button>
+                                </Col>
+                            </Row>
+                            :
+                            <Form.Item name="email" rules={this.rules.email}>
+                                <Search
+                                    onSearch={this.onFinish}
+                                    placeholder="Introduza o seu email..."
+                                    enterButton={<SendOutlined />}
+                                    size="large"
+                                />
+                            </Form.Item>
+                    }
+
                 </Form >
             </div>
         );

@@ -8,6 +8,7 @@ import PaginationControls from "../common/PaginationControls";
 import { Link } from "react-router-dom";
 import PageFooter from "../common/PageFooter";
 import LoadingContainer from "../common/LoadingContainer";
+import RegisterForm from './RegisterForm';
 
 class Circulares extends React.Component {
     constructor(props) {
@@ -84,9 +85,9 @@ class Circulares extends React.Component {
 
                             <h3 className="filter-title">Recebe novidades</h3>
 
-                            <ul>
-                                <li>Form</li>
-                            </ul>
+
+                            <RegisterForm></RegisterForm>
+
                         </Col>
                     </Row>
                 </div>

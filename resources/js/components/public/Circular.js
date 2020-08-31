@@ -3,7 +3,7 @@ import {
     fetchCircular
 } from "../../redux/circular/actions";
 import { connect } from "react-redux";
-import { Row, Col, Spin, Button } from "antd";
+import { Row, Col, Button } from "antd";
 import { Document } from 'react-pdf/dist/entry.webpack';
 import { Page } from 'react-pdf'
 import PageFooter from "../common/PageFooter";

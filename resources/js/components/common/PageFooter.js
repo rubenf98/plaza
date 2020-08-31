@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { Row, Col } from "antd";
+import RegisterForm from '../public/RegisterForm';
 
 let PageFooter = () => {
     return (
@@ -10,14 +11,8 @@ let PageFooter = () => {
                     <h1>Lorem ipsum dolor sit, amet consectetur.</h1>
                 </div>
                 <div className="footer-register">
-                    <Row type="flex" justify="space-around">
-                        <Col span={16}>
-                            <input className="register-input" type="text" name="email" value="" />
-                        </Col>
-                        <Col span={4}>
-                            <button className="register-button" type="submit">Registar</button>
-                        </Col>
-                    </Row>
+                    <RegisterForm footer={true}></RegisterForm>
+                    
                 </div>
 
                 <Row className="footer-info" type="flex" justify="space-around">
@@ -45,7 +40,7 @@ let PageFooter = () => {
                     </div>
                         <div className="info-content">
                             <p>Marco Abreu</p>
-                            <p>Maurilio ...</p>
+                            <p>Maurilio Fernandes</p>
                         </div>
                     </div>
                 </Row>

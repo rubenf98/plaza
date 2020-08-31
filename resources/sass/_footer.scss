@@ -73,6 +73,12 @@
                 @media screen and (max-width: 1000px) {
                     width: 100%;
                 }
+
+                &:focus {
+                    .ant-input {
+                        border: none !important;
+                    }
+                }
             }
 
             .register-button {
