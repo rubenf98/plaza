@@ -19,6 +19,10 @@ $teal: #4dc0b5;
 $cyan: #6cb2eb;
 $customAccent: #ff7a5c;
 $contrastAccent: #95adbe;
+$darkenAccent: darken(
+    $color: $customAccent,
+    $amount: 15%
+);
 $oldAccent: #ff5600;
 $lightenAccent: #ff6e26;
 

@@ -13,13 +13,13 @@ class CircularTagSeeder extends Seeder
     public function run()
     {
         CircularTag::create([
-            "nome" => "obras",
+            "nome" => "obra",
         ]);
         CircularTag::create([
             "nome" => "limpezas",
         ]);
         CircularTag::create([
-            "nome" => "avisos",
+            "nome" => "aviso",
         ]);
         CircularTag::create([
             "nome" => "manutenção",

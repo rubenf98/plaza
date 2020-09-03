@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Circular;
 use App\Http\Resources\CircularResource;
+use App\QueryFilters\CircularFilters;
 use Illuminate\Http\Request;
 use Spatie\PdfToImage\Pdf;
 
@@ -17,7 +18,9 @@ class CircularController extends Controller
      */
     public function index(Request $request)
     {
-        return CircularResource::collection(Circular::latest()->paginate($request->limit ? $request->limit : 6));
+        $filters = CircularFilters::hydrate($request->query());
+
+        return CircularResource::collection(Circular::filterBy($filters)->latest()->paginate($request->limit ? $request->limit : 6))->additional(['meta' => Circular::countTags()]);
     }
 
     /**

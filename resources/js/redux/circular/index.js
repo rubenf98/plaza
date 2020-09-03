@@ -5,16 +5,42 @@ export const initialState = {
     meta: {},
     loading: false,
     current: [],
-    selector: [],
+    tags: [],
+    loadingTags: false,
 }
 
 export default (state = initialState, action = {}) => {
     switch (action.type) {
         case `${types.FETCH_CIRCULARES}_PENDING`:
-        case `${types.FETCH_CIRCULAR}_REJECTED`:
+
             return {
                 ...state,
                 loading: true
+            };
+
+        case `${types.FETCH_CIRCULAR}_REJECTED`:
+            return {
+                ...state,
+                loading: false
+            };
+
+        case `${types.FETCH_CIRCULAR_TAGS}_PENDING`:
+            return {
+                ...state,
+                loadingTags: true
+            };
+
+        case `${types.FETCH_CIRCULAR_TAGS}_REJECTED`:
+            return {
+                ...state,
+                loadingTags: false
+            };
+
+        case `${types.FETCH_CIRCULAR_TAGS}_FULFILLED`:
+            return {
+                ...state,
+                loadingTags: false,
+                tags: action.payload.data,
             };
 
         case `${types.FETCH_CIRCULARES}_REJECTED`:

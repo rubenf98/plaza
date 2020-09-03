@@ -8,6 +8,7 @@ $baseDir = dirname($vendorDir);
 return array(
     'App\\Bloco' => $baseDir . '/app/Bloco.php',
     'App\\Circular' => $baseDir . '/app/Circular.php',
+    'App\\CircularHasTag' => $baseDir . '/app/CircularHasTag.php',
     'App\\CircularTag' => $baseDir . '/app/CircularTag.php',
     'App\\Console\\Kernel' => $baseDir . '/app/Console/Kernel.php',
     'App\\Divida' => $baseDir . '/app/Divida.php',
@@ -32,6 +33,7 @@ return array(
     'App\\Http\\Controllers\\FracaoController' => $baseDir . '/app/Http/Controllers/FracaoController.php',
     'App\\Http\\Controllers\\FracaoHasQuotaController' => $baseDir . '/app/Http/Controllers/FracaoHasQuotaController.php',
     'App\\Http\\Controllers\\HomeController' => $baseDir . '/app/Http/Controllers/HomeController.php',
+    'App\\Http\\Controllers\\ImageController' => $baseDir . '/app/Http/Controllers/ImageController.php',
     'App\\Http\\Controllers\\PDFController' => $baseDir . '/app/Http/Controllers/PDFController.php',
     'App\\Http\\Controllers\\QuotaController' => $baseDir . '/app/Http/Controllers/QuotaController.php',
     'App\\Http\\Controllers\\QuotaTipoController' => $baseDir . '/app/Http/Controllers/QuotaTipoController.php',

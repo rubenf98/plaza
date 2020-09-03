@@ -7,7 +7,7 @@ const LoadingContainer = (props) => {
             {props.loading ?
                 <Row
                     type="flex"
-                    justify="center"
+                    justify={props.flexStart ? "start" : "center"}
                     align="middle"
                     style={{ height: "100%", margin: "auto", minHeight: "300px" }}
                 >

@@ -528,6 +528,7 @@ class ComposerStaticInita596b44802c0bc6401825cb5284d19e5
     public static $classMap = array (
         'App\\Bloco' => __DIR__ . '/../..' . '/app/Bloco.php',
         'App\\Circular' => __DIR__ . '/../..' . '/app/Circular.php',
+        'App\\CircularHasTag' => __DIR__ . '/../..' . '/app/CircularHasTag.php',
         'App\\CircularTag' => __DIR__ . '/../..' . '/app/CircularTag.php',
         'App\\Console\\Kernel' => __DIR__ . '/../..' . '/app/Console/Kernel.php',
         'App\\Divida' => __DIR__ . '/../..' . '/app/Divida.php',
@@ -552,6 +553,7 @@ class ComposerStaticInita596b44802c0bc6401825cb5284d19e5
         'App\\Http\\Controllers\\FracaoController' => __DIR__ . '/../..' . '/app/Http/Controllers/FracaoController.php',
         'App\\Http\\Controllers\\FracaoHasQuotaController' => __DIR__ . '/../..' . '/app/Http/Controllers/FracaoHasQuotaController.php',
         'App\\Http\\Controllers\\HomeController' => __DIR__ . '/../..' . '/app/Http/Controllers/HomeController.php',
+        'App\\Http\\Controllers\\ImageController' => __DIR__ . '/../..' . '/app/Http/Controllers/ImageController.php',
         'App\\Http\\Controllers\\PDFController' => __DIR__ . '/../..' . '/app/Http/Controllers/PDFController.php',
         'App\\Http\\Controllers\\QuotaController' => __DIR__ . '/../..' . '/app/Http/Controllers/QuotaController.php',
         'App\\Http\\Controllers\\QuotaTipoController' => __DIR__ . '/../..' . '/app/Http/Controllers/QuotaTipoController.php',

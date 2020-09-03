@@ -19,6 +19,7 @@ class CircularResource extends JsonResource
             'id' => $this->id,
             'titulo' => $this->titulo,
             'link' => $this->link,
+            'tags' => $this->tags,
             'created_at' => $this->created_at->isoFormat('D MMMM, YYYY')
         ];
     }

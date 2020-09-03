@@ -2,6 +2,11 @@ import { types } from "./types";
 import { stringify } from "query-string";
 import axios from "axios";
 
+export const fetchCircularTags = () => ({
+    type: types.FETCH_CIRCULAR_TAGS,
+    payload: axios.get(`${window.location.origin}/api/circular-tag`),
+});
+
 export const fetchCirculares = (page = 1, filters = {}) => ({
     type: types.FETCH_CIRCULARES,
     payload: axios.get(

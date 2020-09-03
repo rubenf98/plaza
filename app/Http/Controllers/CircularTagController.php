@@ -14,7 +14,7 @@ class CircularTagController extends Controller
      */
     public function index()
     {
-        //
+        return CircularTag::all();
     }
 
     /**

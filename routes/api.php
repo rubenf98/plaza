@@ -40,6 +40,7 @@ Route::prefix('selector')->group(function () {
 
 Route::apiResource('blocos', 'BlocoController');
 Route::apiResource('circular', 'CircularController');
+Route::apiResource('circular-tag', 'CircularTagController');
 Route::apiResource('pdf', 'PDFController');
 Route::apiResource('image', 'ImageController');
 Route::apiResource('edificio', 'EdificioController');

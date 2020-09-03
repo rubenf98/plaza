@@ -4,6 +4,7 @@ import {
 } from "../../redux/circular/actions";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
+import { tagToIcon } from "../../helper";
 import { Row, Col, Button } from "antd";
 import { Parallax } from 'react-parallax';
 import RegisterForm from "./RegisterForm";
@@ -136,38 +137,35 @@ class Home extends React.Component {
 
                         <Row className="section-content" type="flex" justify="space-between" align="middle">
                             <LoadingContainer loading={circularLoading} >
-                                {
-                                    Object.values(circularData).map(function (el, index) {
-                                        return (
+                                <Row gutter={32}>
+                                    {
+                                        Object.values(circularData).map(function (el, index) {
+                                            return (
+                                                <Col md={8} sm={24}
+                                                    className="circular-container"
+                                                    key={index}
+                                                >
+                                                    <div className="circular-image-container" key={index}>
 
-                                            <Link
-                                                className="circular-container"
-                                                key={index}
-                                                to={`/circulares/${el.id}`}
+                                                        <img className="image" src={tagToIcon[el.tags[0].nome]}></img>
 
-                                            >
-                                                <div className="circular-image-container" key={index}>
+                                                        <div className="circular-info">
+                                                            <Link className="title" to={`/circulares/${el.id}`}>
+                                                                {el.titulo}
+                                                            </Link>
 
-                                                    <img className="image" src={`${window.location.origin}/api/image/${el.link}`}></img>
+                                                            <p className="date">
+                                                                {el.created_at} • <span className="tag">{el.tags[0].nome}</span>
+                                                            </p>
 
-                                                    <div className="circular-info">
-                                                        <p className="date">
-                                                            {el.created_at}
-                                                        </p>
+                                                        </div>
 
-                                                        <h1 className="title">
-                                                            {el.titulo}
-                                                        </h1>
                                                     </div>
-
-                                                </div>
-                                            </Link>
-
-
-                                        )
-
-                                    })
-                                }
+                                                </Col>
+                                            )
+                                        })
+                                    }
+                                </Row>
                             </LoadingContainer>
                         </Row>
 

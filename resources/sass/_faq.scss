@@ -64,6 +64,7 @@
             border-radius: 6px;
             cursor: pointer;
             transition: 0.2s ease;
+            z-index: 2;
 
             &:hover {
                 border: 1px solid $customAccent;
@@ -73,9 +74,23 @@
                     color: $customAccent;
                 }
             }
+
             .icon {
                 transition: 0.2s ease;
                 font-size: 42px;
+            }
+
+            .title {
+                text-transform: capitalize;
+            }
+        }
+
+        .active-category {
+            border: 1px solid $customAccent;
+            box-shadow: 0 10px 20px 0 rgba($color: #000000, $alpha: 0.1);
+
+            .icon {
+                color: $customAccent;
             }
         }
     }
@@ -90,5 +105,6 @@
 
     .faq-container {
         margin-bottom: 10%;
+        background: transparent !important;
     }
 }

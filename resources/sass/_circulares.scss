@@ -1,9 +1,11 @@
 .circular-page-container {
     margin: 80px auto !important;
+
     .posts-container {
+        width: 100%;
+        padding: 0 3%;
+
         .post-container {
-            width: 30%;
-            min-width: 250px;
             margin: 3% auto;
             cursor: pointer;
 
@@ -17,8 +19,6 @@
 
             .image {
                 width: 100%;
-                display: flex;
-                justify-content: center;
             }
 
             .info {
@@ -50,6 +50,27 @@
         border-bottom: 1px solid #f0e9ff;
     }
 
+    .ant-input-affix-wrapper:focus,
+    .ant-input-affix-wrapper-focused {
+        box-shadow: none !important;
+    }
+
+    .filter-search {
+        margin-bottom: 30px;
+        padding: 15px;
+        width: 100%;
+        border: 1px solid lightgray;
+        border-radius: 6px;
+
+        &:hover {
+            border: 1px solid gray;
+        }
+
+        .ant-input-search-icon::before {
+            border: none;
+        }
+    }
+
     .filter-container {
         margin: 20px auto;
         padding: 0px;
@@ -63,6 +84,7 @@
             padding-bottom: 12px;
             list-style: none;
             cursor: pointer;
+            text-transform: capitalize;
 
             &:hover {
                 color: $customAccent;

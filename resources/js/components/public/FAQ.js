@@ -1,7 +1,8 @@
 import React from 'react'
 import PageFooter from "../common/PageFooter";
 import { Row, Form, Input, Collapse } from "antd";
-import { EuroOutlined, BankOutlined, DashboardOutlined, HomeOutlined, CaretRightOutlined } from '@ant-design/icons';
+import { EuroOutlined, BankOutlined, DashboardOutlined, HomeOutlined } from '@ant-design/icons';
+import { faqCategories } from '../../helper'
 
 const { Search } = Input;
 const { Panel } = Collapse;
@@ -12,15 +13,42 @@ const text = `
   it can be found as a welcome guest in many households across the world.
 `;
 
-const Category = ({ icon, text }) => (
-    <div className="category">
-        {icon}
-        <h1>{text}</h1>
-    </div>
-);
+const questions = ['1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1'];
+
+
+
 
 class FAQ extends React.Component {
+    state = {
+        activeCategory: null
+    }
+
+    handleCategoryClick = (text) => {
+        console.log(text)
+
+        this.setState({
+            activeCategory: text
+        })
+    }
+
     render() {
+        const Category = ({ icon, text }) => (
+            <div
+                className={`category ${this.state.activeCategory == text && "active-category"}`}
+                onClick={() => this.handleCategoryClick(text)}
+            >
+                {icon}
+                <h1 className="title"> {text}</h1>
+            </div >
+        );
+
+        const categoryIcon = {
+            'pagamentos': <EuroOutlined className="icon" />,
+            "administradores": <DashboardOutlined className="icon" />,
+            "arrendamento": <HomeOutlined className="icon" />,
+            "assembleia": <BankOutlined className="icon" />,
+        };
+
         return (
             <div className="page-dimensions">
                 <div className="faq-page-container">
@@ -43,36 +71,28 @@ class FAQ extends React.Component {
                     </Row>
                     <div className="page-container">
                         <Row className="category-container" type="flex" justify="space-around" align="middle">
-                            <Category icon={<EuroOutlined className="icon" />} text="Pagamentos" />
-                            <Category icon={<DashboardOutlined className="icon" />} text="Administradores" />
-                            <Category icon={<HomeOutlined className="icon" />} text="Arrendamento" />
-                            <Category icon={<BankOutlined className="icon" />} text="Assembleia" />
+                            {faqCategories.map((element) => {
+                                return (<Category key={element} icon={categoryIcon[element]} text={element} />)
+                            })}
                         </Row>
-
 
                         <h1 className="page-title">Perguntas Frequentes</h1>
 
                         <Collapse
-
                             expandIconPosition="right"
                             bordered={false}
-                            defaultActiveKey={['1']}
                             accordion
                             className="faq-container"
-                            ghost
                         >
-                            <Panel
-                                header="This is panel header 1"
-                                key="1"
-                            >
-                                <p>{text}</p>
-                            </Panel>
-                            <Panel header="This is panel header 2" key="2">
-                                <p>{text}</p>
-                            </Panel>
-                            <Panel header="This is panel header 3" key="3">
-                                <p>{text}</p>
-                            </Panel>
+                            {questions.map((element, index) => {
+                                return (<Panel
+                                    header="This is panel header 1"
+                                    key={index}
+                                >
+                                    <p>{text}</p>
+                                </Panel>)
+                            })}
+
                         </Collapse>
                     </div>
                 </div>
