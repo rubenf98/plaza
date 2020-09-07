@@ -1,5 +1,5 @@
 import React from "react";
-import { Form, Select, Col, Row, Spin } from "antd";
+import { Form, Select, Col, Row, Input, Button, Space } from "antd";
 import LoadingContainer from '../../common/LoadingContainer';
 
 const { Option } = Select;
@@ -33,6 +33,7 @@ class PagamentosForm extends React.Component {
 
     render() {
         let { currentFracaos, loading, initialValues } = this.props;
+        let fracaos = [];
 
         return (
             <div className="pagamentos-form-container">
@@ -56,15 +57,15 @@ class PagamentosForm extends React.Component {
                                                             <Form.Item
                                                                 name={element.id + '_' + el[0]}
                                                                 label={el[0]}
-
                                                             >
                                                                 <Select style={{ width: "80%", minWidth: "80px" }} >
                                                                     <Option value="pendente">Pendente</Option>
                                                                     <Option value="pago">Pago</Option>
-                                                                    <Option value="Divida">Dívida</Option>
+                                                                    <Option value="divida">Dívida</Option>
                                                                 </Select>
 
                                                             </Form.Item>
+
                                                         </Col>
                                                     );
 
@@ -77,12 +78,11 @@ class PagamentosForm extends React.Component {
                                 );
                             })
                         }
-
                     </Form >
                 </LoadingContainer>
 
 
-            </div>
+            </div >
         );
     }
 }

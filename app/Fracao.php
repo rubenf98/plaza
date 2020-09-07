@@ -57,7 +57,7 @@ class Fracao extends Model
 
             $estado = DB::table('fracao_has_quotas')->whereBetween("data", [$first, $last])->whereFracaoId($fracao_id)->whereQuotaId($quota)->value('estado');
 
-            $total[Carbon::now()->month($date->month)->year($date->year)->translatedFormat('M')] = $estado;
+            $total[Carbon::now()->month($date->month)->year($date->year)->toDateString()] = $estado;
 
             $date->addMonths(1);
         }

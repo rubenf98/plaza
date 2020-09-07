@@ -11,9 +11,16 @@ export const fetchFracaos = (filters = {}) => ({
     )
 });
 
-export const fetchFracao = id => ({
+export const fetchFracao = (id, filters = {}) => ({
     type: types.FETCH_FRACAO,
-    payload: axios.get(`${window.location.origin}/api/fracao/${id}`)
+    payload: axios.get(`${window.location.origin}/api/fracao/${id}?${stringify(filters, {
+        arrayFormat: "index"
+    })}`)
+});
+
+export const updateFracaos = (data) => ({
+    type: types.UPDATE_FRACAOS,
+    payload: axios.put(`${window.location.origin}/api/fracao`, data)
 });
 
 export const updateFracao = (id, data) => ({

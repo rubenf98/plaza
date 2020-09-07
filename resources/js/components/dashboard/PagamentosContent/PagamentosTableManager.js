@@ -50,7 +50,7 @@ class PagamentosTableManager extends React.Component {
                 element
             ) => {
                 columns.push({
-                    title: element[0],
+                    title: moment(element[0]).format('MMM'),
                     dataIndex: "pagamentos",
                     render: (code) => <div className="table-cell-background" style={{ background: code[element[0]] ? colorConverter[code[element[0]]] : "wheat" }}></div>,
                 })
@@ -69,7 +69,7 @@ class PagamentosTableManager extends React.Component {
         this.props.setCurrentFracaos();
 
         this.state.selectedRowKeys.forEach((element, index) => {
-            this.props.fetchFracao(element)
+            this.props.fetchFracao(element, this.filters)
 
             if (index == this.state.selectedRowKeys.length - 1) {
                 this.setState({ selectedRowKeys: [], loading: false });
@@ -115,7 +115,7 @@ class PagamentosTableManager extends React.Component {
                         element
                     ) => {
                         columns.push({
-                            title: element[0],
+                            title: moment(element[0]).format('MMM'),
                             dataIndex: "pagamentos",
                             render: (code) => <div className="table-cell-background" style={{ background: code[element[0]] ? colorConverter[code[element[0]]] : "wheat" }}></div>,
                         })
@@ -271,7 +271,7 @@ class PagamentosTableManager extends React.Component {
 const mapDispatchToProps = dispatch => {
     return {
         fetchFracaos: (filters) => dispatch(fetchFracaos(filters)),
-        fetchFracao: (id) => dispatch(fetchFracao(id)),
+        fetchFracao: (id, filters) => dispatch(fetchFracao(id, filters)),
         setCurrentFracaos: () => dispatch(setCurrentFracaos()),
     };
 };

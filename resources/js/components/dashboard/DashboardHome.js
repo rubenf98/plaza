@@ -23,26 +23,46 @@ class DashboardHome extends React.Component {
                     <Row className="card-container" type="flex" justify="space-around" align="middle">
                         <Col lg={7} sm={24} className="card">
                             <CardContent
-                                img="/icon/pagamentos.svg"
+                                img="/icon/dashboard/pagamentos.svg"
                                 text="Verifica os pagamentos referentes a quotas do edíficio"
                                 button={<Link to="/painel/pagamentos">Pagamentos</Link>}
                             />
                         </Col>
                         <Col lg={7} sm={24} className="card">
                             <CardContent
-                                img="/icon/orcamentos.svg"
+                                img="/icon/dashboard/orcamentos.svg"
                                 text="Consulta os valores relativos a depesas comuns do edifício"
-                                button={<Link to="/painel/contas">Orçamentos</Link>}
+                                button={<Link to="/painel/orcamentos">Orçamentos</Link>}
                             />
                         </Col>
                         <Col lg={7} sm={24} className="card">
                             <CardContent
-                                img="/icon/fracao.svg"
-                                text="Consulta informação pertinente relativamente à sua fração"
+                                img="/icon/dashboard/fracao.svg"
+                                text="Consulte informação pertinente relativa à sua fração"
                                 button="Fração"
                             />
                         </Col>
-
+                        <Col lg={7} sm={24} className="card">
+                            <CardContent
+                                img="/icon/dashboard/profile.svg"
+                                text="Altere dados pessoais e públicos da sua conta privada"
+                                button={<Link to="/painel/pagamentos">Perfil</Link>}
+                            />
+                        </Col>
+                        <Col lg={7} sm={24} className="card">
+                            <CardContent
+                                img="/icon/dashboard/document.svg"
+                                text="Consulte todo o conteúdo referente às assembleias do edifíico"
+                                button={<Link to="/painel/contas">Assembleias</Link>}
+                            />
+                        </Col>
+                        <Col lg={7} sm={24} className="card">
+                            <CardContent
+                                img="/icon/dashboard/fracao.svg"
+                                text="Lorem ipsum"
+                                button="Fração"
+                            />
+                        </Col>
                     </Row>
                 </div>
             </DashboardLayout>

@@ -12,6 +12,7 @@ export default (state = initialState, action = {}) => {
         case `${types.FETCH_FRACAOS}_PENDING`:
         case `${types.FETCH_FRACAO}_PENDING`:
         case `${types.UPDATE_FRACAO}_PENDING`:
+        case `${types.UPDATE_FRACAOS}_PENDING`:
             return {
                 ...state,
                 loading: true
@@ -19,7 +20,9 @@ export default (state = initialState, action = {}) => {
 
         case `${types.FETCH_FRACAO}_REJECTED`:
         case `${types.UPDATE_FRACAO}_REJECTED`:
+        case `${types.UPDATE_FRACAOS}_REJECTED`:
         case `${types.FETCH_FRACAOS}_REJECTED`:
+        case `${types.UPDATE_FRACAOS}_FULFILLED`:
             return {
                 ...state,
                 loading: false,

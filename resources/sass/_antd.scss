@@ -1,14 +1,14 @@
 .ant-btn-primary,
 .ant-btn-primary {
     background: white;
-    border-color: $customAccent !important;
-    color: $customAccent !important;
+    border-color: $customAccent;
+    color: $customAccent;
 
     &:hover,
     &:focus {
         color: white;
-        background: $contrastAccent !important;
-        border-color: $contrastAccent !important;
+        background: $contrastAccent;
+        border-color: $contrastAccent;
     }
 }
 

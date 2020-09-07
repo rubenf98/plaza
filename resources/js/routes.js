@@ -15,7 +15,7 @@ import FAQ from "./components/public/FAQ";
 
 import DashboardHome from "./components/dashboard/DashboardHome";
 import Pagamentos from "./components/dashboard/PagamentosContent/Pagamentos";
-import Contas from "./components/dashboard/Contas";
+import Orcamentos from "./components/dashboard/OrcamentosContent/Orcamentos";
 
 import PublicRoute from "./components/common/PublicRoute";
 import PrivateRoute from "./components/common/PrivateRoute";
@@ -37,7 +37,7 @@ const Routes = () => {
 
                         <PrivateRoute exact component={DashboardHome} path="/painel" />
                         <PrivateRoute exact component={Pagamentos} path="/painel/pagamentos" />
-                        <PrivateRoute exact component={Contas} path="/painel/contas" />
+                        <PrivateRoute exact component={Orcamentos} path="/painel/orcamentos" />
 
                     </PageLayout>
                 </Switch>

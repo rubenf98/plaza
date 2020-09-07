@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import {
-    updateFracao,
+    updateFracaos,
     resetCurrentFracaos,
     finishCurrentFracaos
 } from "../../../redux/fracao/actions";
@@ -23,24 +23,55 @@ class PagamentosModalManager extends Component {
 
     onOkEditClick = () => {
         const form = this.formRef.current;
-        form.validateFields().then((err, fracaos) => {
-            if (err) {
-                console.log(err);
-                return;
-            } else {
-                console.log(fracaos);
-                /*this.props
-                    .updateFracaos(this.props.fracaos.id, {
-                        ...litter,
-                        date: formatedDate,
-                    })
-                    .then((response) => {
-                        this.resetModalForm();
-                    })
-                    .catch((error) => {
-                        console.log(error)
-                    });*/
-            }
+        form.validateFields().then((fracaos) => {
+            let fracoes = [], pagamentosT = [], pagamentos = [], dates = [], estado = [];
+            let fracaosLength = Object.keys(fracaos).length - 1;
+
+            Object.entries(fracaos).map((element, index) => {
+                let parsed = element[0].split('_');
+
+                if (!fracoes.includes(parsed[0]))
+                    fracoes.push(parsed[0]);
+
+                if (!dates.includes(parsed[1]))
+                    dates.push(parsed[1]);
+
+                pagamentos.map((e) => {
+                    if (e[parsed[1]]) {
+                        pagamentosT.push(estado);
+                        pagamentos = [];
+                        estado = [];
+                    }
+                })
+
+                let obj = {};
+                obj[parsed[1]] = element[1];
+                pagamentos.push(obj);
+                estado.push(element[1]);
+
+                if (index == fracaosLength) {
+                    pagamentosT.push(estado);
+                }
+
+            })
+
+
+            let obj = {
+                'fracaos': fracoes,
+                'dates': dates,
+                'pagamentos': pagamentosT
+            };
+
+            console.log(obj);
+            this.props
+                .updateFracaos(obj)
+                .then((response) => {
+                    this.resetModalForm();
+                })
+                .catch((error) => {
+                    console.log(error)
+                });
+
         });
 
     };
@@ -53,9 +84,11 @@ class PagamentosModalManager extends Component {
 
     componentWillReceiveProps = () => {
         let { currentFracaos } = this.props;
-        let obj = {};
+        let obj = [];
+        let fracaos = [];
 
         Object.values(currentFracaos).map((element, index) => {
+            fracaos.push(element.id);
 
             Object.entries(element.pagamentos).map((el, i) => {
 
@@ -99,7 +132,7 @@ const mapDispatchToProps = (dispatch) => {
     return {
         resetCurrentFracaos: () => dispatch(resetCurrentFracaos()),
         finishCurrentFracaos: () => dispatch(finishCurrentFracaos()),
-        updateFracao: (data, id) => dispatch(updateFracao(data, id)),
+        updateFracaos: (data) => dispatch(updateFracaos(data)),
     };
 };
 

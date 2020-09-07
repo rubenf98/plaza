@@ -1,0 +1,25 @@
+.orcamento-page-container {
+    padding: 5% 0;
+
+    @include sm {
+        padding: 0;
+    }
+    .pdf-document-container {
+    }
+
+    .orcamento-list {
+        font-size: 1.2em;
+        @include lg {
+            display: none;
+        }
+
+        .orcamento-item {
+            margin: 20px 0;
+            cursor: pointer;
+
+            &:hover {
+                color: $customAccent;
+            }
+        }
+    }
+}

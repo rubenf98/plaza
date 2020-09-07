@@ -3,102 +3,34 @@ import {
     fetchCircular
 } from "../../redux/circular/actions";
 import { connect } from "react-redux";
-import { Row, Col, Button } from "antd";
-import { Document } from 'react-pdf/dist/entry.webpack';
-import { Page } from 'react-pdf'
+import { Row } from "antd";
 import PageFooter from "../common/PageFooter";
-import { LeftOutlined, RightOutlined, DownloadOutlined } from '@ant-design/icons';
-
-
-const options = {
-    cMapUrl: 'cmaps/',
-    cMapPacked: true,
-};
-
+import PdfDocument from '../common/PdfDocument';
+import LoadingContainer from '../common/LoadingContainer';
 
 class Circular extends React.Component {
 
-    state = {
-        numPages: null,
-        pageNumber: 1,
-    }
-
     componentDidMount() {
-
         this.props.fetchCircular(this.props.match.params.id);
     }
 
-    onDocumentLoadSuccess = (pdf) => {
-        console.log(pdf._pdfInfo);
-        this.setState({
-            numPages: pdf._pdfInfo.numPages,
-        })
-    }
-
-    changePage = (offset) => {
-        this.setState({
-            pageNumber: this.state.pageNumber + offset,
-        })
-
-    }
-
-    previousPage = () => {
-        this.changePage(-1);
-    }
-
-    nextPage = () => {
-        this.changePage(1);
-    }
-
-
     render() {
-        let { circular } = this.props;
-        let { pageNumber, numPages } = this.state;
+        let { circular, loading } = this.props;
 
         return (
             <div className="page-dimensions">
                 <div className="single-circular-page-container ">
                     <div className="single-circular-container page-container">
                         <Row type="flex" justify="center" className="pdf-document-container">
-                            <Document
-                                className="pdf-document"
-                                file={`${window.location.origin}/api/pdf/${circular.link}`}
-                                onLoadSuccess={this.onDocumentLoadSuccess}
-                            >
-                                <React.Fragment>
-
-                                    <Button type="primary" shape="circle" icon={<DownloadOutlined />} className="pdf-control download-button" />
-                                    <Page pageNumber={pageNumber} className="pdf" />
-                                    <Button
-                                        className="pdf-control left-button"
-                                        type="primary"
-                                        disabled={pageNumber <= 1}
-                                        onClick={this.previousPage}
-                                        shape="circle"
-                                        icon={<LeftOutlined />}
-                                    />
-
-                                    <div className="pdf-control page-info">
-                                        {pageNumber || (numPages ? 1 : '--')} de {numPages || '--'}
-                                    </div>
-
-                                    <Button
-                                        className="pdf-control right-button"
-                                        type="primary"
-                                        disabled={pageNumber >= numPages}
-                                        onClick={this.nextPage}
-                                        shape="circle"
-                                        icon={<RightOutlined />}
-                                    />
-                                </React.Fragment>
-                            </Document>
+                            <LoadingContainer loading={loading}>
+                                <PdfDocument pdf={`${window.location.origin}/api/pdf/${circular.link}`}></PdfDocument>
+                            </LoadingContainer>
                         </Row>
                     </div>
-
-                    <footer style={{ display: "block" }} className="layout-footer" >
-                        <PageFooter />
-                    </footer>
                 </div>
+                <footer style={{ display: "block" }} className="layout-footer" >
+                    <PageFooter />
+                </footer>
             </div>
         );
     }

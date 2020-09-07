@@ -22,7 +22,6 @@ let NavBar = ({ isAuthenticated, logout }) => {
                         <Row className="big-navbar-right" type="flex" justify="end">
 
                             <Link className="navbar-link" to="/circulares">círculares <span className="slider"></span>  </Link>
-                            <Link className="navbar-link" to="/perguntas">perguntas frequentes <span className="slider"></span>  </Link>
                             <Link className="navbar-link" to="/">informações <span className="slider"></span>  </Link>
                             {isAuthenticated ? (
                                 <React.Fragment>
