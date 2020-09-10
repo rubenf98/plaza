@@ -3,6 +3,7 @@ import { Button } from "antd";
 import { Document } from 'react-pdf/dist/entry.webpack';
 import { Page } from 'react-pdf'
 import { LeftOutlined, RightOutlined, DownloadOutlined } from '@ant-design/icons';
+import { Link } from "react-router-dom";
 
 class PdfDocument extends React.Component {
     state = {
@@ -34,18 +35,22 @@ class PdfDocument extends React.Component {
         let { pdf } = this.props;
         let { pageNumber, numPages } = this.state;
 
-        console.log(pdf);
-
         return (
             <Document
                 className="pdf-document"
                 file={pdf}
-                
                 onLoadSuccess={this.onDocumentLoadSuccess}
             >
                 <React.Fragment>
+                    <a href={pdf} download>
+                        <Button
+                            type="primary"
+                            shape="circle"
+                            icon={<DownloadOutlined />}
+                            className="pdf-control download-button"
+                        />
+                    </a>
 
-                    <Button type="primary" shape="circle" icon={<DownloadOutlined />} className="pdf-control download-button" />
                     <Page pageNumber={pageNumber} className="pdf" />
                     <Button
                         className="pdf-control left-button"

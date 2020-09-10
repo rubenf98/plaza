@@ -1,6 +1,6 @@
 .pdf-document {
     position: relative;
-    box-shadow: 0 0 40px 0 rgba($color: #4e4e4e, $alpha: 0.2);
+    width: 100%;
 
     @media screen and (max-width: $md) {
         box-shadow: none;

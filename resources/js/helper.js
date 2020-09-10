@@ -2,6 +2,7 @@ export const colorConverter = {
 	"pendente": "wheat",
 	"pago": "green",
 	"divida": "red",
+	"plano": "orange",
 };
 
 export const faqCategories = ['pagamentos', 'administradores', 'arrendamento', 'assembleia'];

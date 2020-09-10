@@ -67,6 +67,7 @@ class PagamentosModalManager extends Component {
                 .updateFracaos(obj)
                 .then((response) => {
                     this.resetModalForm();
+                    location.reload();
                 })
                 .catch((error) => {
                     console.log(error)
@@ -82,29 +83,33 @@ class PagamentosModalManager extends Component {
         this.formRef.current.resetFields();
     };
 
-    componentWillReceiveProps = () => {
-        let { currentFracaos } = this.props;
-        let obj = [];
-        let fracaos = [];
+    UNSAFE_componentWillReceiveProps = (nextProps) => {
+        console.log(nextProps.loadingFetchingFracaos);
+        if (!nextProps.loadingFetchingFracaos) {
+            let { currentFracaos } = this.props;
+            let obj = [];
+            let fracaos = [];
 
-        Object.values(currentFracaos).map((element, index) => {
-            fracaos.push(element.id);
+            Object.values(currentFracaos).map((element, index) => {
+                fracaos.push(element.id);
 
-            Object.entries(element.pagamentos).map((el, i) => {
+                Object.entries(element.pagamentos).map((el, i) => {
 
-                obj[element.id + '_' + el[0]] = el[1];
-            })
-
-            if (index == currentFracaos.length - 1 || currentFracaos.length == 1) {
-                this.setState({
-                    initialValues: obj
+                    obj[element.id + '_' + el[0]] = el[1];
                 })
 
-                setTimeout(() => {
-                    this.props.finishCurrentFracaos();
-                }, 1000);
-            }
-        })
+                if (index == currentFracaos.length - 1 || currentFracaos.length == 1) {
+                    this.setState({
+                        initialValues: obj
+                    })
+
+                    setTimeout(() => {
+                        this.props.finishCurrentFracaos();
+                    }, 1000);
+                }
+            })
+        }
+
     };
 
     render() {
@@ -141,6 +146,7 @@ const mapStateToProps = (state) => {
         currentFracaos: state.fracao.currentFracaos,
         loadingCurrentFracaos: state.fracao.loadingCurrentFracaos,
         loading: state.fracao.loading,
+        loadingFetchingFracaos: state.fracao.loadingFetchingFracaos
     };
 };
 

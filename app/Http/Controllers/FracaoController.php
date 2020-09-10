@@ -3,8 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Fracao;
+use App\FracaoHasQuota;
+use App\Http\Requests\UpdateFracaosRequest;
 use App\Http\Resources\FracaoResource;
 use App\QueryFilters\FracaoFilters;
+use App\Quota;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class FracaoController extends Controller
@@ -19,16 +23,6 @@ class FracaoController extends Controller
         $filters = FracaoFilters::hydrate($request->query());
 
         return FracaoResource::collection(Fracao::filterBy($filters)->get());
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
     }
 
     /**
@@ -55,17 +49,6 @@ class FracaoController extends Controller
     }
 
     /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Fracao  $fracao
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Fracao $fracao)
-    {
-        //
-    }
-
-    /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
@@ -75,6 +58,26 @@ class FracaoController extends Controller
     public function update(Request $request, Fracao $fracao)
     {
         //
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function updateFracaos(UpdateFracaosRequest $request)
+    {
+        $validator = $request->validated();
+        foreach ($validator['fracaos'] as $key => $fracao_id) {
+            foreach ($validator['dates'] as $k => $date) {
+                $formattedDate = new Carbon($date);
+                $pivot = FracaoHasQuota::whereFracaoId($fracao_id)->whereQuotaId(1)->whereData($date)->first();
+                $pivot->update(array('data' => $formattedDate, 'estado' => $validator['pagamentos'][$key][$k]));
+            }
+        }
+
+        return FracaoResource::collection(Fracao::whereIn('id', $validator['fracaos'])->get());
     }
 
     /**

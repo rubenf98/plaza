@@ -62,6 +62,7 @@ class PagamentosForm extends React.Component {
                                                                     <Option value="pendente">Pendente</Option>
                                                                     <Option value="pago">Pago</Option>
                                                                     <Option value="divida">Dívida</Option>
+                                                                    <Option value="plano">Plano Pagamento</Option>
                                                                 </Select>
 
                                                             </Form.Item>

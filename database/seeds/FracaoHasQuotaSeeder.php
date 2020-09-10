@@ -17,10 +17,8 @@ class FracaoHasQuotaSeeder extends Seeder
         $fracaos = Fracao::where('fracao_estado_id', 1)->get();
         $year = Carbon::now()->subMonths(12)->format('Y');
 
-        // give each post some tags
         foreach ($fracaos as $fracao) {
-            $quota_id = 2;
-            rand(1, 100) < 50 && $quota_id = 1;
+            $quota_id = 1;
 
             $initDate = new Carbon($year . '-01');
             for ($i = 1; $i <= 18; $i++) {
@@ -46,7 +44,7 @@ class FracaoHasQuotaSeeder extends Seeder
             for ($i = 1; $i <= 6; $i++) {
                 FracaoHasQuota::create([
                     'fracao_id' => $fracao->id,
-                    'quota_id' => 3,
+                    'quota_id' => 2,
                     'data' => $initDate
                 ]);
                 $initDate->addMonths(1);

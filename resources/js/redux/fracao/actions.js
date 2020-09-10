@@ -39,3 +39,11 @@ export const finishCurrentFracaos = () => ({
 export const resetCurrentFracaos = () => ({
     type: types.RESET_CURRENT_FRACAOS
 });
+
+export const finishFetchCurrentFracaos = () => ({
+    type: types.FINISH_FETCH_CURRENT_FRACAOS
+});
+
+export const fetchCurrentFracaos = () => ({
+    type: types.FETCH_CURRENT_FRACAOS
+});

@@ -15,11 +15,8 @@ class CreateQuotasTable extends Migration
     {
         Schema::create('quotas', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('quota_tipos_id')->unsigned();
-            $table->decimal('valor', 6, 2);
+            $table->string('nome');
             $table->timestamps();
-
-            $table->foreign('quota_tipos_id')->references('id')->on('quota_tipos')->onDelete('cascade');
         });
     }
 

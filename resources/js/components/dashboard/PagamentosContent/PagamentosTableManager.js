@@ -3,7 +3,7 @@ import React from 'react';
 import { connect } from "react-redux";
 import { Button, Row, DatePicker, Col, Dropdown, Menu, Radio } from 'antd';
 import { colorConverter } from '../../../helper'
-import { fetchFracaos, fetchFracao, setCurrentFracaos } from '../../../redux/fracao/actions';
+import { fetchFracaos, fetchFracao, setCurrentFracaos, fetchCurrentFracaos, finishFetchCurrentFracaos } from '../../../redux/fracao/actions';
 import locale from 'antd/es/date-picker/locale/pt_PT';
 import { FilterOutlined } from '@ant-design/icons';
 import moment from 'moment';
@@ -67,15 +67,19 @@ class PagamentosTableManager extends React.Component {
     handleEditClick = async () => {
         this.setState({ loading: true });
         this.props.setCurrentFracaos();
+        this.props.fetchCurrentFracaos();
 
-        this.state.selectedRowKeys.forEach((element, index) => {
-            this.props.fetchFracao(element, this.filters)
+        this.state.selectedRowKeys.forEach(async (element, index) => {
+            await this.props.fetchFracao(element, this.filters)
 
             if (index == this.state.selectedRowKeys.length - 1) {
                 this.setState({ selectedRowKeys: [], loading: false });
                 this.props.handleModalVisible(true);
+                this.props.finishFetchCurrentFracaos();
             }
         });
+
+
     };
 
     handleFilterChange = e => {
@@ -261,6 +265,10 @@ class PagamentosTableManager extends React.Component {
                         <div className="table-cell-legend divida"></div>
                         Dívida
                     </Row>
+                    <Row className="table-legend" type="flex" align="middle">
+                        <div className="table-cell-legend plano"></div>
+                        Plano Pagamento
+                    </Row>
                 </Row>
 
             </div>
@@ -273,6 +281,8 @@ const mapDispatchToProps = dispatch => {
         fetchFracaos: (filters) => dispatch(fetchFracaos(filters)),
         fetchFracao: (id, filters) => dispatch(fetchFracao(id, filters)),
         setCurrentFracaos: () => dispatch(setCurrentFracaos()),
+        fetchCurrentFracaos: () => dispatch(fetchCurrentFracaos()),
+        finishFetchCurrentFracaos: () => dispatch(finishFetchCurrentFracaos())
     };
 };
 

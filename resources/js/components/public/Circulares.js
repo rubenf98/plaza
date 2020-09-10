@@ -1,24 +1,28 @@
 import React from 'react'
 import {
     fetchCirculares,
-    fetchCircularTags
+    fetchCircularTags,
+    fetchCircular
 } from "../../redux/circular/actions";
 import { connect } from "react-redux";
-import { Row, Col, Input } from "antd";
+import { Row, Col, Input, Modal } from "antd";
 import PaginationControls from "../common/PaginationControls";
-import { Link } from "react-router-dom";
 import { tagToIcon } from "../../helper";
 import PageFooter from "../common/PageFooter";
 import LoadingContainer from "../common/LoadingContainer";
 import RegisterForm from './RegisterForm';
-import { SendOutlined } from '@ant-design/icons';
+import CircularModal from './CircularModal';
 
 const { Search } = Input;
 
 class Circulares extends React.Component {
     constructor(props) {
         super(props);
-        this.filters = {}
+        this.filters = {};
+        this.state = {
+            visible: false,
+            active: null,
+        };
     }
 
     componentDidMount() {
@@ -46,25 +50,49 @@ class Circulares extends React.Component {
         this.props.fetchCirculares(1, this.filters);
     }
 
+    handleCircularClick = (id) => {
+
+        this.props.fetchCircular(id).then((response) => {
+            this.setState({
+                active: response.value.data.data,
+                visible: true
+            })
+        });
+
+    }
+
+    handleModalClose = () => {
+        this.setState({ visible: false })
+    }
+
     render() {
         const { circularData, circularMeta, circularLoading, circularTags, circularLoadingTags } = this.props;
+        const { active, visible } = this.state;
 
         return (
             <div className="page-dimensions">
                 <div className="circular-page-container page-container">
+                    <Modal className="circular-modal-container"
+                        visible={visible}
+                        onCancel={this.handleModalClose}
+                        closable={false}
+                        footer={null}
+                        bodyStyle={{ height: "90%" }}
+                        destroyOnClose={true}
+                        style={{ top: 25 }}
+                    >
+                        <CircularModal circular={active}></CircularModal>
+                    </Modal>
                     <Row type="flex" justify="start">
                         <Col xl={18} md={24} xs={24}>
-
-                            <LoadingContainer loading={circularLoading} flexStart={true} >
+                            <LoadingContainer loading={circularLoading} flexStart={true}>
                                 <Row className="posts-container" gutter={64} >
                                     {
-                                        Object.values(circularData).map(function (el, index) {
+                                        Object.values(circularData).map((el, index) => {
                                             return (
                                                 <Col className="post-container" lg={12} md={24} key={index}>
-                                                    <Link
-
-                                                        to={`/circulares/${el.id}`}
-
+                                                    <div
+                                                        onClick={() => this.handleCircularClick(el.id)}
                                                     >
                                                         <img className="image" src={tagToIcon[el.tags[0].nome]}></img>
                                                         <div className="info">
@@ -77,7 +105,7 @@ class Circulares extends React.Component {
                                                             </p>
                                                         </div>
 
-                                                    </Link>
+                                                    </div>
                                                 </Col>
                                             )
                                         })
@@ -97,6 +125,7 @@ class Circulares extends React.Component {
                                 placeholder="Digite o que procura"
                                 size="large"
                                 className="filter-search"
+                                onClick={this.info}
                             />
 
                             <h3 className="filter-title">Filtrar por:</h3>
@@ -136,7 +165,8 @@ class Circulares extends React.Component {
 const mapDispatchToProps = dispatch => {
     return {
         fetchCirculares: (page, filters) => dispatch(fetchCirculares(page, filters)),
-        fetchCircularTags: () => dispatch(fetchCircularTags())
+        fetchCircularTags: () => dispatch(fetchCircularTags()),
+        fetchCircular: (id) => dispatch(fetchCircular(id)),
     };
 };
 
@@ -145,6 +175,7 @@ const mapStateToProps = (state) => {
         circularData: state.circular.data,
         circularMeta: state.circular.meta,
         circularLoading: state.circular.loading,
+        circular: state.circular.current,
 
         circularLoadingTags: state.circular.loadingTags,
         circularTags: state.circular.tags,

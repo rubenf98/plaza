@@ -4,7 +4,8 @@ export const initialState = {
     data: [],
     currentFracaos: [],
     loading: false,
-    loadingCurrentFracaos: true
+    loadingCurrentFracaos: true,
+    loadingFetchingFracaos: true
 }
 
 export default (state = initialState, action = {}) => {
@@ -17,24 +18,20 @@ export default (state = initialState, action = {}) => {
                 ...state,
                 loading: true
             };
-
         case `${types.FETCH_FRACAO}_REJECTED`:
         case `${types.UPDATE_FRACAO}_REJECTED`:
         case `${types.UPDATE_FRACAOS}_REJECTED`:
         case `${types.FETCH_FRACAOS}_REJECTED`:
-        case `${types.UPDATE_FRACAOS}_FULFILLED`:
             return {
                 ...state,
                 loading: false,
             };
-
         case `${types.FETCH_FRACAOS}_FULFILLED`:
             return {
                 ...state,
                 loading: false,
                 data: action.payload.data.data,
             };
-
         case `${types.UPDATE_FRACAO}_FULFILLED`:
             return {
                 ...state,
@@ -46,6 +43,12 @@ export default (state = initialState, action = {}) => {
                 )
             };
 
+        case `${types.UPDATE_FRACAOS}_FULFILLED`:
+            return {
+                ...state,
+                loading: false,
+
+            };
         case `${types.FETCH_FRACAO}_FULFILLED`:
             return {
                 ...state,
@@ -65,12 +68,21 @@ export default (state = initialState, action = {}) => {
                 ...state,
                 loadingCurrentFracaos: true,
             };
-
-
         case types.FINISH_CURRENT_FRACAOS:
             return {
                 ...state,
                 loadingCurrentFracaos: false,
+            };
+
+        case types.FETCH_CURRENT_FRACAOS:
+            return {
+                ...state,
+                loadingFetchingFracaos: true,
+            };
+        case types.FINISH_FETCH_CURRENT_FRACAOS:
+            return {
+                ...state,
+                loadingFetchingFracaos: false,
             };
 
 

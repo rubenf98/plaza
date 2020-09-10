@@ -92,3 +92,20 @@
         }
     }
 }
+
+.circular-modal-container {
+    width: 60% !important;
+    max-width: $md;
+
+    @include md {
+        width: 90% !important;
+    }
+
+    @include sm {
+        width: 95% !important;
+    }
+
+    .ant-modal-body {
+        padding: 0 !important;
+    }
+}

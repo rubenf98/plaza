@@ -14,7 +14,7 @@ class CreateCircularHasTagsTable extends Migration
     public function up()
     {
         Schema::create('circular_has_tags', function (Blueprint $table) {
-            $table->id();
+            $table->increments('id');
             $table->integer('circular_id')->unsigned();
             $table->integer('circular_tag_id')->unsigned();
             $table->timestamps();

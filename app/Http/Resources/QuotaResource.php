@@ -16,8 +16,7 @@ class QuotaResource extends JsonResource
     {
         return [
             'id' => $this->id,
-            'quota' => $this->valor,
-            'quotaTipo' => $this->quotaTipo,
+            'nome' => $this->nome,
             'fracaos' => $this->fracaos,
         ];
     }

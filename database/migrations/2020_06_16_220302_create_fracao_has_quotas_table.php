@@ -17,7 +17,7 @@ class CreateFracaoHasQuotasTable extends Migration
             $table->increments('id');
             $table->integer('fracao_id')->unsigned();
             $table->integer('quota_id')->unsigned();
-            $table->enum('estado', ['pendente', 'pago', 'divida'])->default('pendente');
+            $table->enum('estado', ['pendente', 'pago', 'divida', 'plano'])->default('pendente');
             $table->date('data');
             $table->timestamps();
 

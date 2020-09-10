@@ -14,7 +14,7 @@ class CreateCircularsTable extends Migration
     public function up()
     {
         Schema::create('circulars', function (Blueprint $table) {
-            $table->id();
+            $table->increments('id');
             $table->string("titulo");
             $table->string("link");
             $table->timestamps();

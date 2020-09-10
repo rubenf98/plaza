@@ -47,3 +47,5 @@ Route::apiResource('edificio', 'EdificioController');
 Route::apiResource('fracao', 'FracaoController');
 Route::apiResource('users', 'UserController');
 Route::apiResource('quota', 'QuotaController');
+
+Route::put('fracao', 'FracaoController@updateFracaos');
