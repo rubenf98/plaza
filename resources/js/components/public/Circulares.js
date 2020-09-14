@@ -72,7 +72,7 @@ class Circulares extends React.Component {
         return (
             <div className="page-dimensions">
                 <div className="circular-page-container page-container">
-                    <Modal className="circular-modal-container"
+                    <Modal className="modal-container"
                         visible={visible}
                         onCancel={this.handleModalClose}
                         closable={false}

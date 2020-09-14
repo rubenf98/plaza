@@ -37,6 +37,11 @@ Route::prefix('selector')->group(function () {
     Route::get('blocos', 'BlocoController@selector');
 });
 
+Route::prefix('pdf')->group(function () {
+    Route::get('orcamentos/:url', 'OrcamentoController@pdf');
+});
+
+
 
 Route::apiResource('blocos', 'BlocoController');
 Route::apiResource('circular', 'CircularController');
@@ -47,5 +52,6 @@ Route::apiResource('edificio', 'EdificioController');
 Route::apiResource('fracao', 'FracaoController');
 Route::apiResource('users', 'UserController');
 Route::apiResource('quota', 'QuotaController');
+Route::apiResource('orcamentos', 'OrcamentoController');
 
 Route::put('fracao', 'FracaoController@updateFracaos');

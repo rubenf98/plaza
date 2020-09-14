@@ -6,6 +6,7 @@ import fracao from './redux/fracao'
 import user from './redux/user'
 import auth from './redux/auth'
 import notification from './redux/notification'
+import orcamento from './redux/orcamento'
 
 const rootReducer = combineReducers({
     bloco,
@@ -13,7 +14,8 @@ const rootReducer = combineReducers({
     fracao,
     user,
     auth,
-    notification
+    notification,
+    orcamento
 })
 
 export default rootReducer
