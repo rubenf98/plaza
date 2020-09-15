@@ -71,3 +71,12 @@
         }
     }
 }
+
+.ant-table {
+    max-height: 30vw;
+    overflow-y: auto;
+
+    @include lg {
+        max-height: 100%;
+    }
+}

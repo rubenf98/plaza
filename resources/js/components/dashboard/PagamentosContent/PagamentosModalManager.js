@@ -116,6 +116,7 @@ class PagamentosModalManager extends Component {
 
         return (
             <EditModal
+                width="80%"
                 onOkEditClick={() => this.onOkEditClick()}
                 onCancel={() => this.onCancel()}
                 title={"title"}

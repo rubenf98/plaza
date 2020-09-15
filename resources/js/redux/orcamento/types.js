@@ -1,3 +1,4 @@
 export const types = {
     FETCH_ORCAMENTOS: 'FETCH_ORCAMENTOS',
+    CREATE_ORCAMENTO: ' CREATE_ORCAMENTO'
 };

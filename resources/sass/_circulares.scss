@@ -1,5 +1,9 @@
 .circular-page-container {
-    margin: 80px auto !important;
+    padding: 5% 0;
+
+    @include sm {
+        padding: 0;
+    }
 
     .posts-container {
         width: 100%;

@@ -21,8 +21,7 @@ let NavBar = ({ isAuthenticated, logout }) => {
                     <Col xs={12} lg={20}>
                         <Row className="big-navbar-right" type="flex" justify="end">
 
-                            <Link className="navbar-link" to="/circulares">círculares <span className="slider"></span>  </Link>
-                            <Link className="navbar-link" to="/">informações <span className="slider"></span>  </Link>
+                            <Link className="navbar-link" to="/perguntas">Perguntas Frequentes <span className="slider"></span>  </Link>
                             {isAuthenticated ? (
                                 <React.Fragment>
                                     <Link
@@ -53,12 +52,8 @@ let NavBar = ({ isAuthenticated, logout }) => {
                                 overlay={
                                     <Menu>
                                         <Menu.Item key="1">
-                                            <Link className="navbar-link" to="/circulares">círculares </Link>
+                                            <Link className="navbar-link" to="/perguntas">perguntas frequentes </Link>
                                         </Menu.Item>
-                                        <Menu.Item key="2">
-                                            <Link className="navbar-link" to="/">informações</Link>
-                                        </Menu.Item>
-                                        <Link className="navbar-link" to="/perguntas">perguntas frequentes </Link>
                                         {isAuthenticated && (
                                             <Menu.Item key="3">
                                                 <Link className="navbar-link" to="/painel">Painel Controlo</Link>

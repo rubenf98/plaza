@@ -150,9 +150,9 @@ class Home extends React.Component {
                                                         <img className="image" src={tagToIcon[el.tags[0].nome]}></img>
 
                                                         <div className="circular-info">
-                                                            <Link className="title" to={`/circulares/${el.id}`}>
+                                                            <div className="title">
                                                                 {el.titulo}
-                                                            </Link>
+                                                            </div>
 
                                                             <p className="date">
                                                                 {el.created_at} • <span className="tag">{el.tags[0].nome}</span>
@@ -169,7 +169,7 @@ class Home extends React.Component {
                             </LoadingContainer>
                         </Row>
 
-                        <WatchMoreButton to="/circulares" />
+                        <WatchMoreButton to="/painel/circulares" />
 
                     </div>
 

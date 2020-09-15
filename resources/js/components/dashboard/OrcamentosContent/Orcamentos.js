@@ -1,80 +1,39 @@
 
 import DashboardLayout from '../DashboardLayout';
 import React from 'react';
-import { Row, Modal, Button } from "antd";
-import { Document } from 'react-pdf/dist/entry.webpack';
-import { Page } from 'react-pdf'
+import OrcamentosList from './OrcamentosList';
 import { connect } from "react-redux";
-import { fetchOrcamentos } from '../../../redux/orcamento/actions';
-import PdfDocument from '../../common/PdfDocument';
-
+import CreateButton from '../../common/CreateButton';
+import OrcamentosModalManager from './OrcamentosModalManager';
 
 class Orcamentos extends React.Component {
-    constructor(props) {
-        super(props);
-        this.filters = {};
-        this.state = {
-            visible: false,
-            active: null,
-        };
-    }
+    state = {
+        visible: false
+    };
 
-    componentDidMount() {
-        this.props.fetchOrcamentos();
-    }
-
-    handleModalOpen = (orcamento) => {
-        console.log(orcamento)
+    handleModalVisible = (aVisible) => {
         this.setState({
-            active: `${window.location.origin}${orcamento}`,
-            visible: true
+            visible: aVisible
         })
     }
 
-    handleModalClose = () => {
-        this.setState({ visible: false })
-    }
-
     render() {
-        const { data } = this.props;
-        const { visible, active } = this.state;
+        let { visible } = this.state;
+
         return (
             <DashboardLayout >
                 <div className="orcamento-page-container page-container">
+                    <OrcamentosModalManager
+                        visible={visible}
+                        handleModalVisible={(aVisible) => this.handleModalVisible(aVisible)}
+                    />
 
-                    <Row type="flex" justify="space-around">
+                    <CreateButton
+                        handleModalVisible={(aVisible) => this.handleModalVisible(aVisible)}
+                        isAdministrator={this.props.isAdministrator}
+                    />
 
-                        <Modal className="modal-container"
-                            visible={visible}
-                            onCancel={this.handleModalClose}
-                            closable={false}
-                            footer={null}
-                            bodyStyle={{ height: "90%" }}
-                            destroyOnClose={true}
-                            style={{ top: 25 }}
-                        >
-                            <PdfDocument pdf={active} />
-                        </Modal>
-
-                        <div className="list-container">
-                            {Object.values(data).map((element, index) => {
-                                return (
-                                    <p
-                                        className="list-item"
-                                        key={element.id}
-                                        onClick={() => this.handleModalOpen(element.url)}
-                                    >
-                                        {element.nome}
-                                    </p>
-                                );
-                            })}
-                        </div>
-
-
-
-                    </Row>
-
-
+                    <OrcamentosList></OrcamentosList>
                 </div>
 
             </DashboardLayout>
@@ -82,17 +41,10 @@ class Orcamentos extends React.Component {
     }
 }
 
-const mapDispatchToProps = dispatch => {
-    return {
-        fetchOrcamentos: (filters) => dispatch(fetchOrcamentos(filters)),
-    };
-};
-
 const mapStateToProps = (state) => {
     return {
-        data: state.orcamento.data,
-        loading: state.orcamento.loading,
+        isAdministrator: state.auth.isAdministrator,
     };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Orcamentos);
+export default connect(mapStateToProps, null)(Orcamentos);

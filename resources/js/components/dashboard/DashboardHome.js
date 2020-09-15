@@ -58,9 +58,9 @@ class DashboardHome extends React.Component {
                         </Col>
                         <Col lg={7} sm={24} className="card">
                             <CardContent
-                                img="/icon/dashboard/fracao.svg"
-                                text="Lorem ipsum"
-                                button="Fração"
+                                img="/icon/dashboard/circulares.svg"
+                                text="Informações relativas a acontecimentos no condomínio"
+                                button={<Link to="/painel/circulares">Círculares</Link>}
                             />
                         </Col>
                     </Row>

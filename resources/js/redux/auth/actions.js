@@ -50,18 +50,10 @@ export const me = () => ({
     payload: axios.get(`${window.location.origin}/api/me`)
 });
 
-export const updateMe = data => {
-    return (dispatch) => {
-        const response = dispatch({
-            type: types.UPDATE_ME,
-            payload: axios.put(`${window.location.origin}/api/me`, data)
-        })
-
-        response.then((res) => {
-            history.push("/");
-        })
-    }
-};
+export const updateMe = (data) => ({
+    type: types.UPDATE_ME,
+    payload: axios.put(`${window.location.origin}/api/me`, data)
+});
 
 export function loginSuccess(token) {
     return {

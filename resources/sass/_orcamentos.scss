@@ -4,8 +4,6 @@
     @include sm {
         padding: 0;
     }
-    .pdf-document-container {
-    }
 
     .orcamento-list {
         font-size: 1.2em;
@@ -97,4 +95,8 @@
             border-bottom-left-radius: 0;
         }
     }
+}
+
+.orcamentos-form-container {
+    margin-top: 5%;
 }

@@ -10,3 +10,9 @@ export const fetchOrcamentos = (filters = {}) => ({
         })}`
     )
 });
+
+export const createOrcamento = data => ({
+    type: types.CREATE_ORCAMENTO,
+    payload: axios.post(`${window.location.origin}/api/orcamentos`, data),
+});
+

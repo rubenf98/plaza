@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreOrcamentoRequest;
 use App\Http\Resources\OrcamentoResource;
 use App\Orcamento;
 use Illuminate\Http\Request;
+use DB;
 
 class OrcamentoController extends Controller
 {
@@ -15,7 +17,7 @@ class OrcamentoController extends Controller
      */
     public function index()
     {
-        return OrcamentoResource::collection(Orcamento::all());
+        return OrcamentoResource::collection(Orcamento::latest()->get());
     }
 
     /**
@@ -24,9 +26,18 @@ class OrcamentoController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreOrcamentoRequest $request)
     {
-        //
+        $validator = $request->validated();
+
+        DB::beginTransaction();
+        $path = $validator['pdf']->store('', 'orcamento');
+        $validator['url'] = '/orcamento/' . $path;
+
+        $orcamento = Orcamento::create($validator);
+        DB::commit();
+
+        return new OrcamentoResource($orcamento);
     }
 
     /**

@@ -5,6 +5,7 @@ import { Form, Input, Button, Cascader, Row } from "antd";
 import { UserOutlined, LockOutlined, KeyOutlined } from '@ant-design/icons';
 import { updateMe } from "../../redux/auth/actions";
 import { fetchBlocoSelector } from "../../redux/bloco/actions";
+import { history } from "../../routes";
 
 class FirstLogin extends React.Component {
     constructor(props) {
@@ -63,7 +64,9 @@ class FirstLogin extends React.Component {
 
     onFinish = values => {
         this.formRef.current.validateFields().then(values => {
-            this.props.updateMe(values);
+            this.props.updateMe(values).then((response) => {
+                history.push("/painel");
+            });
         });
     }
 
@@ -116,7 +119,7 @@ class FirstLogin extends React.Component {
                         </Button>
                     </Form.Item>
                     <div className="first-login-skip">
-                        <Link to="register">saltar passo...</Link>
+                        <Link to="/painel">saltar passo...</Link>
                     </div>
                 </Form >
             </div>

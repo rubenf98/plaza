@@ -23,6 +23,7 @@ class Circular extends Model
     {
         $tags = CircularTag::all();
         $response = [];
+        $response['all'] = Circular::all()->count();
 
         foreach ($tags as $tag) {
             $response[$tag->nome] = Circular::whereHas('tags', function ($query) use ($tag) {

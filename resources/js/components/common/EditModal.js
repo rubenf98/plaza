@@ -5,7 +5,7 @@ const EditModal = (props) => {
     return (
         <Modal
             visible={props.visible}
-            width={"80%"}
+            width={props.width ? props.width : "40%"}
             onOk={() => props.onOkEditClick()}
             onCancel={() => props.onCancel()}
         >
