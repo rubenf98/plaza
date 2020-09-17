@@ -65,9 +65,9 @@ class OrcamentosForm extends React.Component {
                 >
                     <Form.Item
                         name="nome"
-                        label="Nome"
+                        label="Título"
                     >
-                        <Input placeholder="Basic usage" />
+                        <Input placeholder="Ex.: Orçamento Setembro 2020 a Agosto 2021" />
                     </Form.Item>
                     <Form.Item
                         name="pdf"

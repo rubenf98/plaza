@@ -6,6 +6,7 @@ import { UserOutlined, LockOutlined, KeyOutlined } from '@ant-design/icons';
 import { updateMe } from "../../redux/auth/actions";
 import { fetchBlocoSelector } from "../../redux/bloco/actions";
 import { history } from "../../routes";
+import LoadingContainer from "../common/LoadingContainer";
 
 class FirstLogin extends React.Component {
     constructor(props) {
@@ -23,13 +24,19 @@ class FirstLogin extends React.Component {
         nome: [
             {
                 required: true,
-                message: "Please input your name!"
+                message: "O nome é um campo obrigatório!"
             },
         ],
         password: [
             {
                 required: true,
-                message: "Please input your password!"
+                message: "A password é um campo obrigatório!"
+            }
+        ],
+        fracao: [
+            {
+                required: true,
+                message: "É necessário indicar a sua fração!"
             }
         ]
     };
@@ -80,47 +87,47 @@ class FirstLogin extends React.Component {
         return (
             <div className="first-login-form-container">
                 <Form ref={this.formRef} onFinish={this.onFinish} hideRequiredMark={true} onFinishFailed={this.onFinishFailed}>
-                    <Form.Item hasFeedback
-                        name="nome" rules={this.rules.nome}
-                    >
-                        <Input
-                            prefix={<UserOutlined className="site-form-item-icon" />}
-                            placeholder="Nome"
-                        />
+                    <LoadingContainer loading={loadingOptions}>
+                        <Form.Item hasFeedback
+                            name="nome" rules={this.rules.nome}
+                        >
+                            <Input
+                                prefix={<UserOutlined className="site-form-item-icon" />}
+                                placeholder="Nome"
+                            />
 
-                    </Form.Item>
+                        </Form.Item>
 
-                    <Form.Item hasFeedback
-                        name="password" rules={this.rules.password}
-                    >
-                        <Input
-                            prefix={<LockOutlined />}
-                            type="password"
-                            placeholder="Password"
-                        />
+                        <Form.Item hasFeedback
+                            name="password" rules={this.rules.password}
+                        >
+                            <Input
+                                prefix={<LockOutlined />}
+                                type="password"
+                                placeholder="Password"
+                            />
 
-                    </Form.Item>
+                        </Form.Item>
 
-                    <Form.Item hasFeedback name="fracao">
-                        {
-                            !loadingOptions &&
+                        <Form.Item hasFeedback name="fracao" rules={this.rules.fracao}>
+
                             <Cascader
                                 placeholder="Indique a sua fração"
                                 expandTrigger="hover"
                                 options={options}
                             />
-                        }
 
-                    </Form.Item>
+                        </Form.Item>
 
-                    <Form.Item>
-                        <Button type="primary" htmlType="submit" className="first-login-form-button">
-                            Continuar
+                        <Form.Item>
+                            <Button type="primary" htmlType="submit" className="first-login-form-button">
+                                Continuar
                         </Button>
-                    </Form.Item>
-                    <div className="first-login-skip">
-                        <Link to="/painel">saltar passo...</Link>
-                    </div>
+                        </Form.Item>
+                        <div className="first-login-skip">
+                            <Link to="/painel">saltar passo...</Link>
+                        </div>
+                    </LoadingContainer>
                 </Form >
             </div>
         );

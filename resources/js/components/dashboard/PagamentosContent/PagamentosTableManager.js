@@ -141,7 +141,8 @@ class PagamentosTableManager extends React.Component {
 
     render() {
         const { loading, selectedRowKeys, loadingMonths, dates } = this.state;
-        const { data } = this.props;
+        const { data, isAdministrator } = this.props;
+
         const rowSelection = {
             selectedRowKeys,
             onChange: this.onSelectChange,
@@ -221,16 +222,19 @@ class PagamentosTableManager extends React.Component {
                         </Row>
                     </Col>
 
-                    <Col xs={12} lg={4}>
-                        <Row type="flex" justify="end">
-                            <Button type="primary"
-                                onClick={this.handleEditClick}
-                                disabled={!hasSelected}
-                                loading={loading}>
-                                Editar
+                    {isAdministrator &&
+
+                        <Col xs={12} lg={4}>
+                            <Row type="flex" justify="end">
+                                <Button type="primary"
+                                    onClick={this.handleEditClick}
+                                    disabled={!hasSelected}
+                                    loading={loading}>
+                                    Editar
                             </Button>
-                        </Row>
-                    </Col>
+                            </Row>
+                        </Col>
+                    }
 
 
                 </Row>
@@ -238,7 +242,7 @@ class PagamentosTableManager extends React.Component {
                 <LoadingContainer loading={loadingMonths}>
                     <CommonTable
                         style={{ width: "100%" }}
-                        rowSelection={true && rowSelection}
+                        rowSelection={isAdministrator && rowSelection}
                         columns={this.state.columns}
                         rowKey={(record) => record.id}
                         loading={this.props.loading}
@@ -292,6 +296,7 @@ const mapStateToProps = (state) => {
         currentFracaos: state.fracao.currentFracaos,
         loading: state.fracao.loading,
         currentUser: state.auth.currentUser,
+        isAdministrator: state.auth.isAdministrator
     };
 };
 
