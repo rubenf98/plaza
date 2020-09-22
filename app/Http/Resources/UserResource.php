@@ -18,8 +18,10 @@ class UserResource extends JsonResource
             'id' => $this->id,
             'email' => $this->email,
             'nome' => $this->nome,
+            'photo' => $this->photo,
             'administrador' => 1 && true,
-            'divida' => $this->divida,
+            'contacto' => $this->contacto,
+            'b_day' => $this->b_day,
             'fracaos' => MinimalFracaoResource::collection($this->fracaos),
         ];
     }

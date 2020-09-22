@@ -37,6 +37,7 @@ export default (state = initialState, action = {}) => {
                 isAuthenticated: false,
                 currentUser: {},
                 isAdministrator: false,
+                userHasFracao: false
             };
 
         case `${types.LOGIN_SUCCESS}`:
@@ -52,6 +53,7 @@ export default (state = initialState, action = {}) => {
                 loading: false,
                 currentUser: action.payload.data.data,
                 isAdministrator: action.payload.data.data.administrador,
+                userHasFracao: action.payload.data.data.fracaos.length > 0 && true
             };
 
         case `${types.ME}_FULFILLED`:
@@ -62,6 +64,7 @@ export default (state = initialState, action = {}) => {
                 isAuthenticated: true,
                 currentUser: action.payload.data.data,
                 isAdministrator: action.payload.data.data.administrador,
+                userHasFracao: action.payload.data.data.fracaos.length > 0 && true
             };
         default:
             return state

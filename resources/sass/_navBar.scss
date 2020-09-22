@@ -27,7 +27,19 @@
 
     .logo-container {
         .logo {
-            height: 30px;
+            height: 50px;
+        }
+    }
+
+    .name {
+        font-size: 16px;
+        font-family: "Lora", serif;
+        color: #000000;
+        margin-left: 6px;
+                        
+        .subname {
+            display: block;
+            font-weight: bold;
         }
     }
 

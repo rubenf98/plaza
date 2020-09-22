@@ -11,14 +11,20 @@ let NavBar = ({ isAuthenticated, logout }) => {
         <Affix className="navbar-container" offsetTop={0}>
             <div className="navbar-background">
                 <Row className="navbar" type="flex" align="middle">
-                    <Col xs={12} lg={4}>
-                        <Row className="navbar-left" type="flex" justify="start">
-                            <Link className="logo-container" to="/">
+                    <Col xs={12} lg={6}>
+
+                        <Link className="logo-container" to="/">
+
+                            <Row className="navbar-left" type="flex" justify="start" align="middle" gutter={32}>
                                 <img className="logo" src="/logo.png" />
-                            </Link>
-                        </Row>
+                                <div className="name">
+                                    Edifício <span className="subname">Plaza II</span>
+                                </div>
+                            </Row>
+                        </Link>
+
                     </Col>
-                    <Col xs={12} lg={20}>
+                    <Col xs={12} lg={18}>
                         <Row className="big-navbar-right" type="flex" justify="end">
 
                             <Link className="navbar-link" to="/perguntas">Perguntas Frequentes <span className="slider"></span>  </Link>

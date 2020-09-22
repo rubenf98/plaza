@@ -1,5 +1,6 @@
 .login-container {
-    background-image: url("https://www.pixelstalk.net/wp-content/uploads/2016/10/City-apartment-design-salon-town-style.jpg");
+    background-image: url("/login-background.jpg");
+    background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
     z-index: 5;
@@ -19,8 +20,8 @@
         padding: 1rem;
 
         .logo-container {
-            width: 90px;
-            margin: 5% auto;
+            width: 120px;
+            margin: 7% auto;
 
             .logo {
                 width: 100%;

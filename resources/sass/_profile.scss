@@ -1,0 +1,97 @@
+.profile-page-container {
+    .ant-input,
+    .ant-cascader-input,
+    .ant-cascader-picker,
+    .ant-picker {
+        width: 100%;
+        margin: auto;
+        background: transparent !important;
+        border: none;
+        border-bottom-color: currentcolor;
+        border-bottom-style: none;
+        border-bottom-width: medium;
+        border-bottom: 1px solid #dadada;
+        height: 30px;
+        line-height: 30px;
+        position: relative;
+    }
+
+    .ant-input:focus,
+    .ant-input-focused,
+    .ant-cascader-picker-focused,
+    .ant-picker-focused {
+        border: none;
+        border-bottom: 1px solid #939393;
+        box-shadow: none !important;
+    }
+    .profile-container {
+        padding: 10% 0;
+
+        .profile-details {
+            .edit-button {
+                font-size: 28px;
+                cursor: pointer;
+
+                &:hover {
+                    color: $customAccent;
+                }
+            }
+
+            .name {
+                color: #40424a;
+                margin: 0;
+                margin-bottom: 3%;
+                font-size: 7em;
+                line-height: normal;
+
+                @include md {
+                    text-align: center;
+                    font-size: 4em;
+                    margin: 5% auto;
+                }
+            }
+
+            .title {
+                color: #40424a;
+                margin: 0;
+                margin-bottom: 0px;
+                font-size: 4.5em;
+
+                @include md {
+                    font-size: 2em;
+                }
+            }
+
+            ul {
+                list-style-type: none;
+                margin: 0;
+                padding: 0;
+                font-size: 1.6em;
+                color: lighten($color: #40424a, $amount: 20%);
+                @include md {
+                    font-size: 1.1em;
+                }
+
+                .list-title {
+                    color: #40424a;
+                    display: inline-block;
+                    min-width: 220px;
+                    @include md {
+                        min-width: 0;
+                    }
+                }
+
+                .list-bday {
+                    text-transform: capitalize;
+                }
+            }
+        }
+        .profile-picture {
+            max-height: 500px;
+            margin: auto;
+            display: block;
+            max-width: 100%;
+            width: auto;
+        }
+    }
+}

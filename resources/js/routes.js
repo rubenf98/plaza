@@ -15,9 +15,11 @@ import FAQ from "./components/public/FAQ";
 import DashboardHome from "./components/dashboard/DashboardHome";
 import Pagamentos from "./components/dashboard/PagamentosContent/Pagamentos";
 import Orcamentos from "./components/dashboard/OrcamentosContent/Orcamentos";
+import Profile from "./components/dashboard/ProfileContent/Profile";
 
 import PublicRoute from "./components/common/PublicRoute";
 import PrivateRoute from "./components/common/PrivateRoute";
+
 
 export const history = createBrowserHistory();
 
@@ -37,6 +39,7 @@ const Routes = () => {
                         <PrivateRoute exact component={Pagamentos} path="/painel/pagamentos" />
                         <PrivateRoute exact component={Orcamentos} path="/painel/orcamentos" />
                         <PrivateRoute exact component={Circulares} path="/painel/circulares" />
+                        <PrivateRoute exact component={Profile} path="/painel/profile" />
 
                     </PageLayout>
                 </Switch>

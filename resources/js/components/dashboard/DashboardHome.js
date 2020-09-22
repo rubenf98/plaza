@@ -46,7 +46,7 @@ class DashboardHome extends React.Component {
                             <CardContent
                                 img="/icon/dashboard/profile.svg"
                                 text="Altere dados pessoais e públicos da sua conta privada"
-                                button={<Link to="/painel/pagamentos">Perfil</Link>}
+                                button={<Link to="/painel/profile">Perfil</Link>}
                             />
                         </Col>
                         <Col lg={7} sm={24} className="card">

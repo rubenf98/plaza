@@ -19,8 +19,11 @@ class CreateUsersTable extends Migration
             $table->integer('divida_id')->unsigned()->nullable();
             $table->string('nome')->nullable();
             $table->string('email')->unique();
+            $table->string('contacto')->nullable();
+            $table->date('b_day')->nullable();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
+            $table->string('photo')->default('/profile-picture.jpg');
             $table->boolean('administrador')->default(false);
             $table->boolean('login')->default(false);
             $table->boolean('ativo')->default(true);

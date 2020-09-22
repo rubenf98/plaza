@@ -18,6 +18,7 @@ class MinimalFracaoResource extends JsonResource
             'id' => $this->id,
             'nome' => $this->nome,
             'bloco' => $this->bloco->nome,
+            'bloco_id' => $this->bloco->id,
         ];
     }
 }

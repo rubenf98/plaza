@@ -15,3 +15,8 @@ export const tagToIcon = {
 	"reunião": "/icon/circulares/meeting.svg",
 	"outros": "/icon/circulares/other.svg",
 };
+
+export function isParameterNull(param, response = "Campo não preenchido") {
+	if (param) return param
+	else return response
+};

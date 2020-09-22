@@ -14,7 +14,8 @@ import jwtDecode from "jwt-decode";
 import Routes from "./routes";
 import rootReducer from './rootReducer';
 import "antd/dist/antd.css";
-import '../sass/index.scss'
+import '../sass/index.scss';
+import moment from "moment";
 
 const store = createStore(
     rootReducer,
@@ -25,6 +26,8 @@ const store = createStore(
         )
     )
 )
+
+moment.locale('pt');
 
 if (localStorage.token) {
     const token = jwtDecode(localStorage.token);
@@ -39,6 +42,7 @@ if (localStorage.token) {
 }
 
 render(
+
     <Provider store={store}>
         <Routes />
     </Provider>,
