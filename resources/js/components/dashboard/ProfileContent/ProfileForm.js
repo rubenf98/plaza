@@ -26,7 +26,9 @@ const ProfileForm = (props) => {
                 >
                     <DatePicker placeholder="Data de Nascimento" />
                 </Form.Item>
+
                 <FracaoRemoteSelectContainer label="Fração" />
+
                 <Form.Item
                     className="input"
                     name="email"

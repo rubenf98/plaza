@@ -75,6 +75,57 @@
     width: 90%;
     margin: auto;
 
+    .info-container {
+        flex-wrap: wrap;
+        .info-content {
+            width: 40%;
+            min-width: 200px;
+            font-size: 1.1em;
+            text-align: center;
+            background: white;
+            padding: 30px;
+            margin: 3% auto;
+            border-radius: 6px;
+            box-shadow: 0px 0px 10px 0px rgba($color: #bdbdbd, $alpha: 0.5);
+
+            @include md {
+                width: 100%;
+            }
+
+            &:hover {
+                background: $customAccent;
+
+                .title,
+                .info,
+                .icon {
+                    color: white;
+                }
+            }
+
+            .title {
+                font-size: 1.5em;
+                color: $customHeader;
+                font-weight: bold;
+                margin-top: 20px;
+            }
+
+            .info {
+                color: $customHeader;
+
+                .important {
+                    display: block;
+                    font-weight: bold;
+                    margin: 10px 0px;
+                }
+            }
+
+            .icon {
+                font-size: 64px;
+                display: block;
+            }
+        }
+    }
+
     .about-container {
         margin: 10% auto;
 
@@ -213,4 +264,8 @@
     .answer {
         width: 90%;
     }
+}
+
+.last-content-container {
+    margin-bottom: 10%;
 }

@@ -26,7 +26,7 @@ let NavBar = ({ isAuthenticated, logout }) => {
                     </Col>
                     <Col xs={12} lg={18}>
                         <Row className="big-navbar-right" type="flex" justify="end">
-
+                            <Link className="navbar-link" to="/servicos">Serviços <span className="slider"></span>  </Link>
                             <Link className="navbar-link" to="/perguntas">Perguntas Frequentes <span className="slider"></span>  </Link>
                             {isAuthenticated ? (
                                 <React.Fragment>
@@ -57,6 +57,9 @@ let NavBar = ({ isAuthenticated, logout }) => {
                             <Dropdown
                                 overlay={
                                     <Menu>
+                                        <Menu.Item key="0">
+                                            <Link className="navbar-link" to="/servicos">serviços </Link>
+                                        </Menu.Item>
                                         <Menu.Item key="1">
                                             <Link className="navbar-link" to="/perguntas">perguntas frequentes </Link>
                                         </Menu.Item>

@@ -83,14 +83,11 @@ class Profile extends React.Component {
                         </Col>
                         <Col lg={24} xl={14} className="profile-details">
                             {editing ?
-
                                 <ProfileForm
                                     user={this.state.refactorUser}
                                     formRef={this.formRef}
                                     handleFinishEditing={this.handleFinishEditing}
                                 />
-
-
                                 :
                                 <Fragment>
                                     <Row type="flex" justify="end">

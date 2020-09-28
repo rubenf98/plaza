@@ -5,12 +5,12 @@ import {
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import { tagToIcon } from "../../helper";
-import { Row, Col, Button } from "antd";
+import { Row, Col, Button, Space } from "antd";
 import { Parallax } from 'react-parallax';
 import RegisterForm from "./RegisterForm";
 import PageFooter from "../common/PageFooter";
 import LoadingContainer from "../common/LoadingContainer";
-import { InfoCircleOutlined, QuestionCircleOutlined, FileOutlined, CommentOutlined } from '@ant-design/icons';
+import { InfoCircleOutlined, QuestionCircleOutlined, FileOutlined, CommentOutlined, ContactsOutlined, PayCircleOutlined, EuroCircleOutlined } from '@ant-design/icons';
 
 const AboutInfoContent = ({ img, text }) => (
     <Col sm={24} md={12} >
@@ -212,7 +212,52 @@ class Home extends React.Component {
 
 
 
-                    <h1 className="section-title">Informações</h1>
+                    <div className="homepage-content-container">
+                        <Row className="about-container" gutter={32} type="flex" align="middle">
+                            <Col lg={12} md={24}>
+                                <img className="about-image" src="/icon/home-services.jpg">
+                                </img>
+                            </Col>
+                            <Col lg={12} md={24}>
+                                <div className="about-content">
+                                    <h1 className="subtitle">Serviços</h1>
+                                    <h2 className="title"> Conheça as reponsabilidades da administração</h2>
+                                    <p>Trabalhamos com pessoal próprio em manutenção de edifícios na área da construção civil, limpeza e jardinagem. Recorremos à contratação de empresas especializadas nas respectivas áreas o que garante uma qualidade superior do serviço. </p>
+                                    <WatchMoreButton to="/servicos" />
+                                </div>
+                            </Col>
+
+
+                        </Row>
+                    </div>
+
+                    <div className="homepage-content-container last-content-container">
+                        <Header
+                            title="Informação"
+                            subtitle="Dados relativos ao bom funcionamento do edifício"
+                        />
+
+                        <Row className="section-content info-container " type="flex" justify="space-around" align="middle">
+                            <div className="info-content">
+                                <EuroCircleOutlined className="icon" />
+                                <h2 className="title">Pagamentos</h2>
+                                <div className="info">
+                                    O edíficio Plaza II permite que o pagamento das quotas seja realizado tanto no balcão de apoio do condomínio, como por transferência multibanco
+                                
+                                    <span className="important">PT50 3213 7125 3813 281</span>
+                                </div>
+                            </div>
+                            <div className="info-content">
+                                <ContactsOutlined className="icon" />
+                                <h2 className="title">Contactos</h2>
+                                <div className="info">
+                                    O edíficio Plaza II possui um endereço eletrónico comum a todos os membros da administração, pelo qual é possível esclarecer as suas dúvidas
+                                
+                                    <span className="important">example@example.com</span>
+                                </div>
+                            </div>
+                        </Row>
+                    </div>
 
 
 
