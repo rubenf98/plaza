@@ -221,7 +221,7 @@ class Home extends React.Component {
                             <Col lg={12} md={24}>
                                 <div className="about-content">
                                     <h1 className="subtitle">Serviços</h1>
-                                    <h2 className="title"> Conheça as reponsabilidades da administração</h2>
+                                    <h2 className="title"> Conheça os serviços que a administração fornece</h2>
                                     <p>Trabalhamos com pessoal próprio em manutenção de edifícios na área da construção civil, limpeza e jardinagem. Recorremos à contratação de empresas especializadas nas respectivas áreas o que garante uma qualidade superior do serviço. </p>
                                     <WatchMoreButton to="/servicos" />
                                 </div>

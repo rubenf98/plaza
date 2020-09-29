@@ -2,10 +2,10 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { logout } from "../../redux/auth/actions";
-import { Row, Col, Affix, Button, Dropdown, Menu } from "antd";
-import { MenuOutlined } from '@ant-design/icons';
+import { Row, Col, Affix, Button, Dropdown, Menu, Avatar } from "antd";
+import { MenuOutlined, UserOutlined } from '@ant-design/icons';
 
-let NavBar = ({ isAuthenticated, logout }) => {
+let NavBar = ({ isAuthenticated, logout, currentUser }) => {
 
     return (
         <Affix className="navbar-container" offsetTop={0}>
@@ -25,30 +25,38 @@ let NavBar = ({ isAuthenticated, logout }) => {
 
                     </Col>
                     <Col xs={12} lg={18}>
-                        <Row className="big-navbar-right" type="flex" justify="end">
+                        <Row className="big-navbar-right" type="flex" justify="end" align="middle">
                             <Link className="navbar-link" to="/servicos">Serviços <span className="slider"></span>  </Link>
                             <Link className="navbar-link" to="/perguntas">Perguntas Frequentes <span className="slider"></span>  </Link>
+
+
                             {isAuthenticated ? (
-                                <React.Fragment>
-                                    <Link
-                                        className="navbar-link"
-                                        to="/painel"
-                                    >
-                                        <span className="slider"> </span>Painel Controlo
-                                    </Link>
-                                    <Link
-                                        className="navbar-link"
-                                        to=""
-                                        onClick={() => { logout() }}
-                                    >
-                                        <span className="slider"> </span>Logout
-                                    </Link>
-                                </React.Fragment>
+                                <Dropdown
+                                    placement="bottomRight"
+                                    overlay={
+                                        <Menu>
+                                            <Menu.Item key="0">
+                                                <Link to="/painel">Painel Controlo</Link>
+                                            </Menu.Item>
+
+                                            <Menu.Item key="1">
+                                                <Link to="" onClick={() => { logout() }}> Logout</Link>
+                                            </Menu.Item>
+                                        </Menu>
+                                    }
+                                >
+                                    <Avatar
+                                        className="avatar"
+                                        onClick={e => e.preventDefault()}
+                                        size={"large"}
+                                        icon={<img src={currentUser.photo} />}
+                                    />
+                                </Dropdown>
+
                             ) :
-                                <React.Fragment>
-                                    <Link className="navbar-link" to="/login">login <span className="slider"></span></Link>
-                                </React.Fragment>
+                                <Link className="navbar-link" to="/login">login</Link>
                             }
+
 
 
                         </Row>
@@ -75,6 +83,10 @@ let NavBar = ({ isAuthenticated, logout }) => {
                                                 <Link className="navbar-link" to="/login">login</Link>
                                             }
                                         </Menu.Item>
+
+
+
+
                                     </Menu>
 
                                 }
@@ -100,6 +112,7 @@ let NavBar = ({ isAuthenticated, logout }) => {
 const mapStateToProps = (state) => {
     return {
         isAuthenticated: state.auth.isAuthenticated,
+        currentUser: state.auth.currentUser,
     };
 };
 

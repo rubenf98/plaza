@@ -36,11 +36,15 @@
         font-family: "Lora", serif;
         color: #000000;
         margin-left: 6px;
-                        
+
         .subname {
             display: block;
             font-weight: bold;
         }
+    }
+
+    .avatar {
+        cursor: pointer;
     }
 
     .navbar-link {

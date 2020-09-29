@@ -1,0 +1,94 @@
+.servicos-page-container {
+    .ball {
+        position: absolute;
+        background: rgba($color: $customAccent, $alpha: 0.5);
+        z-index: -1;
+
+        &:before {
+            content: "";
+            display: block;
+            padding-top: 100%;
+            /* initial ratio of 1:1*/
+        }
+    }
+    .big-ball {
+        width: 200px;
+        border-radius: 50% 50% 0 50%;
+        top: -50px;
+        right: -50px;
+
+        @include md {
+            width: 100px;
+            right: -20px;
+        }
+    }
+
+    .md-ball {
+        width: 120px;
+        border-radius: 0 50% 50% 50%;
+        bottom: -60px;
+        left: -60px;
+
+        @include md {
+            width: 70px;
+            bottom: -30px;
+            left: -30px;
+        }
+    }
+
+    .small-ball {
+        width: 80px;
+        border-radius: 50% 0 50% 50%;
+        top: 0;
+        left: -10px;
+        @include md {
+            width: 40px;
+            top: 10px;
+        }
+
+        @include sm {
+            top: 0px;
+        }
+    }
+
+    .header-container {
+        margin: 5% auto;
+        .text-container {
+            width: 50%;
+            color: $customHeader;
+            .title {
+                font-size: 4.5em;
+                font-weight: bold;
+                position: relative;
+                margin-bottom: 0;
+
+                @include md {
+                    font-size: 3em;
+                }
+
+                @include sm {
+                    font-size: 2em;
+                }
+            }
+            .description {
+                width: 90%;
+                font-size: 1.5em;
+
+                @include md {
+                    font-size: 1em;
+                    width: 95%;
+                }
+            }
+        }
+
+        .img-container {
+            width: 50%;
+            position: relative;
+            .img {
+                width: 100%;
+                border-radius: 24px;
+                box-shadow: 0 0px 30px 0px rgba($color: #cecece, $alpha: 0.3);
+            }
+        }
+    }
+}
