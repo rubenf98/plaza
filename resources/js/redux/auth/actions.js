@@ -55,6 +55,11 @@ export const updateMe = (data) => ({
     payload: axios.put(`${window.location.origin}/api/me`, data)
 });
 
+export const updatePhoto = (data) => ({
+    type: types.UPDATE_PHOTO,
+    payload: axios.put(`${window.location.origin}/api/me/photo`, data)
+});
+
 export function loginSuccess(token) {
     return {
         type: types.LOGIN_SUCCESS, payload: token

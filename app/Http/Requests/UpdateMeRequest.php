@@ -10,6 +10,7 @@ use JWTAuth;
 
 class UpdateMeRequest extends FormRequest
 {
+    private $user;
     /**
      * Determine if the user is authorized to make this request.
      *
@@ -23,13 +24,13 @@ class UpdateMeRequest extends FormRequest
     protected function prepareForValidation()
     {
         if ($this->header('Authorization'))
-            $user = JWTAuth::setToken($this->header('Authorization'))->user()->id;
+            $this->user = JWTAuth::setToken($this->header('Authorization'))->user()->id;
 
         if ($this->fracao[1])
             $fracao_id = $this->fracao[1];
 
         $this->merge([
-            'user_id' => $user,
+            'user_id' =>  $this->user,
             'fracao_id' => $fracao_id
         ]);
     }
@@ -44,8 +45,11 @@ class UpdateMeRequest extends FormRequest
         return [
             'user_id' => 'required|integer|exists:users,id',
             'nome' => 'required|string',
-            'password' => 'required|string|min:4',
+            'password' => 'nullable|string|min:4',
+            'contacto' => 'nullable|string',
+            'email' => Rule::unique('users')->ignore($this->user),
             'fracao_id' => 'required|integer|exists:fracaos,id',
+            'b_day' => 'nullable|date'
         ];
     }
 

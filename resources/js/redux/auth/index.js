@@ -14,6 +14,7 @@ export default (state = initialState, action = {}) => {
         case `${types.LOGOUT}_PENDING`:
         case `${types.ME}_PENDING`:
         case `${types.UPDATE_ME}_PENDING`:
+        case `${types.UPDATE_PHOTO}_PENDING`:
             return {
                 ...state,
                 loading: true
@@ -27,6 +28,7 @@ export default (state = initialState, action = {}) => {
                 loading: false
             };
 
+        case `${types.UPDATE_PHOTO}_REJECTED`:
         case `${types.UPDATE_ME}_REJECTED`:
         case `${types.ME}_REJECTED`:
         case `${types.LOGIN}_REJECTED`:
@@ -47,6 +49,7 @@ export default (state = initialState, action = {}) => {
                 isAuthenticated: true,
             };
 
+        case `${types.UPDATE_PHOTO}_FULFILLED`:
         case `${types.UPDATE_ME}_FULFILLED`:
             return {
                 ...state,

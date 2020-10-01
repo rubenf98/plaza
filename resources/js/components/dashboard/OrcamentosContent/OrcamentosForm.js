@@ -48,7 +48,6 @@ class OrcamentosForm extends React.Component {
                 });
             },
             beforeUpload: file => {
-                console.log(file)
                 this.setState(state => ({
                     fileList: [...state.fileList, file],
                 }));

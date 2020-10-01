@@ -1,11 +1,12 @@
 
 import DashboardLayout from '../DashboardLayout';
 import React, { Fragment } from 'react';
-import { Col, Row } from 'antd';
+import { Col, Row, Upload } from 'antd';
 import ProfileOverview from './ProfileOverview';
 import ProfileForm from './ProfileForm';
 import { connect } from "react-redux";
-import { EditOutlined } from '@ant-design/icons';
+import { EditOutlined, UploadOutlined } from '@ant-design/icons';
+import { updateMe, updatePhoto } from "../../../redux/auth/actions";
 import moment from 'moment';
 
 class Profile extends React.Component {
@@ -13,6 +14,8 @@ class Profile extends React.Component {
         editing: false,
         refactorUser: null
     }
+
+    formRef = React.createRef();
 
     componentDidMount() {
         let refactorUser = this.props.user;
@@ -31,30 +34,26 @@ class Profile extends React.Component {
     }
 
     handleFinishEditing = () => {
-        this.setState({ editing: false })
-    }
 
-    onCancel = () => {
-        this.resetModalForm();
-    };
-
-    onOkEditClick = () => {
         const form = this.formRef.current;
         form.validateFields().then((data) => {
-            let formData = new FormData();
-            formData.append("pdf", data.pdf.file);
-            formData.append("nome", data.nome);
-
-            this.props.createOrcamento(formData)
+            const formatedDate = moment(data.b_day).format("YYYY-MM-DD");
+            this.props.updateMe({
+                ...data,
+                b_day: formatedDate,
+            })
                 .then((response) => {
-                    this.resetModalForm();
+                    this.setState({ editing: false })
                 })
                 .catch((error) => {
                     console.log(error)
                 });
 
         });
+    }
 
+    onCancel = () => {
+        this.resetModalForm();
     };
 
     resetModalForm = () => {
@@ -62,6 +61,15 @@ class Profile extends React.Component {
         this.formRef.current.resetFields();
     };
 
+    handleUpload = (data) => {
+        let { file } = data;
+
+        let form = new FormData();
+        form.append('file', file);
+
+        this.props.updatePhoto(form);
+        //api/me/photo
+    };
 
     render() {
         let { user, userHasFracao } = this.props;
@@ -78,8 +86,12 @@ class Profile extends React.Component {
                         className="profile-container"
                         gutter={32}
                     >
-                        <Col lg={24} xl={10}>
-                            <img className="profile-picture" src={user.photo} />
+                        <Col lg={24} xl={10} className="profile-picture-container">
+                            <Upload name='file' customRequest={this.handleUpload} accept=".jpg,.png" showUploadList={false} method="PUT">
+                                <img className="profile-picture" src={user.photo} />
+                                <UploadOutlined className="upload-picture" />
+                            </Upload>
+
                         </Col>
                         <Col lg={24} xl={14} className="profile-details">
                             {editing ?
@@ -104,10 +116,17 @@ class Profile extends React.Component {
 
                     </Row>
                 </div>
-            </DashboardLayout>
+            </DashboardLayout >
         );
     }
 }
+
+const mapDispatchToProps = dispatch => {
+    return {
+        updateMe: (data) => dispatch(updateMe(data)),
+        updatePhoto: (data) => dispatch(updatePhoto(data)),
+    };
+};
 
 const mapStateToProps = (state) => {
     return {
@@ -118,5 +137,5 @@ const mapStateToProps = (state) => {
 
 export default connect(
     mapStateToProps,
-    null
+    mapDispatchToProps
 )(Profile);

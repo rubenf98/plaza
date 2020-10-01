@@ -19,7 +19,7 @@ const ProfileOverview = (props) => {
                     <span className="list-title">Email</span> {props.user.email}
                 </li>
                 <li>
-                    <span className="list-title">Contacto</span> {isParameterNull(props.user.contact)}
+                    <span className="list-title">Contacto</span> {isParameterNull(props.user.contacto)}
                 </li>
             </ul>
         </Fragment>

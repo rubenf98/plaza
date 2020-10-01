@@ -24,7 +24,10 @@ Route::group(['middleware' => 'api'], function () {
     Route::post('refresh', 'AuthController@refresh');
     Route::get('me', 'AuthController@me');
     Route::put('me', 'AuthController@updateMe');
+    Route::put('me/photo', 'AuthController@updatePhoto');
 });
+
+
 
 Route::post('register', 'AuthController@register');
 

@@ -30,7 +30,7 @@ class AuthController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth:api', ['except' => ['login', 'register']]);
+        $this->middleware('auth:api', ['except' => ['login', 'register', 'updatePhoto']]);
     }
 
     public function register(RegisterRequest $request)
@@ -170,13 +170,31 @@ class AuthController extends Controller
     public function updateMe(UpdateMeRequest $request)
     {
         $validator = $request->validated();
-        $validator['password'] = bcrypt($validator['password']);
+        $request->exists('password') && $validator['password'] = bcrypt($validator['password']);
+
         DB::beginTransaction();
         $user = User::find($validator['user_id']);
         $fracao = Fracao::find($validator['fracao_id']);
+
         $user->update($validator);
+
         $fracao->user_id = $validator['user_id'];
         $fracao->save();
+        DB::commit();
+        return new UserResource($user);
+    }
+
+    public function updatePhoto(Request $request)
+    {
+        DB::beginTransaction();
+
+        if ($request->header('Authorization'))
+            $user = JWTAuth::setToken($request->header('Authorization'))->user();
+
+        $path = $request->file->store('', 'profile');
+        $user->photo = '/profile/' . $path;
+        $user->save();
+
         DB::commit();
         return new UserResource($user);
     }

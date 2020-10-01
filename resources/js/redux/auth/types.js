@@ -4,5 +4,6 @@ export const types = {
     LOGIN_SUCCESS: 'LOGIN_SUCCESS',
     ME: 'ME',
     UPDATE_ME: 'UPDATE_ME',
+    UPDATE_PHOTO: 'UPDATE_PHOTO',
     LOGOUT: 'LOGOUT',
 };
