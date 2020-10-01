@@ -20,6 +20,7 @@ class OrcamentosModalManager extends Component {
     onOkEditClick = () => {
         const form = this.formRef.current;
         form.validateFields().then((data) => {
+            console.log(data.pdf.file);
             let formData = new FormData();
             formData.append("pdf", data.pdf.file);
             formData.append("nome", data.nome);

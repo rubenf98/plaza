@@ -22,9 +22,9 @@ Route::group(['middleware' => 'api'], function () {
     Route::post('login', 'AuthController@login');
     Route::post('logout', 'AuthController@logout');
     Route::post('refresh', 'AuthController@refresh');
+    Route::post('me/photo', 'AuthController@updatePhoto');
     Route::get('me', 'AuthController@me');
     Route::put('me', 'AuthController@updateMe');
-    Route::put('me/photo', 'AuthController@updatePhoto');
 });
 
 

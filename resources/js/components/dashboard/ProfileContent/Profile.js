@@ -63,12 +63,10 @@ class Profile extends React.Component {
 
     handleUpload = (data) => {
         let { file } = data;
-
         let form = new FormData();
-        form.append('file', file);
+        form.append('photo', file);
 
         this.props.updatePhoto(form);
-        //api/me/photo
     };
 
     render() {
@@ -87,11 +85,12 @@ class Profile extends React.Component {
                         gutter={32}
                     >
                         <Col lg={24} xl={10} className="profile-picture-container">
-                            <Upload name='file' customRequest={this.handleUpload} accept=".jpg,.png" showUploadList={false} method="PUT">
-                                <img className="profile-picture" src={user.photo} />
-                                <UploadOutlined className="upload-picture" />
-                            </Upload>
-
+                            <Row type="flex" justify="space-around">
+                                <Upload name='file' customRequest={this.handleUpload} accept=".jpg,.png" showUploadList={false} method="PUT">
+                                    <img className="profile-picture" src={user.photo} />
+                                    <UploadOutlined className="upload-picture" />
+                                </Upload>
+                            </Row>
                         </Col>
                         <Col lg={24} xl={14} className="profile-details">
                             {editing ?

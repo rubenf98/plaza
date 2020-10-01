@@ -19,7 +19,7 @@ use DB;
 use JWTAuth;
 use Illuminate\Http\Request;
 use App\User;
-
+use Illuminate\Support\Facades\File;
 
 class AuthController extends Controller
 {
@@ -186,14 +186,20 @@ class AuthController extends Controller
 
     public function updatePhoto(Request $request)
     {
+
         DB::beginTransaction();
 
         if ($request->header('Authorization'))
             $user = JWTAuth::setToken($request->header('Authorization'))->user();
 
-        $path = $request->file->store('', 'profile');
-        $user->photo = '/profile/' . $path;
-        $user->save();
+        if ($request->hasFile('photo')) {
+            $oldPhoto = $user->photo;
+            $oldPhoto !== "/profile-picture.jpg" && File::delete(public_path($oldPhoto));
+
+            $path = $request->file('photo')->store('', 'profile');
+            $user->photo = '/profile/' . $path;
+            $user->save();
+        }
 
         DB::commit();
         return new UserResource($user);

@@ -28,7 +28,6 @@ class OrcamentoController extends Controller
      */
     public function store(StoreOrcamentoRequest $request)
     {
-        return $request;
         $validator = $request->validated();
 
         DB::beginTransaction();

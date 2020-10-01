@@ -16,7 +16,7 @@ class StoreOrcamentoRequest extends FormRequest
      */
     public function authorize()
     {
-        return  $this->header('Authorization') && JWTAuth::setToken($this->header('Authorization'))->user()->administrador && true;
+        return $this->header('Authorization') && JWTAuth::setToken($this->header('Authorization'))->user()->administrador && true;
     }
 
     /**
