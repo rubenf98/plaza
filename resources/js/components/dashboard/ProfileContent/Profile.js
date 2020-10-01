@@ -22,7 +22,7 @@ class Profile extends React.Component {
 
         this.props.user.fracaos.length > 0 && (refactorUser.fracao = ["bloco-" + this.props.user.fracaos[0].bloco_id, this.props.user.fracaos[0].id]);
 
-        refactorUser.b_day = moment(this.props.user.b_day);
+        this.props.user.b_day && (refactorUser.b_day = moment(this.props.user.b_day));
 
         this.setState({
             refactorUser: refactorUser
@@ -37,7 +37,8 @@ class Profile extends React.Component {
 
         const form = this.formRef.current;
         form.validateFields().then((data) => {
-            const formatedDate = moment(data.b_day).format("YYYY-MM-DD");
+            let formatedDate = null;
+            data.b_day && (formatedDate = moment(data.b_day).format("YYYY-MM-DD"));
             this.props.updateMe({
                 ...data,
                 b_day: formatedDate,

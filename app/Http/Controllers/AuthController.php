@@ -169,17 +169,24 @@ class AuthController extends Controller
 
     public function updateMe(UpdateMeRequest $request)
     {
+
         $validator = $request->validated();
+
         $request->exists('password') && $validator['password'] = bcrypt($validator['password']);
 
         DB::beginTransaction();
         $user = User::find($validator['user_id']);
-        $fracao = Fracao::find($validator['fracao_id']);
-
         $user->update($validator);
 
-        $fracao->user_id = $validator['user_id'];
-        $fracao->save();
+        if ($request->exists('fracao_id') && $request->fracao_id != null) {
+            $oldFracao =  Fracao::where('user_id', $user->id)->first();
+            $oldFracao->user_id = null;
+            $oldFracao->save();
+            $fracao = Fracao::find($validator['fracao_id']);
+            $fracao->user_id = $validator['user_id'];
+            $fracao->save();
+        }
+
         DB::commit();
         return new UserResource($user);
     }
