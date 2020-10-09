@@ -91,4 +91,97 @@
             }
         }
     }
+
+    .content-container {
+        margin: 5% auto 10% auto;
+        width: 100%;
+
+        .servico-section {
+            width: 90%;
+            margin: 2% auto;
+
+            @include lg {
+                width: 98%;
+            }
+            .title {
+                font-size: 2em;
+                margin-bottom: 0;
+                font-weight: bold;
+            }
+
+            .title-border {
+                margin-bottom: 10px;
+                width: 90px;
+                height: 4px;
+                background: $customAccent;
+            }
+
+            .image {
+                width: 90%;
+                margin: auto;
+                display: block;
+            }
+
+            &:nth-child(even) {
+                margin-left: auto;
+                margin-right: 0;
+            }
+
+            .list {
+                counter-reset: number;
+                width: 100%;
+
+                .item {
+                    display: -webkit-box;
+                    display: flex;
+                    -webkit-box-align: center;
+                    align-items: center;
+                    -webkit-box-pack: start;
+                    justify-content: flex-start;
+                    -webkit-transition: 0.25s;
+                    transition: 0.25s;
+                    counter-increment: number;
+
+                    h3 {
+                        font-size: 1em;
+                        position: relative;
+                        left: -1.5rem;
+                        color: $customHeader;
+                        -webkit-transition: 0.25s;
+                        transition: 0.3s ease-in-out;
+                    }
+
+                    &:hover {
+                        background-color: #fafafa;
+                        cursor: pointer;
+
+                        &:before {
+                            opacity: 1;
+                        }
+
+                        h3 {
+                            left: -0.5rem;
+                        }
+
+                        &:nth-child(n + 10) {
+                            h3 {
+                                left: 0.5rem;
+                            }
+                        }
+                    }
+                }
+
+                .item:before {
+                    content: counter(number) " ";
+                    font-size: 2rem;
+                    font-weight: bold;
+                    color: $customAccent;
+                    width: 2rem;
+                    opacity: 0.1;
+                    -webkit-transition: 0.25s;
+                    transition: 0.25s;
+                }
+            }
+        }
+    }
 }

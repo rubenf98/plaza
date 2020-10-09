@@ -21,30 +21,10 @@ class FracaoHasQuotaSeeder extends Seeder
             $quota_id = 1;
 
             $initDate = new Carbon($year . '-01');
-            for ($i = 1; $i <= 18; $i++) {
+            for ($i = 1; $i <= 162; $i++) {
                 FracaoHasQuota::create([
                     'fracao_id' => $fracao->id,
                     'quota_id' => $quota_id,
-                    'estado' => "pago",
-                    'data' => $initDate
-                ]);
-                $initDate->addMonths(1);
-            }
-            for ($i = 18; $i <= 24; $i++) {
-                FracaoHasQuota::create([
-                    'fracao_id' => $fracao->id,
-                    'quota_id' => $quota_id,
-                    'data' => $initDate
-                ]);
-                $initDate->addMonths(1);
-            }
-
-            $initDate = new Carbon($year . '-01');
-
-            for ($i = 1; $i <= 6; $i++) {
-                FracaoHasQuota::create([
-                    'fracao_id' => $fracao->id,
-                    'quota_id' => 2,
                     'data' => $initDate
                 ]);
                 $initDate->addMonths(1);

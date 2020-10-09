@@ -47,14 +47,13 @@ class PagamentosModalManager extends Component {
                 let obj = {};
                 obj[parsed[1]] = element[1];
                 pagamentos.push(obj);
-                estado.push(element[1]);
+                estado.push(element[1] ? element[1] : "pendente");
 
                 if (index == fracaosLength) {
                     pagamentosT.push(estado);
                 }
 
             })
-
 
             let obj = {
                 'fracaos': fracoes,

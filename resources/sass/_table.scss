@@ -14,8 +14,9 @@
     width: 90%;
     margin: auto;
     max-width: 1400px;
+    height: 100%;
 
-    @media screen and (max-width: 768px) {
+    @include md {
         width: 100%;
     }
 }
@@ -23,11 +24,11 @@
 .table-container {
     width: 100%;
     box-shadow: 0 0 15px 0px rgba($color: #000000, $alpha: 0.2);
-    margin: 100px auto;
+    margin: auto;
+    margin-top: 50px;
     border-radius: 12px;
 
-    @media screen and (max-width: 768px) {
-        margin: auto;
+    @include md {
         box-shadow: none;
         border-radius: 0;
     }

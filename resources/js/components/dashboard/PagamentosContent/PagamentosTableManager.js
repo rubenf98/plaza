@@ -190,7 +190,7 @@ class PagamentosTableManager extends React.Component {
                                             </Radio.Group>
                                         </Menu.ItemGroup>
                                         <Menu.ItemGroup title="Quota">
-                                            <Radio.Group onChange={this.onChange}>
+                                            <Radio.Group onChange={this.onChange} defaultValue="normal">
                                                 <Radio style={radioStyle} value="normal">
                                                     Normal
                                                 </Radio>

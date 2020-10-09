@@ -70,10 +70,15 @@ class FracaoController extends Controller
     {
         $validator = $request->validated();
         foreach ($validator['fracaos'] as $key => $fracao_id) {
+            $fracao = Fracao::find($fracao_id);
             foreach ($validator['dates'] as $k => $date) {
                 $formattedDate = new Carbon($date);
                 $pivot = FracaoHasQuota::whereFracaoId($fracao_id)->whereQuotaId(1)->whereData($date)->first();
-                $pivot->update(array('data' => $formattedDate, 'estado' => $validator['pagamentos'][$key][$k]));
+                if ($pivot) {
+                    $pivot->update(array('data' => $formattedDate, 'estado' => $validator['pagamentos'][$key][$k]));
+                } else {
+                    $fracao->quotas()->attach(1, ['estado' => $validator['pagamentos'][$key][$k], 'data' => $formattedDate]);
+                }
             }
         }
 
