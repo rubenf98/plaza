@@ -39,11 +39,10 @@ class LoginForm extends React.Component {
     }
 
     onFinish = values => {
-        !this.props.isAuthenticated ?
+        !this.props.isAuthenticated &&
             this.formRef.current.validateFields().then(values => {
                 this.props.login(values);
-            }) :
-            console.log("already");
+            });
     }
 
     onFinishFailed = ({ errorFields }) => {
@@ -55,7 +54,7 @@ class LoginForm extends React.Component {
         return (
             <div className="login-form-container">
                 <Row className="logo-container" type="flex" justify="center">
-                    <img className="logo" src="/logo.png" />
+                    <img className="logo" src="/logo.webp" alt="logo" />
                 </Row>
 
                 <Form className="login-form" ref={this.formRef} onFinish={this.onFinish} hideRequiredMark={true} onFinishFailed={this.onFinishFailed}>

@@ -12,7 +12,7 @@ let PageFooter = () => {
                 </div>
                 <div className="footer-register">
                     <RegisterForm footer={true}></RegisterForm>
-                    
+
                 </div>
 
                 <Row className="footer-info" type="flex" justify="space-around">
@@ -23,15 +23,6 @@ let PageFooter = () => {
                         <div className="info-content">
                             <p>example@example.com</p>
                             <p>+969 872 128</p>
-                        </div>
-                    </div>
-                    <div className="info-container">
-                        <div className="info-title">
-                            links
-                    </div>
-                        <div className="info-content">
-                            <p>noticias</p>
-                            <p>circulares</p>
                         </div>
                     </div>
                     <div className="info-container">

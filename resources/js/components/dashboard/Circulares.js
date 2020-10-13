@@ -34,7 +34,6 @@ class Circulares extends React.Component {
 
     handlePageChange = (pageNumber) => {
         this.props.fetchCirculares(pageNumber);
-        console.log('Page: ', pageNumber);
     }
 
     clearTagFilter = () => {

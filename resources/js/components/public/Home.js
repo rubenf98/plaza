@@ -1,14 +1,14 @@
-import React from 'react'
+import React , {Suspense} from 'react'
 import {
     fetchCirculares
 } from "../../redux/circular/actions";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
-import { tagToIcon } from "../../helper";
-import { Row, Col, Button, Space } from "antd";
+import { tagToIcon, breakPoint } from "../../helper";
+import { Row, Col, Button } from "antd";
 import { Parallax } from 'react-parallax';
-import RegisterForm from "./RegisterForm";
-import PageFooter from "../common/PageFooter";
+const RegisterForm = React.lazy(() => import('./RegisterForm'));
+const PageFooter = React.lazy(() => import('../common/PageFooter'));
 import LoadingContainer from "../common/LoadingContainer";
 import { InfoCircleOutlined, QuestionCircleOutlined, FileOutlined, CommentOutlined, ContactsOutlined, PayCircleOutlined, EuroCircleOutlined } from '@ant-design/icons';
 
@@ -51,30 +51,49 @@ class Home extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
+            screenHeight: "750px",
+            breakPoint: false,
             filters: {
                 limit: 3
             }
         }
     }
 
-    componentDidMount() {
+    updateDimensions = () => {
+        this.setState({
+            screenHeight: document.body.clientHeight - 70 + "px",
+            breakPoint: breakPoint(document.body.clientWidth)
+        })
+      };
+
+      componentDidMount() {
+        this.updateDimensions();
         this.props.fetchCirculares(1, this.state.filters);
-    }
+        window.addEventListener('resize', this.updateDimensions);
+      }
+      
+      componentWillUnmount() {
+        window.removeEventListener('resize', this.updateDimensions);
+      }
+
 
     render() {
         const { circularData, circularLoading } = this.props;
-
+        const { screenHeight, breakPoint } = this.state;
+        
         return (
             <div className="page-dimensions">
                 <div className="homepage-container">
                     <Parallax
-                        bgImage="/bg4.jpg"
+                        bgImage="/background-image.webp"
                         strength={500}
                     >
-                        <Row className="homepage-header" type="flex" align="middle">
+                        <Row className="homepage-header" type="flex" align="middle" style={{height: screenHeight}}>
                             <div className="header">
                                 <h1 className="title">A melhor gestão é realizada por quem conhece</h1>
+                                <Suspense fallback={<div>Loading...</div>}>
                                 <RegisterForm ></RegisterForm>
+                                </Suspense>
                             </div>
                         </Row>
                     </Parallax>
@@ -122,8 +141,7 @@ class Home extends React.Component {
                                 </div>
                             </Col>
                             <Col lg={12} md={24}>
-                                <img className="about-image" src="/icon/home-about.jpg">
-                                </img>
+                                <img className="about-image" src="/icon/home-about.webp" alt="about-img" />
                             </Col>
 
                         </Row>
@@ -147,7 +165,7 @@ class Home extends React.Component {
                                                 >
                                                     <div className="circular-image-container" key={index}>
 
-                                                        <img className="image" src={tagToIcon[el.tags[0].nome]}></img>
+                                                        <img className="image" src={tagToIcon[el.tags[0].nome]} alt="circular-img" />
 
                                                         <div className="circular-info">
                                                             <div className="title">
@@ -214,11 +232,10 @@ class Home extends React.Component {
 
                     <div className="homepage-content-container">
                         <Row className="about-container" gutter={32} type="flex" align="middle">
-                            <Col lg={12} md={24}>
-                                <img className="about-image" src="/icon/home-services.jpg">
-                                </img>
+                            <Col lg={12} md={24} order={breakPoint ? 2 : 1}>
+                                <img className="about-image" src="/icon/home-services.webp" alt="servicos-img" />
                             </Col>
-                            <Col lg={12} md={24}>
+                            <Col lg={12} md={24} order={breakPoint ? 1 : 2}>
                                 <div className="about-content">
                                     <h1 className="subtitle">Serviços</h1>
                                     <h2 className="title"> Conheça os serviços que a administração fornece</h2>
@@ -263,9 +280,14 @@ class Home extends React.Component {
 
 
                 </div>
-                <footer style={{ display: "block" }} className="layout-footer" >
-                    <PageFooter />
-                </footer>
+                
+                    <footer style={{ display: "block" }} className="layout-footer" >
+                    <Suspense fallback={<div>Loading...</div>}>
+                        <PageFooter />
+                    </Suspense>
+                    </footer>
+                
+                
             </div>
         );
     }

@@ -1,6 +1,7 @@
 import React from "react";
-import { Form, Select, Col, Row, Input, Button, Space } from "antd";
+import { Form, Select, Col, Row } from "antd";
 import LoadingContainer from '../../common/LoadingContainer';
+import moment from 'moment';
 
 const { Option } = Select;
 
@@ -56,7 +57,7 @@ class PagamentosForm extends React.Component {
                                                         <Col key={'inner-' + i} lg={4} xs={8}>
                                                             <Form.Item
                                                                 name={element.id + '_' + el[0]}
-                                                                label={el[0]}
+                                                                label={moment(el[0]).format('YYYY - MMM')}
                                                             >
                                                                 <Select style={{ width: "80%", minWidth: "80px" }} >
                                                                     <Option value="pendente">Pendente</Option>

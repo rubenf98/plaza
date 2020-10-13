@@ -5,15 +5,6 @@ import { updateMe } from "../../redux/auth/actions";
 import LoginForm from "./LoginForm";
 
 class Login extends React.Component {
-    constructor(props) {
-        super(props);
-
-    }
-
-    componentDidMount() {
-        //
-    }
-
     render() {
         return (
             <div className="login-container">

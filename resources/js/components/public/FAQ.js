@@ -1,8 +1,9 @@
-import React from 'react'
+import React, { Fragment } from 'react'
 import PageFooter from "../common/PageFooter";
 import { Row, Form, Input, Collapse } from "antd";
 import { EuroOutlined, BankOutlined, DashboardOutlined, HomeOutlined } from '@ant-design/icons';
 import { faqCategories } from '../../helper'
+import HeaderContainer from '../common/HeaderContainer';
 
 const { Search } = Input;
 const { Panel } = Collapse;
@@ -24,8 +25,6 @@ class FAQ extends React.Component {
     }
 
     handleCategoryClick = (text) => {
-        console.log(text)
-
         this.setState({
             activeCategory: text
         })
@@ -53,22 +52,25 @@ class FAQ extends React.Component {
             <div className="page-dimensions">
                 <div className="faq-page-container">
 
-                    <Row className="faq-header" type="flex" align="middle">
-                        <div className="header page-container">
-                            <h1 className="title">Olá, como o podemos ajudar?</h1>
-                            <Form>
-                                <Form.Item name="search" className="faq-form-item">
-                                    <Search
-                                        className="search"
-                                        placeholder="Pergunte-nos algo..."
-                                        size="large"
-                                    />
-                                </Form.Item>
-                            </Form>
+                    <HeaderContainer
+                        title="Perguntas & Respostas"
+                        content={
+                            <Fragment>
+                                <Form>
+                                    <Form.Item name="search" className="faq-form-item">
+                                        <Search
+                                            className="search"
+                                            placeholder="Pergunte-nos algo..."
+                                            size="large"
+                                        />
+                                    </Form.Item>
+                                </Form>
+                                <h1 className="subtitle">ou escolha uma categoria e encontre o que procura rapidamente</h1>
+                            </Fragment>
+                        }
+                        img="/icon/faq-header.jpg"
+                    />
 
-                            <h1 className="subtitle">ou escolha uma categoria e encontre o que procura rapidamente</h1>
-                        </div>
-                    </Row>
                     <div className="page-container">
                         <Row className="category-container" type="flex" justify="space-around" align="middle">
                             {faqCategories.map((element) => {

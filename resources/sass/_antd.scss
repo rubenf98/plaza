@@ -7,6 +7,20 @@
     &:hover,
     &:focus {
         color: white;
+        background: $customAccent;
+        border-color: $customAccent;
+    }
+}
+
+.ant-btn-default,
+.ant-btn-default {
+    background: white;
+    border-color: $contrastAccent;
+    color: $contrastAccent;
+
+    &:hover,
+    &:focus {
+        color: white;
         background: $contrastAccent;
         border-color: $contrastAccent;
     }
@@ -41,5 +55,3 @@
     padding: 26px 16px;
     padding-right: 40px;
 }
-
-

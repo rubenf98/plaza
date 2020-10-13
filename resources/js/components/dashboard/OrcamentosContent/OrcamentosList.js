@@ -20,7 +20,6 @@ class OrcamentosList extends React.Component {
     }
 
     handleModalOpen = (orcamento) => {
-        console.log(orcamento)
         this.setState({
             active: `${window.location.origin}${orcamento}`,
             visible: true

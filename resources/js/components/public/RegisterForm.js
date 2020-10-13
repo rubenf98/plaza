@@ -58,7 +58,7 @@ class RegisterForm extends React.Component {
                         footer ?
                             <Row style={{ width: "100%" }} type="flex" justify="space-around">
                                 <Col span={18}>
-                                    <Form.Item name="email" rules={this.rules.email}>
+                                    <Form.Item label="" name="email" rules={this.rules.email}>
                                         <Input
                                             className="register-input"
                                             type="email"
@@ -77,14 +77,12 @@ class RegisterForm extends React.Component {
                                 </Col>
                             </Row>
                             :
-                            <Form.Item name="email" rules={this.rules.email}>
+                            <Form.Item label="" name="email" rules={this.rules.email}>
                                 <Search
-
                                     onSearch={this.onFinish}
                                     placeholder="Introduza o seu email..."
                                     enterButton={<SendOutlined />}
                                     size="large"
-
                                 />
                             </Form.Item>
                     }

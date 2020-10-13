@@ -18,7 +18,6 @@ import Pagamentos from "./components/dashboard/PagamentosContent/Pagamentos";
 import Orcamentos from "./components/dashboard/OrcamentosContent/Orcamentos";
 import Profile from "./components/dashboard/ProfileContent/Profile";
 
-import PublicRoute from "./components/common/PublicRoute";
 import PrivateRoute from "./components/common/PrivateRoute";
 
 

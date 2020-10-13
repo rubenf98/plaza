@@ -33,6 +33,10 @@ class Profile extends React.Component {
         this.setState({ editing: true })
     }
 
+    handleCancelEditing = () => {
+        this.setState({ editing: false });
+    }
+
     handleFinishEditing = () => {
 
         const form = this.formRef.current;
@@ -99,6 +103,7 @@ class Profile extends React.Component {
                                     user={this.state.refactorUser}
                                     formRef={this.formRef}
                                     handleFinishEditing={this.handleFinishEditing}
+                                    handleCancelEditing={this.handleCancelEditing}
                                 />
                                 :
                                 <Fragment>

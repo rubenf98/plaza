@@ -15,7 +15,7 @@ const CardContent = ({ img, text, button }) => (
 class DashboardHome extends React.Component {
     render() {
         const { user } = this.props;
-        console.log(this.props.user);
+
         return (
             <DashboardLayout>
                 <div className="page-container dashboard-home-container">

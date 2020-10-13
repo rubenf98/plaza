@@ -42,7 +42,6 @@ if (localStorage.token) {
 }
 
 render(
-
     <Provider store={store}>
         <Routes />
     </Provider>,

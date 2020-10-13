@@ -37,7 +37,7 @@ class PagamentosTableManager extends React.Component {
 
     async componentDidMount() {
         let bloco = 'A';
-        await this.props.currentUser.fracaos[0] && (bloco = this.props.currentUser.fracaos[0].bloco);
+        this.props.currentUser.fracaos[0] && (bloco = this.props.currentUser.fracaos[0].bloco);
 
         this.filters = {
             bloco: bloco
@@ -52,7 +52,11 @@ class PagamentosTableManager extends React.Component {
                 columns.push({
                     title: moment(element[0]).format('MMM'),
                     dataIndex: "pagamentos",
-                    render: (code) => <div className="table-cell-background" style={{ background: code[element[0]] ? colorConverter[code[element[0]]] : "wheat" }}></div>,
+                    render: (code) =>
+                        <div
+                            className="table-cell-background"
+                            style={{ background: code[element[0]] ? colorConverter[code[element[0]]] : "wheat" }}
+                        />
                 })
             });
 

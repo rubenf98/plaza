@@ -61,7 +61,6 @@ class PagamentosModalManager extends Component {
                 'pagamentos': pagamentosT
             };
 
-            console.log(obj);
             this.props
                 .updateFracaos(obj)
                 .then((response) => {
@@ -83,7 +82,6 @@ class PagamentosModalManager extends Component {
     };
 
     UNSAFE_componentWillReceiveProps = (nextProps) => {
-        console.log(nextProps.loadingFetchingFracaos);
         if (!nextProps.loadingFetchingFracaos) {
             let { currentFracaos } = this.props;
             let obj = [];

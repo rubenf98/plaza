@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 import { connect } from "react-redux";
 import { logout } from "../../redux/auth/actions";
 import { Row, Col, Affix, Button, Dropdown, Menu, Avatar } from "antd";
@@ -16,7 +16,7 @@ let NavBar = ({ isAuthenticated, logout, currentUser }) => {
                         <Link className="logo-container" to="/">
 
                             <Row className="navbar-left" type="flex" justify="start" align="middle" gutter={32}>
-                                <img className="logo" src="/logo.png" />
+                                <img className="logo" src="/logo.webp" alt="logo" />
                                 <div className="name">
                                     Edifício <span className="subname">Plaza II</span>
                                 </div>
@@ -45,12 +45,14 @@ let NavBar = ({ isAuthenticated, logout, currentUser }) => {
                                         </Menu>
                                     }
                                 >
-                                    <Avatar
-                                        className="avatar"
-                                        onClick={e => e.preventDefault()}
-                                        size={"large"}
-                                        icon={<img src={currentUser.photo} />}
-                                    />
+                                    <Link to="/painel">
+                                        <Avatar
+                                            className="avatar"
+                                            size={"large"}
+                                            icon={<img src={currentUser.photo} />}
+                                        />
+                                    </Link>
+
                                 </Dropdown>
 
                             ) :
@@ -95,7 +97,6 @@ let NavBar = ({ isAuthenticated, logout, currentUser }) => {
                                 <Button
                                     style={{ margin: "15px" }}
                                     type="primary"
-                                    onClick={console.log("open")}
                                 >
                                     <MenuOutlined />
                                 </Button>

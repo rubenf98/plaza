@@ -44,7 +44,8 @@ const ProfileForm = (props) => {
                     <Input placeholder="Contacto" />
                 </Form.Item>
             </Form >
-            <Row type="flex" justify="end">
+            <Row type="flex" justify="space-between">
+                <Button type="default" onClick={props.handleCancelEditing}> Cancelar</Button>
                 <Button type="primary" onClick={props.handleFinishEditing}> Guardar Alterações</Button>
             </Row>
 

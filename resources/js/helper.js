@@ -6,6 +6,10 @@ export const colorConverter = {
 	"plano": "orange",
 };
 
+export function breakPoint(param) {
+	return param < 992 && true;
+};
+
 export const faqCategories = ['pagamentos', 'administradores', 'arrendamento', 'assembleia'];
 
 export const tagToIcon = {
