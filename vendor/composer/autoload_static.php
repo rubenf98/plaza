@@ -89,7 +89,6 @@ class ComposerStaticInita596b44802c0bc6401825cb5284d19e5
             'Symfony\\Component\\ErrorHandler\\' => 31,
             'Symfony\\Component\\CssSelector\\' => 30,
             'Symfony\\Component\\Console\\' => 26,
-            'Spatie\\PdfToImage\\' => 18,
         ),
         'R' => 
         array (
@@ -110,7 +109,6 @@ class ComposerStaticInita596b44802c0bc6401825cb5284d19e5
         ),
         'O' => 
         array (
-            'Org_Heigl\\Ghostscript\\' => 22,
             'Opis\\Closure\\' => 13,
         ),
         'N' => 
@@ -322,10 +320,6 @@ class ComposerStaticInita596b44802c0bc6401825cb5284d19e5
         array (
             0 => __DIR__ . '/..' . '/symfony/console',
         ),
-        'Spatie\\PdfToImage\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/spatie/pdf-to-image/src',
-        ),
         'Ramsey\\Uuid\\' => 
         array (
             0 => __DIR__ . '/..' . '/ramsey/uuid/src',
@@ -369,10 +363,6 @@ class ComposerStaticInita596b44802c0bc6401825cb5284d19e5
         'PhpOption\\' => 
         array (
             0 => __DIR__ . '/..' . '/phpoption/phpoption/src/PhpOption',
-        ),
-        'Org_Heigl\\Ghostscript\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/org_heigl/ghostscript/src',
         ),
         'Opis\\Closure\\' => 
         array (
@@ -570,6 +560,7 @@ class ComposerStaticInita596b44802c0bc6401825cb5284d19e5
         'App\\Http\\Requests\\LoginRequest' => __DIR__ . '/../..' . '/app/Http/Requests/LoginRequest.php',
         'App\\Http\\Requests\\RegisterRequest' => __DIR__ . '/../..' . '/app/Http/Requests/RegisterRequest.php',
         'App\\Http\\Requests\\ResetRecoverPasswordRequest' => __DIR__ . '/../..' . '/app/Http/Requests/ResetRecoverPasswordRequest.php',
+        'App\\Http\\Requests\\StoreOrcamentoRequest' => __DIR__ . '/../..' . '/app/Http/Requests/StoreOrcamentoRequest.php',
         'App\\Http\\Requests\\UpdateFracaosRequest' => __DIR__ . '/../..' . '/app/Http/Requests/UpdateFracaosRequest.php',
         'App\\Http\\Requests\\UpdateMeRequest' => __DIR__ . '/../..' . '/app/Http/Requests/UpdateMeRequest.php',
         'App\\Http\\Requests\\UpdateUserRequest' => __DIR__ . '/../..' . '/app/Http/Requests/UpdateUserRequest.php',
@@ -579,6 +570,7 @@ class ComposerStaticInita596b44802c0bc6401825cb5284d19e5
         'App\\Http\\Resources\\FracaoEstadoResource' => __DIR__ . '/../..' . '/app/Http/Resources/FracaoEstadoResource.php',
         'App\\Http\\Resources\\FracaoResource' => __DIR__ . '/../..' . '/app/Http/Resources/FracaoResource.php',
         'App\\Http\\Resources\\MinimalFracaoResource' => __DIR__ . '/../..' . '/app/Http/Resources/MinimalFracaoResource.php',
+        'App\\Http\\Resources\\OrcamentoResource' => __DIR__ . '/../..' . '/app/Http/Resources/OrcamentoResource.php',
         'App\\Http\\Resources\\QuotaResource' => __DIR__ . '/../..' . '/app/Http/Resources/QuotaResource.php',
         'App\\Http\\Resources\\UserResource' => __DIR__ . '/../..' . '/app/Http/Resources/UserResource.php',
         'App\\Jobs\\SendRegistrationEmail' => __DIR__ . '/../..' . '/app/Jobs/SendRegistrationEmail.php',
@@ -3006,10 +2998,6 @@ class ComposerStaticInita596b44802c0bc6401825cb5284d19e5
         'Opis\\Closure\\SelfReference' => __DIR__ . '/..' . '/opis/closure/src/SelfReference.php',
         'Opis\\Closure\\SerializableClosure' => __DIR__ . '/..' . '/opis/closure/src/SerializableClosure.php',
         'OrcamentoSeeder' => __DIR__ . '/../..' . '/database/seeds/OrcamentoSeeder.php',
-        'Org_Heigl\\Ghostscript\\Device\\DeviceInterface' => __DIR__ . '/..' . '/org_heigl/ghostscript/src/Device/DeviceInterface.php',
-        'Org_Heigl\\Ghostscript\\Device\\Jpeg' => __DIR__ . '/..' . '/org_heigl/ghostscript/src/Device/Jpeg.php',
-        'Org_Heigl\\Ghostscript\\Device\\Png' => __DIR__ . '/..' . '/org_heigl/ghostscript/src/Device/Png.php',
-        'Org_Heigl\\Ghostscript\\Ghostscript' => __DIR__ . '/..' . '/org_heigl/ghostscript/src/Ghostscript.php',
         'PHPUnit\\Exception' => __DIR__ . '/..' . '/phpunit/phpunit/src/Exception.php',
         'PHPUnit\\Framework\\Assert' => __DIR__ . '/..' . '/phpunit/phpunit/src/Framework/Assert.php',
         'PHPUnit\\Framework\\AssertionFailedError' => __DIR__ . '/..' . '/phpunit/phpunit/src/Framework/Exception/AssertionFailedError.php',
@@ -4195,11 +4183,6 @@ class ComposerStaticInita596b44802c0bc6401825cb5284d19e5
         'SebastianBergmann\\Type\\UnknownType' => __DIR__ . '/..' . '/sebastian/type/src/UnknownType.php',
         'SebastianBergmann\\Type\\VoidType' => __DIR__ . '/..' . '/sebastian/type/src/VoidType.php',
         'SebastianBergmann\\Version' => __DIR__ . '/..' . '/sebastian/version/src/Version.php',
-        'Spatie\\PdfToImage\\Exceptions\\InvalidFormat' => __DIR__ . '/..' . '/spatie/pdf-to-image/src/Exceptions/InvalidFormat.php',
-        'Spatie\\PdfToImage\\Exceptions\\InvalidLayerMethod' => __DIR__ . '/..' . '/spatie/pdf-to-image/src/Exceptions/InvalidLayerMethod.php',
-        'Spatie\\PdfToImage\\Exceptions\\PageDoesNotExist' => __DIR__ . '/..' . '/spatie/pdf-to-image/src/Exceptions/PageDoesNotExist.php',
-        'Spatie\\PdfToImage\\Exceptions\\PdfDoesNotExist' => __DIR__ . '/..' . '/spatie/pdf-to-image/src/Exceptions/PdfDoesNotExist.php',
-        'Spatie\\PdfToImage\\Pdf' => __DIR__ . '/..' . '/spatie/pdf-to-image/src/Pdf.php',
         'Stringable' => __DIR__ . '/..' . '/symfony/polyfill-php80/Resources/stubs/Stringable.php',
         'Symfony\\Component\\Console\\Application' => __DIR__ . '/..' . '/symfony/console/Application.php',
         'Symfony\\Component\\Console\\CommandLoader\\CommandLoaderInterface' => __DIR__ . '/..' . '/symfony/console/CommandLoader/CommandLoaderInterface.php',
