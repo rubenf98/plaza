@@ -11,13 +11,23 @@ export const login = data => {
             payload: axios.post(`${window.location.origin}/api/login`, data)
         })
 
-        response.then((res) => {
-            const token = res.value.data.access_token;
-            const login = res.value.data.login;
-            localStorage.setItem("token", token);
-            setAuthorizationToken(token);
-            login ? history.push("/login/first") : history.push("/painel");
-        })
+        response.then(
+            res => {
+                const token = res.value.data.access_token;
+                localStorage.setItem("token", token);
+                setAuthorizationToken(token);
+                res.value.data.login ? history.push("/login/first") : history.push("/painel");
+            },
+            err => {
+                let messages = [];
+
+                Object.values(err.response.data.message).map(function (message) {
+                    messages.push(message[0])
+                })
+
+                dispatch(error("Login falhou", messages));
+            }
+        );
     }
 };
 
