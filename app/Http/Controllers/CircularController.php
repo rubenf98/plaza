@@ -3,10 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Circular;
+use App\Http\Requests\StoreCircularRequest;
 use App\Http\Resources\CircularResource;
 use App\QueryFilters\CircularFilters;
 use Illuminate\Http\Request;
 use Spatie\PdfToImage\Pdf;
+use DB;
 
 
 class CircularController extends Controller
@@ -20,7 +22,7 @@ class CircularController extends Controller
     {
         $filters = CircularFilters::hydrate($request->query());
 
-        return CircularResource::collection(Circular::filterBy($filters)->latest()->paginate($request->limit ? $request->limit : 6))->additional(['meta' => Circular::countTags()]);
+        return CircularResource::collection(Circular::filterBy($filters)->latest()->paginate($request->limit ? $request->limit : 4))->additional(['meta' => Circular::countTags()]);
     }
 
     /**
@@ -29,17 +31,31 @@ class CircularController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreCircularRequest $request)
     {
+        $validator = $request->validated();
 
-        if ($request->hasFile('pdf')->isValid()) {
-            $uniqueFileName = uniqid();
-            $pdfPath = public_path('circular') . $uniqueFileName . '.pdf';
-            $request->pdf->store($pdfPath);
+        DB::beginTransaction();
+        $path = $validator['pdf']->store('', 'circular');
+        $validator['link'] = '/circular/' . $path;
 
-            $pdf = new Pdf($pdfPath);
-            $pdf->saveImage(public_path('circular'));
-        }
+        $circular = Circular::create($validator);
+
+        $circular->tags()->attach($validator['tag_id']);
+        DB::commit();
+
+        return new CircularResource($circular);
+    }
+
+    /**
+     * Display the specified pdf.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function pdf($url)
+    {
+        return response()->file(public_path($url));
     }
 
     /**

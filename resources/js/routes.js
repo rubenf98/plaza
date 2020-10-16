@@ -6,7 +6,7 @@ import ScrollToTop from "./components/common/ScrollToTop";
 
 //public pages
 import Home from "./components/public/Home";
-import Circulares from "./components/dashboard/Circulares";
+
 import Login from "./components/public/Login";
 import FirstLogin from "./components/public/FirstLogin";
 import PageLayout from "./components/public/PageLayout";
@@ -17,6 +17,7 @@ import DashboardHome from "./components/dashboard/DashboardHome";
 import Pagamentos from "./components/dashboard/PagamentosContent/Pagamentos";
 import Orcamentos from "./components/dashboard/OrcamentosContent/Orcamentos";
 import Profile from "./components/dashboard/ProfileContent/Profile";
+import Circulares from "./components/dashboard/CircularesContent/Circulares";
 
 import PrivateRoute from "./components/common/PrivateRoute";
 

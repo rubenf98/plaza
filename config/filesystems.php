@@ -55,6 +55,13 @@ return [
             'visibility' => 'public',
         ],
 
+        'circular' => [
+            'driver' => 'local',
+            'root' => public_path('circular'),
+            'url' => env('APP_URL') . '/storage',
+            'visibility' => 'public',
+        ],
+
         'orcamento' => [
             'driver' => 'local',
             'root' => public_path('orcamento'),

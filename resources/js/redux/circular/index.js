@@ -12,7 +12,6 @@ export const initialState = {
 export default (state = initialState, action = {}) => {
     switch (action.type) {
         case `${types.FETCH_CIRCULARES}_PENDING`:
-
             return {
                 ...state,
                 loading: true
@@ -62,6 +61,23 @@ export default (state = initialState, action = {}) => {
                 loading: false,
                 data: action.payload.data.data,
                 meta: action.payload.data.meta
+            };
+
+        case `${types.CREATE_CIRCULAR}_PENDING`:
+            return {
+                ...state,
+                loading: true
+            };
+        case `${types.CREATE_CIRCULAR}_REJECTED`:
+            return {
+                ...state,
+                loading: false,
+            };
+        case `${types.CREATE_CIRCULAR}_FULFILLED`:
+            return {
+                ...state,
+                loading: false,
+                data: [action.payload.data.data, ...state.data]
             };
         default:
             return state

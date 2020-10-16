@@ -42,6 +42,7 @@ Route::prefix('selector')->group(function () {
 
 Route::prefix('pdf')->group(function () {
     Route::get('orcamentos/:url', 'OrcamentoController@pdf');
+    Route::get('circulares/:url', 'CircularController@pdf');
 });
 
 
