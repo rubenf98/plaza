@@ -2,7 +2,7 @@
 import React from 'react';
 import { Row, Modal } from "antd";
 import { connect } from "react-redux";
-import { fetchOrcamentos } from '../../../redux/orcamento/actions';
+//import { fetchOrcamentos } from '../../../redux/orcamento/actions';
 import PdfDocument from '../../common/PdfDocument';
 
 class OrcamentosList extends React.Component {
@@ -16,7 +16,7 @@ class OrcamentosList extends React.Component {
     }
 
     componentDidMount() {
-        this.props.fetchOrcamentos();
+        //this.props.fetchOrcamentos();
     }
 
     handleModalOpen = (orcamento) => {
@@ -69,7 +69,7 @@ class OrcamentosList extends React.Component {
 
 const mapDispatchToProps = dispatch => {
     return {
-        fetchOrcamentos: (filters) => dispatch(fetchOrcamentos(filters)),
+        //fetchOrcamentos: (filters) => dispatch(fetchOrcamentos(filters)),
     };
 };
 

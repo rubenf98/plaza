@@ -1,0 +1,75 @@
+.archive-page-container {
+    .create-button {
+        margin-left: auto;
+        margin-right: 24px;
+    }
+    .ant-card-head {
+        padding: 0;
+
+        .ant-card-head-title {
+            height: 100%;
+            padding: 0;
+        }
+    }
+    .tab-container {
+        background: $customAccent;
+        height: 100%;
+        min-height: 60px;
+        border-top-left-radius: 4px;
+        border-top-right-radius: 4px;
+
+        .tab-item {
+            cursor: pointer;
+            font-size: 1.2em;
+            color: white;
+            min-height: 60px;
+            padding: 0 24px;
+            display: flex;
+            align-items: center;
+            transition: 0.3s ease-in-out;
+            border-top-left-radius: 4px;
+            border-top-right-radius: 4px;
+
+            @include md {
+                font-size: 1em;
+            }
+
+            &:hover {
+                border-bottom: 2px solid white;
+                color: $customAccent;
+                background: white;
+            }
+        }
+
+        .active {
+            border-bottom: 2px solid white;
+            color: $customAccent;
+            background: white;
+        }
+    }
+
+    .list-item {
+        cursor: pointer;
+        margin: 3% 0;
+
+        .archive {
+            img {
+                width: 100%;
+            }
+
+            .title {
+                color: $customHeader;
+                font-size: 1.1em;
+                margin: 0 auto;
+            }
+
+            .date {
+                color: $customLightText;
+            }
+        }
+    }
+
+    .pagination-container {
+        width: 100%;
+    }
+}

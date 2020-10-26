@@ -1,6 +1,6 @@
 <?php
 
-use App\Orcamento;
+use App\Arquivo;
 use Illuminate\Database\Seeder;
 
 class OrcamentoSeeder extends Seeder
@@ -12,24 +12,52 @@ class OrcamentoSeeder extends Seeder
      */
     public function run()
     {
-        Orcamento::Create([
+        Arquivo::Create([
+            "arquivo_tipo_id" => 1,
             "nome" => "Orçamento Setembro 2020 a Agosto 2021",
-            "url" => "/orcamento/orcamento.pdf"
+            "url" => "/arquivo/orcamento.pdf"
         ]);
 
-        Orcamento::Create([
+        Arquivo::Create([
+            "arquivo_tipo_id" => 1,
             "nome" => "Orçamento Setembro 2019 a Agosto 2020",
-            "url" => "/orcamento/orcamento.pdf"
+            "url" => "/arquivo/orcamento.pdf"
         ]);
 
-        Orcamento::Create([
+        Arquivo::Create([
+            "arquivo_tipo_id" => 1,
             "nome" => "Orçamento Setembro 2018 a Agosto 2019",
-            "url" => "/orcamento/orcamento.pdf"
+            "url" => "/arquivo/orcamento.pdf"
         ]);
 
-        Orcamento::Create([
+        Arquivo::Create([
+            "arquivo_tipo_id" => 1,
             "nome" => "Orçamento Setembro 2017 a Agosto 2018",
-            "url" => "/orcamento/orcamento.pdf"
+            "url" => "/arquivo/orcamento.pdf"
+        ]);
+
+        Arquivo::Create([
+            "arquivo_tipo_id" => 2,
+            "nome" => "Assembleia Agosto 2021",
+            "url" => "/arquivo/assembleia.pdf"
+        ]);
+
+        Arquivo::Create([
+            "arquivo_tipo_id" => 2,
+            "nome" => "Assembleia Agosto 2020",
+            "url" => "/arquivo/assembleia.pdf"
+        ]);
+
+        Arquivo::Create([
+            "arquivo_tipo_id" => 2,
+            "nome" => "Assembleia Agosto 2019",
+            "url" => "/arquivo/assembleia.pdf"
+        ]);
+
+        Arquivo::Create([
+            "arquivo_tipo_id" => 2,
+            "nome" => "Assembleia Agosto 2018",
+            "url" => "/arquivo/assembleia.pdf"
         ]);
     }
 }

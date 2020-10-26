@@ -11,7 +11,7 @@ class Servicos extends React.Component {
                 <HeaderContainer
                     title="Serviços"
                     content={<p className="description"> Disponibilizamos serviços que permitem o bom funcionamento do edifício, de acordo com os critérios estabelecidos.</p>}
-                    img="/icon/servicos-header.jpg"
+                    img="/icon/servicos-header.webp"
                 />
 
                 <Row className="content-container page-container">

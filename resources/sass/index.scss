@@ -21,6 +21,7 @@
 @import "pdf";
 @import "profile";
 @import "servicos";
+@import "archive";
 @import "commonHeader";
 
 .body {
@@ -55,11 +56,14 @@
     }
 
     .dashboard-background {
-        background: rgb(245, 245, 245);
+        display: flex;
+        justify-content: center;
+        align-items: center;
         background-image: url("/dashboard-background.jpeg");
         background-position: center;
         background-repeat: no-repeat;
         background-size: cover;
+        background: rgb(245, 245, 245);
         min-height: 100%;
     }
 }

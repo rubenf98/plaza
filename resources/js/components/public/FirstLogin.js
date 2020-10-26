@@ -1,3 +1,4 @@
+import { Row } from "antd";
 import React from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
@@ -17,11 +18,13 @@ class FirstLogin extends React.Component {
     render() {
         return (
             <div className="first-login-container">
-                <div className="first-login-header">
-                    <h1 className="first-login-title">Bem vindo ao Plaza II</h1>
-                    <h3 className="first-login-subtitle">Para começar, fala-nos sobre ti.</h3>
+                <div className="first-login-content">
+                    <div className="first-login-header">
+                        <h1 className="first-login-title">Bem vindo ao Plaza II</h1>
+                        <h3 className="first-login-subtitle">Para começar, fala-nos sobre ti.</h3>
+                    </div>
+                    <FirstLoginForm></FirstLoginForm>
                 </div>
-                <FirstLoginForm></FirstLoginForm>
             </div>
         );
     }

@@ -516,6 +516,8 @@ class ComposerStaticInita596b44802c0bc6401825cb5284d19e5
     );
 
     public static $classMap = array (
+        'App\\Arquivo' => __DIR__ . '/../..' . '/app/Arquivo.php',
+        'App\\ArquivoTipo' => __DIR__ . '/../..' . '/app/ArquivoTipo.php',
         'App\\Bloco' => __DIR__ . '/../..' . '/app/Bloco.php',
         'App\\Circular' => __DIR__ . '/../..' . '/app/Circular.php',
         'App\\CircularHasTag' => __DIR__ . '/../..' . '/app/CircularHasTag.php',
@@ -527,6 +529,8 @@ class ComposerStaticInita596b44802c0bc6401825cb5284d19e5
         'App\\Fracao' => __DIR__ . '/../..' . '/app/Fracao.php',
         'App\\FracaoEstado' => __DIR__ . '/../..' . '/app/FracaoEstado.php',
         'App\\FracaoHasQuota' => __DIR__ . '/../..' . '/app/FracaoHasQuota.php',
+        'App\\Http\\Controllers\\ArquivoController' => __DIR__ . '/../..' . '/app/Http/Controllers/ArquivoController.php',
+        'App\\Http\\Controllers\\ArquivoTipoController' => __DIR__ . '/../..' . '/app/Http/Controllers/ArquivoTipoController.php',
         'App\\Http\\Controllers\\AuthController' => __DIR__ . '/../..' . '/app/Http/Controllers/AuthController.php',
         'App\\Http\\Controllers\\Auth\\ConfirmPasswordController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/ConfirmPasswordController.php',
         'App\\Http\\Controllers\\Auth\\ForgotPasswordController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/ForgotPasswordController.php',
@@ -560,6 +564,7 @@ class ComposerStaticInita596b44802c0bc6401825cb5284d19e5
         'App\\Http\\Requests\\LoginRequest' => __DIR__ . '/../..' . '/app/Http/Requests/LoginRequest.php',
         'App\\Http\\Requests\\RegisterRequest' => __DIR__ . '/../..' . '/app/Http/Requests/RegisterRequest.php',
         'App\\Http\\Requests\\ResetRecoverPasswordRequest' => __DIR__ . '/../..' . '/app/Http/Requests/ResetRecoverPasswordRequest.php',
+        'App\\Http\\Requests\\StoreCircularRequest' => __DIR__ . '/../..' . '/app/Http/Requests/StoreCircularRequest.php',
         'App\\Http\\Requests\\StoreOrcamentoRequest' => __DIR__ . '/../..' . '/app/Http/Requests/StoreOrcamentoRequest.php',
         'App\\Http\\Requests\\UpdateFracaosRequest' => __DIR__ . '/../..' . '/app/Http/Requests/UpdateFracaosRequest.php',
         'App\\Http\\Requests\\UpdateMeRequest' => __DIR__ . '/../..' . '/app/Http/Requests/UpdateMeRequest.php',
@@ -590,6 +595,7 @@ class ComposerStaticInita596b44802c0bc6401825cb5284d19e5
         'App\\QuotaTipo' => __DIR__ . '/../..' . '/app/QuotaTipo.php',
         'App\\User' => __DIR__ . '/../..' . '/app/User.php',
         'App\\UserEstado' => __DIR__ . '/../..' . '/app/UserEstado.php',
+        'ArquivoTipoSeeder' => __DIR__ . '/../..' . '/database/seeds/ArquivoTipoSeeder.php',
         'Asm89\\Stack\\Cors' => __DIR__ . '/..' . '/asm89/stack-cors/src/Asm89/Stack/Cors.php',
         'Asm89\\Stack\\CorsService' => __DIR__ . '/..' . '/asm89/stack-cors/src/Asm89/Stack/CorsService.php',
         'BlocoSeeder' => __DIR__ . '/../..' . '/database/seeds/BlocoSeeder.php',

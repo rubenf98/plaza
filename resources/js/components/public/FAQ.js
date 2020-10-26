@@ -68,7 +68,7 @@ class FAQ extends React.Component {
                                 <h1 className="subtitle">ou escolha uma categoria e encontre o que procura rapidamente</h1>
                             </Fragment>
                         }
-                        img="/icon/faq-header.jpg"
+                        img="/icon/faq-header.webp"
                     />
 
                     <div className="page-container">

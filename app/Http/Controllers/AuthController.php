@@ -180,8 +180,11 @@ class AuthController extends Controller
 
         if ($request->exists('fracao_id') && $request->fracao_id != null) {
             $oldFracao =  Fracao::where('user_id', $user->id)->first();
-            $oldFracao->user_id = null;
-            $oldFracao->save();
+            if ($oldFracao) {
+                $oldFracao->user_id = null;
+                $oldFracao->save();
+            }
+
             $fracao = Fracao::find($validator['fracao_id']);
             $fracao->user_id = $validator['user_id'];
             $fracao->save();

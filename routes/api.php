@@ -43,6 +43,7 @@ Route::prefix('selector')->group(function () {
 Route::prefix('pdf')->group(function () {
     Route::get('orcamentos/:url', 'OrcamentoController@pdf');
     Route::get('circulares/:url', 'CircularController@pdf');
+    Route::get('arquivos/:url', 'ArquivoController@pdf');
 });
 
 
@@ -57,5 +58,7 @@ Route::apiResource('fracao', 'FracaoController');
 Route::apiResource('users', 'UserController');
 Route::apiResource('quota', 'QuotaController');
 Route::apiResource('orcamentos', 'OrcamentoController');
+Route::apiResource('arquivos', 'ArquivoController');
+Route::apiResource('arquivo-tipos', 'ArquivoTipoController');
 
 Route::put('fracao', 'FracaoController@updateFracaos');

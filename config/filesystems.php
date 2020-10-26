@@ -62,9 +62,9 @@ return [
             'visibility' => 'public',
         ],
 
-        'orcamento' => [
+        'arquivo' => [
             'driver' => 'local',
-            'root' => public_path('orcamento'),
+            'root' => public_path('arquivo'),
             'url' => env('APP_URL') . '/storage',
             'visibility' => 'public',
         ],

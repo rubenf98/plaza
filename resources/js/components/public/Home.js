@@ -261,7 +261,7 @@ class Home extends React.Component {
                                 <div className="info">
                                     O edíficio Plaza II permite que o pagamento das quotas seja realizado tanto no balcão de apoio do condomínio, como por transferência multibanco
                                 
-                                    <span className="important">PT50 3213 7125 3813 281</span>
+                                   
                                 </div>
                             </div>
                             <div className="info-content">
@@ -270,7 +270,7 @@ class Home extends React.Component {
                                 <div className="info">
                                     O edíficio Plaza II possui um endereço eletrónico comum a todos os membros da administração, pelo qual é possível esclarecer as suas dúvidas
                                 
-                                    <span className="important">example@example.com</span>
+                                 
                                 </div>
                             </div>
                         </Row>

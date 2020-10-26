@@ -15,11 +15,11 @@ import Servicos from "./components/public/Servicos";
 
 import DashboardHome from "./components/dashboard/DashboardHome";
 import Pagamentos from "./components/dashboard/PagamentosContent/Pagamentos";
-import Orcamentos from "./components/dashboard/OrcamentosContent/Orcamentos";
 import Profile from "./components/dashboard/ProfileContent/Profile";
 import Circulares from "./components/dashboard/CircularesContent/Circulares";
 
 import PrivateRoute from "./components/common/PrivateRoute";
+import Archive from "./components/dashboard/ArchiveContent/Archive";
 
 
 export const history = createBrowserHistory();
@@ -39,7 +39,7 @@ const Routes = () => {
 
                         <PrivateRoute exact component={DashboardHome} path="/painel" />
                         <PrivateRoute exact component={Pagamentos} path="/painel/pagamentos" />
-                        <PrivateRoute exact component={Orcamentos} path="/painel/orcamentos" />
+                        <PrivateRoute exact component={Archive} path="/painel/arquivo" />
                         <PrivateRoute exact component={Circulares} path="/painel/circulares" />
                         <PrivateRoute exact component={Profile} path="/painel/profile" />
 

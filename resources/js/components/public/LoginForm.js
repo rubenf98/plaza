@@ -1,7 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
-import { Link } from "react-router-dom";
-import { Form, Input, Button, Checkbox, Row } from "antd";
+import { Form, Input, Button, Row } from "antd";
 import { MailOutlined, LockOutlined } from '@ant-design/icons';
 import { login } from "../../redux/auth/actions";
 
@@ -9,7 +8,8 @@ class LoginForm extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            submitting: false
+            submitting: false,
+            reset: false
         }
     }
 
@@ -38,6 +38,12 @@ class LoginForm extends React.Component {
         //
     }
 
+    handleResetClick = () => {
+        this.setState({
+            reset: !this.state.reset
+        })
+    }
+
     onFinish = values => {
         !this.props.isAuthenticated &&
             this.formRef.current.validateFields().then(values => {
@@ -50,7 +56,7 @@ class LoginForm extends React.Component {
     };
 
     render() {
-
+        var { reset } = this.state;
         return (
             <div className="login-form-container">
                 <Row className="logo-container" type="flex" justify="center">
@@ -58,41 +64,35 @@ class LoginForm extends React.Component {
                 </Row>
 
                 <Form className="login-form" ref={this.formRef} onFinish={this.onFinish} hideRequiredMark={true} onFinishFailed={this.onFinishFailed}>
-                    <Form.Item hasFeedback
-                        name="email" rules={this.rules.email}
-                    >
+                    <Form.Item hasFeedback name="email" rules={this.rules.email}>
                         <Input
-                            prefix={
-                                <MailOutlined />
-                            }
+                            prefix={<MailOutlined />}
                             size="large"
                             placeholder="Email"
                         />
 
                     </Form.Item>
-                    <Form.Item hasFeedback
-                        name="password" rules={this.rules.password}
-                    >
-                        <Input
-                            size="large"
-                            prefix={
-                                <LockOutlined />
-                            }
-                            type="password"
-                            placeholder="Password"
-                        />
+                    {!reset &&
+                        <Form.Item hasFeedback name="password" rules={this.rules.password}>
+                            <Input
+                                size="large"
+                                prefix={<LockOutlined />}
+                                type="password"
+                                placeholder="Password"
+                            />
 
-                    </Form.Item>
+                        </Form.Item>
+                    }
 
                     <Row type="flex" justify="end">
-                        <a className="login-form-forgot" href="">
-                            Recuperar Palavra-passe
+                        <a className="login-form-forgot" onClick={this.handleResetClick}>
+                            {reset ? 'Voltar ao login' : 'Recuperar Palavra-passe'}
                         </a>
                     </Row>
 
                     <Form.Item>
                         <Button type="primary" htmlType="submit" className="login-form-button">
-                            Entrar
+                            {reset ? 'Recuperar' : 'Entrar'}
                         </Button>
                     </Form.Item>
                 </Form >

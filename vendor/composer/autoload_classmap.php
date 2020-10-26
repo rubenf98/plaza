@@ -6,6 +6,8 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
+    'App\\Arquivo' => $baseDir . '/app/Arquivo.php',
+    'App\\ArquivoTipo' => $baseDir . '/app/ArquivoTipo.php',
     'App\\Bloco' => $baseDir . '/app/Bloco.php',
     'App\\Circular' => $baseDir . '/app/Circular.php',
     'App\\CircularHasTag' => $baseDir . '/app/CircularHasTag.php',
@@ -17,6 +19,8 @@ return array(
     'App\\Fracao' => $baseDir . '/app/Fracao.php',
     'App\\FracaoEstado' => $baseDir . '/app/FracaoEstado.php',
     'App\\FracaoHasQuota' => $baseDir . '/app/FracaoHasQuota.php',
+    'App\\Http\\Controllers\\ArquivoController' => $baseDir . '/app/Http/Controllers/ArquivoController.php',
+    'App\\Http\\Controllers\\ArquivoTipoController' => $baseDir . '/app/Http/Controllers/ArquivoTipoController.php',
     'App\\Http\\Controllers\\AuthController' => $baseDir . '/app/Http/Controllers/AuthController.php',
     'App\\Http\\Controllers\\Auth\\ConfirmPasswordController' => $baseDir . '/app/Http/Controllers/Auth/ConfirmPasswordController.php',
     'App\\Http\\Controllers\\Auth\\ForgotPasswordController' => $baseDir . '/app/Http/Controllers/Auth/ForgotPasswordController.php',
@@ -50,6 +54,7 @@ return array(
     'App\\Http\\Requests\\LoginRequest' => $baseDir . '/app/Http/Requests/LoginRequest.php',
     'App\\Http\\Requests\\RegisterRequest' => $baseDir . '/app/Http/Requests/RegisterRequest.php',
     'App\\Http\\Requests\\ResetRecoverPasswordRequest' => $baseDir . '/app/Http/Requests/ResetRecoverPasswordRequest.php',
+    'App\\Http\\Requests\\StoreCircularRequest' => $baseDir . '/app/Http/Requests/StoreCircularRequest.php',
     'App\\Http\\Requests\\StoreOrcamentoRequest' => $baseDir . '/app/Http/Requests/StoreOrcamentoRequest.php',
     'App\\Http\\Requests\\UpdateFracaosRequest' => $baseDir . '/app/Http/Requests/UpdateFracaosRequest.php',
     'App\\Http\\Requests\\UpdateMeRequest' => $baseDir . '/app/Http/Requests/UpdateMeRequest.php',
@@ -80,6 +85,7 @@ return array(
     'App\\QuotaTipo' => $baseDir . '/app/QuotaTipo.php',
     'App\\User' => $baseDir . '/app/User.php',
     'App\\UserEstado' => $baseDir . '/app/UserEstado.php',
+    'ArquivoTipoSeeder' => $baseDir . '/database/seeds/ArquivoTipoSeeder.php',
     'Asm89\\Stack\\Cors' => $vendorDir . '/asm89/stack-cors/src/Asm89/Stack/Cors.php',
     'Asm89\\Stack\\CorsService' => $vendorDir . '/asm89/stack-cors/src/Asm89/Stack/CorsService.php',
     'BlocoSeeder' => $baseDir . '/database/seeds/BlocoSeeder.php',
