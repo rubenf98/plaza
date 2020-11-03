@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class FracaoHasQuota extends Model
 {
     protected $fillable = [
-        'data', 'estado'
+        'data', 'estado', 'fracao_id', 'quota_id'
     ];
 
     public function fracao()

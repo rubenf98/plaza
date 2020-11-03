@@ -2,6 +2,8 @@
 
 namespace App\Http\Requests;
 
+use App\Rules\UniqueIf;
+use App\User;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Http\Exceptions\HttpResponseException;
 use Illuminate\Contracts\Validation\Validator;
@@ -23,8 +25,11 @@ class RegisterRequest extends FormRequest
     {
         $password = Str::random(16);
 
+        $user = User::where('email', $this->email)->where('ativo', false)->count();
+
         $this->merge([
-            'password' => $password
+            'password' => $password,
+            'exists' => $user > 0 && true
         ]);
     }
 
@@ -36,8 +41,9 @@ class RegisterRequest extends FormRequest
     public function rules()
     {
         return [
-            'email' => 'required|email|unique:users',
+            'email' => ['required', 'email', new UniqueIf],
             'password' => 'required|string|min:6',
+            'exists' => 'required',
         ];
     }
 

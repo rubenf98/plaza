@@ -27,12 +27,10 @@ Route::group(['middleware' => 'api'], function () {
     Route::put('me', 'AuthController@updateMe');
 });
 
-
-
 Route::post('register', 'AuthController@register');
 
 Route::prefix('password')->group(function () {
-    Route::get('recover', 'AuthController@recoverPassword');
+    Route::get('recover/{token}', 'AuthController@recoverPassword');
     Route::post('reset', 'AuthController@resetPassword');
 });
 

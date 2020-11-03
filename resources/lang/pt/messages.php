@@ -23,6 +23,6 @@ return [
 
     'recoverPassword' => [
         'success' => 'Foi criada uma nova palavra-passe! Verifique o seu email para completar o processo.',
-        'fail' => 'Combinação de token e email fornecidos inválidos',
+        'fail' => 'Dados inválidos, por favor repita o processo de recuperação.',
     ],
 ];

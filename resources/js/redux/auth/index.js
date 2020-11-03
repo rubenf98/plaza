@@ -14,11 +14,17 @@ export default (state = initialState, action = {}) => {
         case `${types.LOGOUT}_PENDING`:
         case `${types.ME}_PENDING`:
         case `${types.UPDATE_ME}_PENDING`:
+        case `${types.RESET_PASSWORD}_PENDING`:
+        case `${types.RECOVER_PASSWORD}_PENDING`:
             return {
                 ...state,
                 loading: true
             };
 
+        case `${types.RECOVER_PASSWORD}_REJECTED`:
+        case `${types.RECOVER_PASSWORD}_FULFILLED`:
+        case `${types.RESET_PASSWORD}_REJECTED`:
+        case `${types.RESET_PASSWORD}_FULFILLED`:
         case `${types.REGISTER}_REJECTED`:
         case `${types.REGISTER}_FULFILLED`:
         case `${types.LOGOUT}_REJECTED`:

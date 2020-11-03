@@ -21,17 +21,9 @@
 <style>
     .email-container {
         max-width: 600px;
-        min-width: 200px;
-        width: 60%;
+        width: 90%;
         margin: auto;
         display: block;
-    }
-
-    .image-container {
-        width: 50%;
-        margin: auto;
-        display: block;
-        margin-bottom: 50px;
     }
 
     .title {
@@ -53,7 +45,7 @@
     }
 
     .password-container {
-        color: rgb(236, 1, 140);
+        color: #ff7a5c;
         margin-top: 30px;
         font-size: 1.2em;
         font-weight: bold;

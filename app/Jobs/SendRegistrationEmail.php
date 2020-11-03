@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\Mail;
 class SendRegistrationEmail implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
+    
     protected $email;
     protected $password;
     /**

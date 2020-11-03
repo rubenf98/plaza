@@ -26,7 +26,7 @@ class CreateUsersTable extends Migration
             $table->string('photo')->default('/profile-picture.jpg');
             $table->boolean('administrador')->default(false);
             $table->boolean('login')->default(false);
-            $table->boolean('ativo')->default(true);
+            $table->boolean('ativo')->default(false);
             $table->rememberToken();
             $table->timestamps();
 

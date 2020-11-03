@@ -8,13 +8,11 @@ use App\Http\Requests\RegisterRequest;
 use App\Http\Requests\ResetRecoverPasswordRequest;
 use App\Http\Requests\UpdateMeRequest;
 use App\Http\Resources\UserResource;
+use App\Jobs\SendRecoverEmail;
 use App\Jobs\SendRegistrationEmail;
-use App\Mail\RecoverPasswordMail;
-use App\Mail\RegisterMail;
-use App\Mail\ResetPasswordMail;
+use App\Jobs\SendResetEmail;
 use Illuminate\Support\Facades\Lang;
 use Illuminate\Support\Str;
-use Illuminate\Support\Facades\Mail;
 use DB;
 use JWTAuth;
 use Illuminate\Http\Request;
@@ -30,7 +28,7 @@ class AuthController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth:api', ['except' => ['login', 'register', 'updatePhoto']]);
+        $this->middleware('auth:api', ['except' => ['login', 'register', 'updatePhoto', 'resetPassword', 'recoverPassword']]);
     }
 
     public function register(RegisterRequest $request)
@@ -38,16 +36,20 @@ class AuthController extends Controller
         $validator = $request->validated();
         DB::beginTransaction();
 
-        $user = User::create([
-            'email' => $validator['email'],
-            'password' => bcrypt($validator['password']),
-        ]);
+        if ($validator['exists']) {
+            $user = User::where('email', $validator['email'])->first();
+            $user->password = bcrypt($validator['password']);
+            $user->save();
+        } else {
+            $user = User::create([
+                'email' => $validator['email'],
+                'password' => bcrypt($validator['password']),
+            ]);
+        }
 
         DB::commit();
 
         SendRegistrationEmail::dispatch($user->email, $validator['password']);
-
-        //Mail::to($user->email)->queue(new RegisterMail($validator['password']));
 
         return response()->json([
             'success' => true,
@@ -81,6 +83,7 @@ class AuthController extends Controller
 
         if (!$user->login) {
             $user->login = true;
+            $user->ativo = true;
             $user->save();
             $login = true;
         }
@@ -115,8 +118,7 @@ class AuthController extends Controller
             ['email' => $validator['email']],
             ['token' => $verification_code]
         );
-
-        Mail::to($validator['email'])->send(new ResetPasswordMail($validator['email'], $verification_code));
+        SendResetEmail::dispatch($validator['email'], $verification_code);
 
         return response()->json([
             'success' => true,
@@ -124,23 +126,21 @@ class AuthController extends Controller
         ]);
     }
 
-    public function recoverPassword(ResetRecoverPasswordRequest $request)
+    public function recoverPassword($token)
     {
-        $validator = $request->validated();
-
-        if ($request->has('token')) {
-            $query = DB::table('password_resets')->where('email', $validator['email'])->where('token', $request->token);
+        if ($token) {
+            $query = DB::table('password_resets')->where('token', $token);
             $row = $query->first();
 
             if ($row) {
                 $password = Str::random(16);
 
-                $user = User::where('email', $validator['email'])->first();
+                $user = User::where('email', $row->email)->first();
                 $user->update([
                     'password' => bcrypt($password)
                 ]);
 
-                Mail::to($user->email)->send(new RecoverPasswordMail($password));
+                SendRecoverEmail::dispatch($user->email, $password);
 
                 $query->delete();
 
@@ -154,7 +154,7 @@ class AuthController extends Controller
         return response()->json([
             'success' => false,
             'message' => Lang::get('messages.recoverPassword.fail')
-        ]);
+        ], 422);
     }
 
     public function refresh()

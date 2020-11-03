@@ -2,7 +2,8 @@ import React from "react";
 import { connect } from "react-redux";
 import { Form, Input, Button, Row } from "antd";
 import { MailOutlined, LockOutlined } from '@ant-design/icons';
-import { login } from "../../redux/auth/actions";
+import { login, resetPassword } from "../../redux/auth/actions";
+import { success, error } from "../../redux/notification/actions";
 
 class LoginForm extends React.Component {
     constructor(props) {
@@ -47,7 +48,20 @@ class LoginForm extends React.Component {
     onFinish = values => {
         !this.props.isAuthenticated &&
             this.formRef.current.validateFields().then(values => {
-                this.props.login(values);
+                if (this.state.reset) {
+                    this.props.resetPassword(values).then(
+                        res => {
+                            this.props.success("Nova palavra-passe", res.value.data.message);
+                        },
+                        err => {
+                            this.props.error("Erro", err.response.data.message);
+                        }
+                    )
+                }
+                else {
+                    this.props.login(values);
+                }
+
             });
     }
 
@@ -104,6 +118,9 @@ class LoginForm extends React.Component {
 const mapDispatchToProps = dispatch => {
     return {
         login: (data) => dispatch(login(data)),
+        resetPassword: (data) => dispatch(resetPassword(data)),
+        success: (description, message) => dispatch(success(description, message)),
+        error: (description, message) => dispatch(error(description, message)),
     };
 };
 

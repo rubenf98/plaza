@@ -1,5 +1,5 @@
 <div class="footer-container text">
-    Outra informação importante, que não comunicamos por email, está disponível após login.
+    Qualquer informação necessária, que não comuniquemos por email, estará disponível após login.
 </div>
 <br>
 <div class="footer-container text">

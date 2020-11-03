@@ -161,11 +161,12 @@ class PagamentosTableManager extends React.Component {
 
         const disabledDate = current => {
             if (!dates || dates.length === 0) {
-                return false;
+                return current && current < moment("2020-01-01");
             }
 
             const tooLate = dates[0] && current.diff(dates[0], 'months') > 11;
             const tooEarly = dates[1] && dates[1].diff(current, 'months') > 11;
+
             return tooEarly || tooLate;
         };
 
@@ -197,9 +198,6 @@ class PagamentosTableManager extends React.Component {
                                             <Radio.Group onChange={this.onChange} defaultValue="normal">
                                                 <Radio style={radioStyle} value="normal">
                                                     Normal
-                                                </Radio>
-                                                <Radio style={radioStyle} value="garagem">
-                                                    Elevador
                                                 </Radio>
                                             </Radio.Group>
                                         </Menu.ItemGroup>

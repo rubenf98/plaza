@@ -15,16 +15,15 @@ class FracaoHasQuotaSeeder extends Seeder
     public function run()
     {
         $fracaos = Fracao::where('fracao_estado_id', 1)->get();
-        $year = Carbon::now()->subMonths(12)->format('Y');
+        $year = Carbon::create(2020, 1, 1, 0, 0, 0)->format('Y');
 
-        foreach ($fracaos as $fracao) {
-            $quota_id = 1;
 
+        foreach ($fracaos as $fracao) {     
             $initDate = new Carbon($year . '-01');
-            for ($i = 1; $i <= 100; $i++) {
+            for ($i = 1; $i <= 12; $i++) {
                 FracaoHasQuota::create([
                     'fracao_id' => $fracao->id,
-                    'quota_id' => $quota_id,
+                    'quota_id' => 1,
                     'data' => $initDate
                 ]);
                 $initDate->addMonths(1);

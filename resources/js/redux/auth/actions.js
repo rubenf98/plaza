@@ -55,6 +55,16 @@ export const register = data => {
     }
 };
 
+export const recoverPassword = (data) => ({
+    type: types.RECOVER_PASSWORD,
+    payload: axios.get(`${window.location.origin}/api/password/recover/${data}`)
+});
+
+export const resetPassword = (data) => ({
+    type: types.RESET_PASSWORD,
+    payload: axios.post(`${window.location.origin}/api/password/reset`, data)
+});
+
 export const me = () => ({
     type: types.ME,
     payload: axios.get(`${window.location.origin}/api/me`)

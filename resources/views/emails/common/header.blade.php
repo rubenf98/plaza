@@ -1,13 +1,18 @@
 <div class="image-container flex-center">
-    <img src="{{ $message->embed("https://www.priberam.com/wp-content/uploads/LOGO-PRIBERAM-CORES.png") }}">
+    <img src="http://localhost:8000/logo.png">
 </div>
 
 <style>
     .image-container {
-        width: 50%;
+        width: 200px;
         margin: auto;
         display: block;
-        margin-bottom: 50px;
+        margin-bottom: 20px;
+    }
+
+    .image-container img {
+        width: 100%;
+        height: auto;
     }
 
     .flex-center {
