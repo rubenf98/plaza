@@ -30,6 +30,6 @@ class ResetPasswordMail extends Mailable
      */
     public function build()
     {
-        return $this->view('emails.resetPassword');
+        return $this->view('emails.resetPassword')->subject('Redefenir palavra-passe');;
     }
 }

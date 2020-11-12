@@ -30,6 +30,6 @@ class RegisterMail extends Mailable
      */
     public function build()
     {
-        return $this->view('emails.register');
+        return $this->view('emails.register')->subject('Bem vindo ao Plaza II');
     }
 }

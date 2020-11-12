@@ -54,7 +54,13 @@ class LoginForm extends React.Component {
                             this.props.success("Nova palavra-passe", res.value.data.message);
                         },
                         err => {
-                            this.props.error("Erro", err.response.data.message);
+                            let messages = [];
+
+                            Object.values(err.response.data.message).map(function (message) {
+                                messages.push(message[0])
+                            })
+
+                            this.props.error("Reset de palavra-passe", messages);
                         }
                     )
                 }
