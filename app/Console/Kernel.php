@@ -28,7 +28,11 @@ class Kernel extends ConsoleKernel
     {
         // $schedule->command('inspire')->hourly();
 
-        $schedule->command('make:quotas')->daily();
+        $schedule->command('make:quotas')->monthly();
+
+        $schedule->command('queue:work')
+            ->everyMinute()
+            ->withoutOverlapping();
     }
 
     /**
