@@ -34,7 +34,6 @@ class PagamentosForm extends React.Component {
 
     render() {
         let { currentFracaos, loading, initialValues } = this.props;
-        let fracaos = [];
 
         return (
             <div className="pagamentos-form-container">
@@ -49,7 +48,7 @@ class PagamentosForm extends React.Component {
                             Object.values(currentFracaos).map((element, index) => {
                                 return (
                                     <div key={index}>
-                                        <h1>{element.nome}</h1>
+                                        <h1>Fração {element.nome}</h1>
                                         <Row>
                                             {
                                                 Object.entries(element.pagamentos).map((el, i) => {

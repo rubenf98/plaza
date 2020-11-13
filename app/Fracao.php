@@ -44,12 +44,13 @@ class Fracao extends Model
     public function getNormalQuotas($startDate, $endDate)
     {
         $startDate ? $date = Carbon::createFromFormat('Y-m', $startDate) : $date = Carbon::now()->firstOfMonth()->subMonths(10);
-        $endDate ? $diff = $date->diffInMonths($endDate) + 1 : $diff = 11;
+        $endDate ? $diff = ($date->diffInMonths($endDate) + 1) : $diff = 11;
+
         $fracao_id = $this->id;
 
         $total = [];
 
-        for ($i = 0; $i <= $diff; $i++) {
+        for ($i = 0; $i <=  $diff; $i++) {
             $first = Carbon::now()->month($date->month)->year($date->year)->firstOfMonth();
             $last = Carbon::now()->month($date->month)->year($date->year)->lastOfMonth();
 

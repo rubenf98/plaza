@@ -5,7 +5,9 @@ export const initialState = {
     currentFracaos: [],
     loading: false,
     loadingCurrentFracaos: true,
-    loadingFetchingFracaos: true
+    loadingFetchingFracaos: true,
+    first: null,
+    last: null,
 }
 
 export default (state = initialState, action = {}) => {
@@ -26,6 +28,15 @@ export default (state = initialState, action = {}) => {
                 ...state,
                 loading: false,
             };
+
+        case `${types.FETCH_FIRST_AND_LAST_QUOTA}_FULFILLED`:
+            return {
+                ...state,
+                loading: false,
+                first: action.payload.data.first,
+                last: action.payload.data.last,
+            };
+
         case `${types.FETCH_FRACAOS}_FULFILLED`:
             return {
                 ...state,
@@ -47,6 +58,11 @@ export default (state = initialState, action = {}) => {
             return {
                 ...state,
                 loading: false,
+                data: state.data.map((record, index) =>
+                    record.id === action.payload.data.data.id
+                        ? action.payload.data.data
+                        : record
+                )
 
             };
         case `${types.FETCH_FRACAO}_FULFILLED`:

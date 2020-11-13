@@ -11,6 +11,13 @@ export const fetchFracaos = (filters = {}) => ({
     )
 });
 
+export const fetchFirstAndLastQuota = () => ({
+    type: types.FETCH_FIRST_AND_LAST_QUOTA,
+    payload: axios.get(
+        `${window.location.origin}/api/quota/first-and-last`
+    )
+});
+
 export const fetchFracao = (id, filters = {}) => ({
     type: types.FETCH_FRACAO,
     payload: axios.get(`${window.location.origin}/api/fracao/${id}?${stringify(filters, {

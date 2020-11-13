@@ -53,12 +53,14 @@ class QuotaController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Quota  $quota
      * @return \Illuminate\Http\Response
      */
-    public function edit(Quota $quota)
+    public function firstAndLast()
     {
-        //
+        return response()->json([
+            'first' => Quota::firstQuota(),
+            'last' => Quota::lastQuota()
+        ]);
     }
 
     /**

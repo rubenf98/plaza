@@ -43,7 +43,7 @@ Route::prefix('pdf')->group(function () {
     Route::get('circulares/:url', 'CircularController@pdf');
     Route::get('arquivos/:url', 'ArquivoController@pdf');
 });
-
+Route::get('quota/first-and-last', 'QuotaController@firstAndLast');
 
 
 Route::apiResource('blocos', 'BlocoController');
@@ -60,3 +60,5 @@ Route::apiResource('arquivos', 'ArquivoController');
 Route::apiResource('arquivo-tipos', 'ArquivoTipoController');
 
 Route::put('fracao', 'FracaoController@updateFracaos');
+
+

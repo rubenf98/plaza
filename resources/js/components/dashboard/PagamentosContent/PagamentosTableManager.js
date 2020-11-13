@@ -3,7 +3,7 @@ import React from 'react';
 import { connect } from "react-redux";
 import { Button, Row, DatePicker, Col, Dropdown, Menu, Radio } from 'antd';
 import { colorConverter } from '../../../helper'
-import { fetchFracaos, fetchFracao, setCurrentFracaos, fetchCurrentFracaos, finishFetchCurrentFracaos } from '../../../redux/fracao/actions';
+import { fetchFracaos, fetchFracao, setCurrentFracaos, fetchCurrentFracaos, finishFetchCurrentFracaos, fetchFirstAndLastQuota } from '../../../redux/fracao/actions';
 import locale from 'antd/es/date-picker/locale/pt_PT';
 import { FilterOutlined } from '@ant-design/icons';
 import moment from 'moment';
@@ -26,16 +26,13 @@ class PagamentosTableManager extends React.Component {
                     title: 'Fração',
                     dataIndex: 'nome',
                 },
-                {
-                    title: 'Condómino',
-                    dataIndex: 'user',
-                },
             ]
         }
         this.filters = {};
     }
 
     async componentDidMount() {
+        this.props.fetchFirstAndLastQuota();
         let bloco = 'A';
         this.props.currentUser.fracaos[0] && (bloco = this.props.currentUser.fracaos[0].bloco);
 
@@ -111,10 +108,6 @@ class PagamentosTableManager extends React.Component {
                         title: 'Fração',
                         dataIndex: 'nome',
                     },
-                    {
-                        title: 'Condómino',
-                        dataIndex: 'user',
-                    },
                 ];
 
 
@@ -145,7 +138,7 @@ class PagamentosTableManager extends React.Component {
 
     render() {
         const { loading, selectedRowKeys, loadingMonths, dates } = this.state;
-        const { data, isAdministrator } = this.props;
+        const { data, isAdministrator, firstQuota, lastQuota } = this.props;
 
         const rowSelection = {
             selectedRowKeys,
@@ -160,14 +153,7 @@ class PagamentosTableManager extends React.Component {
         };
 
         const disabledDate = current => {
-            if (!dates || dates.length === 0) {
-                return current && current < moment("2020-01-01");
-            }
-
-            const tooLate = dates[0] && current.diff(dates[0], 'months') > 11;
-            const tooEarly = dates[1] && dates[1].diff(current, 'months') > 11;
-
-            return tooEarly || tooLate;
+            return current && current < moment(firstQuota) || current > moment(lastQuota).add(1, 'M');
         };
 
         return (
@@ -288,7 +274,8 @@ const mapDispatchToProps = dispatch => {
         fetchFracao: (id, filters) => dispatch(fetchFracao(id, filters)),
         setCurrentFracaos: () => dispatch(setCurrentFracaos()),
         fetchCurrentFracaos: () => dispatch(fetchCurrentFracaos()),
-        finishFetchCurrentFracaos: () => dispatch(finishFetchCurrentFracaos())
+        finishFetchCurrentFracaos: () => dispatch(finishFetchCurrentFracaos()),
+        fetchFirstAndLastQuota: () => dispatch(fetchFirstAndLastQuota()),
     };
 };
 
@@ -296,9 +283,11 @@ const mapStateToProps = (state) => {
     return {
         data: state.fracao.data,
         currentFracaos: state.fracao.currentFracaos,
+        firstQuota: state.fracao.first,
+        lastQuota: state.fracao.last,
         loading: state.fracao.loading,
         currentUser: state.auth.currentUser,
-        isAdministrator: state.auth.isAdministrator
+        isAdministrator: state.auth.isAdministrator,
     };
 };
 
