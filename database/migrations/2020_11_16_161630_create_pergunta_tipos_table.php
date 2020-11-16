@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateCircularTagsTable extends Migration
+class CreatePerguntaTiposTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,9 @@ class CreateCircularTagsTable extends Migration
      */
     public function up()
     {
-        Schema::create('circular_tags', function (Blueprint $table) {
+        Schema::create('pergunta_tipos', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('nome')->unique();
+            $table->string('name')->unique();
             $table->string('image')->unique();
             $table->timestamps();
         });
@@ -28,6 +28,6 @@ class CreateCircularTagsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('circular_tags');
+        Schema::dropIfExists('pergunta_tipos');
     }
 }

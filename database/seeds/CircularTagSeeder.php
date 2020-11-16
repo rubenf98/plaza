@@ -14,21 +14,23 @@ class CircularTagSeeder extends Seeder
     {
         CircularTag::create([
             "nome" => "obra",
+            "image"  => "/icon/circulares/repair.svg"
         ]);
         CircularTag::create([
             "nome" => "limpezas",
+            "image"  => "/icon/circulares/cleaning.svg"
         ]);
         CircularTag::create([
             "nome" => "aviso",
-        ]);
-        CircularTag::create([
-            "nome" => "manutenção",
+            "image"  => "/icon/circulares/warning.svg"
         ]);
         CircularTag::create([
             "nome" => "reunião",
+            "image"  => "/icon/circulares/meeting.svg"
         ]);
         CircularTag::create([
             "nome" => "outros",
+            "image"  => "/icon/circulares/other.svg"
         ]);
     }
 }

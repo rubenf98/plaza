@@ -25,6 +25,9 @@ class DatabaseSeeder extends Seeder
         $this->call(ServicoTipoSeeder::class);
         $this->call(ServicoSeeder::class);
 
+        $this->call(PerguntaTipoSeeder::class);
+        $this->call(PerguntaSeeder::class);
+
         $this->call(ArquivoTipoSeeder::class);
         $this->call(OrcamentoSeeder::class);
     }

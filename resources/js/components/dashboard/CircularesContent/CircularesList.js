@@ -2,7 +2,6 @@ import React from 'react'
 import { Modal, Row, Col, Input } from "antd";
 import PdfDocument from '../../common/PdfDocument';
 import LoadingContainer from '../../common/LoadingContainer';
-import { tagToIcon } from "../../../helper";
 import PaginationControls from "../../common/PaginationControls";
 import NoDataContainer from '../../common/NoDataContainer';
 import { connect } from "react-redux";
@@ -113,7 +112,7 @@ class CircularList extends React.Component {
                                                     <div
                                                         onClick={() => this.handleCircularClick(el.id)}
                                                     >
-                                                        <img className="image" src={tagToIcon[el.tags[0].nome]}></img>
+                                                        <img className="image" src={el.tags[0].image}></img>
                                                         <div className="info">
                                                             <h1 className="title">
                                                                 {el.titulo}

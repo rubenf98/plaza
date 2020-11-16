@@ -1,9 +1,11 @@
 import React, { Fragment } from 'react'
 import PageFooter from "../common/PageFooter";
+import { connect } from "react-redux";
 import { Row, Form, Input, Collapse } from "antd";
 import { EuroOutlined, BankOutlined, DashboardOutlined, HomeOutlined } from '@ant-design/icons';
-import { faqCategories } from '../../helper'
 import HeaderContainer from '../common/HeaderContainer';
+import { fetchPerguntaTipos } from "../../redux/perguntaTipos/actions";
+import { fetchPerguntas } from "../../redux/pergunta/actions";
 
 const { Search } = Input;
 const { Panel } = Collapse;
@@ -28,9 +30,18 @@ class FAQ extends React.Component {
         this.setState({
             activeCategory: text
         })
+
+        this.props.fetchPerguntas({ tipo: text });
+    }
+
+    componentDidMount() {
+        this.props.fetchPerguntaTipos();
+        this.props.fetchPerguntas();
     }
 
     render() {
+        var { data, perguntas } = this.props;
+
         const Category = ({ icon, text }) => (
             <div
                 className={`category ${this.state.activeCategory == text && "active-category"}`}
@@ -42,10 +53,10 @@ class FAQ extends React.Component {
         );
 
         const categoryIcon = {
-            'pagamentos': <EuroOutlined className="icon" />,
-            "administradores": <DashboardOutlined className="icon" />,
-            "arrendamento": <HomeOutlined className="icon" />,
-            "assembleia": <BankOutlined className="icon" />,
+            'Pagamentos': <EuroOutlined className="icon" />,
+            "Administradores": <DashboardOutlined className="icon" />,
+            "Arrendamento": <HomeOutlined className="icon" />,
+            "Assembleia": <BankOutlined className="icon" />,
         };
 
         return (
@@ -73,8 +84,13 @@ class FAQ extends React.Component {
 
                     <div className="page-container">
                         <Row className="category-container" type="flex" justify="space-around" align="middle">
-                            {faqCategories.map((element) => {
-                                return (<Category key={element} icon={categoryIcon[element]} text={element} />)
+                            {data.map((element) => {
+                                return (
+                                    <Category
+                                        key={element.id}
+                                        icon={categoryIcon[element.name]}
+                                        text={element.name}
+                                    />)
                             })}
                         </Row>
 
@@ -86,14 +102,13 @@ class FAQ extends React.Component {
                             accordion
                             className="faq-container"
                         >
-                            {questions.map((element, index) => {
-                                return (<Panel
-                                    header="This is panel header 1"
-                                    key={index}
-                                >
-                                    <p>{text}</p>
-                                </Panel>)
-                            })}
+                            {
+                                perguntas.map((element) => {
+                                    return (
+                                        <Panel header={element.question} key={element.id}>{element.answer}</Panel>
+                                    );
+                                })
+                            }
 
                         </Collapse>
                     </div>
@@ -107,4 +122,20 @@ class FAQ extends React.Component {
     }
 }
 
-export default FAQ;
+
+const mapDispatchToProps = dispatch => {
+    return {
+        fetchPerguntaTipos: (filters) => dispatch(fetchPerguntaTipos(filters)),
+        fetchPerguntas: (filters) => dispatch(fetchPerguntas(filters)),
+    };
+};
+
+const mapStateToProps = (state) => {
+    return {
+        perguntas: state.pergunta.data,
+        data: state.perguntaTipos.data,
+        loading: state.perguntaTipos.loading,
+    };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(FAQ);

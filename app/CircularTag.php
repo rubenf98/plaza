@@ -8,7 +8,7 @@ class CircularTag extends Model
 {
     //
     protected $fillable = [
-        'nome'
+        'nome', 'image'
     ];
 
 

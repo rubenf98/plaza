@@ -1,10 +1,9 @@
-import { Row, Col, Skeleton } from 'antd';
+import { Row, Col } from 'antd';
 import { connect } from "react-redux";
 import React from 'react'
 import PageFooter from '../common/PageFooter';
 import HeaderContainer from '../common/HeaderContainer';
 import { fetchServicoTipos } from "../../redux/servicoTipos/actions";
-import LoadingContainer from '../common/LoadingContainer';
 import SkeletonContainer from '../common/SkeletonContainer';
 
 class Servicos extends React.Component {

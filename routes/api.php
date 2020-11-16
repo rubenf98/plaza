@@ -59,6 +59,8 @@ Route::apiResource('orcamentos', 'OrcamentoController');
 Route::apiResource('arquivos', 'ArquivoController');
 Route::apiResource('arquivo-tipos', 'ArquivoTipoController');
 Route::apiResource('servico-tipos', 'ServicoTipoController');
+Route::apiResource('pergunta-tipos', 'PerguntaTipoController');
+Route::apiResource('pergunta', 'PerguntaController');
 
 Route::put('fracao', 'FracaoController@updateFracaos');
 

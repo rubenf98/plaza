@@ -4,7 +4,7 @@ import {
 } from "../../redux/circular/actions";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
-import { tagToIcon, breakPoint } from "../../helper";
+import { breakPoint } from "../../helper";
 import { Row, Col, Button } from "antd";
 import { Parallax } from 'react-parallax';
 const RegisterForm = React.lazy(() => import('./RegisterForm'));
@@ -165,7 +165,7 @@ class Home extends React.Component {
                                                 >
                                                     <div className="circular-image-container" key={index}>
 
-                                                        <img className="image" src={tagToIcon[el.tags[0].nome]} alt="circular-img" />
+                                                        <img className="image" src={el.tags[0].image} alt="circular-img" />
 
                                                         <div className="circular-info">
                                                             <div className="title">
