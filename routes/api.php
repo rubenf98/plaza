@@ -58,6 +58,7 @@ Route::apiResource('quota', 'QuotaController');
 Route::apiResource('orcamentos', 'OrcamentoController');
 Route::apiResource('arquivos', 'ArquivoController');
 Route::apiResource('arquivo-tipos', 'ArquivoTipoController');
+Route::apiResource('servico-tipos', 'ServicoTipoController');
 
 Route::put('fracao', 'FracaoController@updateFracaos');
 

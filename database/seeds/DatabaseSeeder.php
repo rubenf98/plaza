@@ -22,6 +22,9 @@ class DatabaseSeeder extends Seeder
         $this->call(CircularTagSeeder::class);
         $this->call(CircularSeeder::class);
 
+        $this->call(ServicoTipoSeeder::class);
+        $this->call(ServicoSeeder::class);
+
         $this->call(ArquivoTipoSeeder::class);
         $this->call(OrcamentoSeeder::class);
     }

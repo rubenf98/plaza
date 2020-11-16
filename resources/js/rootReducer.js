@@ -7,6 +7,7 @@ import user from './redux/user'
 import auth from './redux/auth'
 import notification from './redux/notification'
 import arquivo from './redux/arquivo'
+import servicoTipos from './redux/servicoTipos'
 
 const rootReducer = combineReducers({
     bloco,
@@ -15,7 +16,8 @@ const rootReducer = combineReducers({
     user,
     auth,
     notification,
-    arquivo
+    arquivo,
+    servicoTipos
 })
 
 export default rootReducer
