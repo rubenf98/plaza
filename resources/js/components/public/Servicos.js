@@ -21,7 +21,7 @@ class Servicos extends React.Component {
                                 return (
                                     <Row key={index} type="flex" justify="start" align="middle" className="servico-section">
                                         <Col span={8} order={index % 2 ? 2 : 1}>
-                                            <img className="image" src={servicoToIcon[element[0]]} />
+                                            <img className="image" src={servicoToIcon[element[0]]} alt="serviço" />
                                         </Col>
                                         <Col span={16} order={index % 2 ? 1 : 2} className="list">
                                             <h1 className="title">{element[0]}</h1>
@@ -47,7 +47,6 @@ class Servicos extends React.Component {
 
 
                 <footer style={{ display: "block" }} className="layout-footer" >
-
                     <PageFooter />
                 </footer>
 

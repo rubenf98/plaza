@@ -13,7 +13,7 @@ const HeaderContainer = (props) => {
                     <div className="img-container">
                         <div className="ball big-ball" />
                         <div className="ball md-ball" />
-                        <img className="img" src={props.img} />
+                        <img className="img" src={props.img} alt="header" />
                     </div>
                 </Row>
 
