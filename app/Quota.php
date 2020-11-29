@@ -25,12 +25,12 @@ class Quota extends Model
 
     public static function firstQuota()
     {
-        return FracaoHasQuota::first()->value('data');
+        return FracaoHasQuota::oldest('data')->value('data');
     }
 
     public static function lastQuota()
     {
-        return FracaoHasQuota::latest()->value('data');
+        return FracaoHasQuota::latest('data')->value('data');
     }
 
     public function scopeNormalQuota($query, $fracao_id)
