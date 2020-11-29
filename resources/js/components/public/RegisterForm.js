@@ -72,7 +72,7 @@ class RegisterForm extends React.Component {
                                         onClick={this.onFinish}
                                         size="large"
                                     >
-                                        Register
+                                        Registar
                                     </Button>
                                 </Col>
                             </Row>

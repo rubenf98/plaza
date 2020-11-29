@@ -18,7 +18,7 @@ class Servicos extends React.Component {
             <div className="page-dimensions servicos-page-container">
                 <HeaderContainer
                     title="Serviços"
-                    content={<p className="description"> Disponibilizamos serviços que permitem o bom funcionamento do edifício, de acordo com os critérios estabelecidos.</p>}
+                    content={<p className="description"> Disponibilizamos de um leque serviços que nos permitem manter o bom funcionamento do edifício, em prol do bem comum de todos os condóminos!</p>}
                     img="/icon/servicos-header.webp"
                 />
 

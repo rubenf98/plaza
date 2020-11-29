@@ -29,14 +29,13 @@
             h1 {
                 color: black;
                 letter-spacing: 0.1em;
-                font-size: 3em;
+                font-size: 2.5em;
                 margin: 0;
-                width: 60%;
+                width: 96%;
                 margin: auto;
 
-                @media screen and (max-width: 1000px) {
-                    width: 90%;
-                    font-size: 2em;
+                @include lg {
+                    font-size: 1.6em;
                 }
             }
         }
@@ -111,6 +110,13 @@
             }
             .info-container {
                 margin: 25px 0;
+                width: 30%;
+                min-width: 250px;
+
+                @include md {
+                    width: 100%;
+                }
+
                 .info-title {
                     font-size: 1.2em;
                     line-height: normal;

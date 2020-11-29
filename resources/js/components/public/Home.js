@@ -90,7 +90,7 @@ class Home extends React.Component {
                     >
                         <Row className="homepage-header" type="flex" align="middle" style={{height: screenHeight}}>
                             <div className="header">
-                                <h1 className="title">A melhor gestão é realizada por quem conhece</h1>
+                                <h1 className="title">Condomínio Plaza II</h1>
                                 <Suspense fallback={<div>Loading...</div>}>
                                 <RegisterForm ></RegisterForm>
                                 </Suspense>
@@ -118,7 +118,7 @@ class Home extends React.Component {
                             <Col lg={12} md={24}>
                                 <div className="about-content">
                                     <h1 className="subtitle"> Administração Plaza II</h1>
-                                    <h2 className="title"> Condomínio privado gerido por residentes!</h2>
+                                    <h2 className="title"> Condomínio gerido e administrado por residentes!</h2>
                                     <p>O seu condomínio é administrado cumprindo todos os requisitos legais e administrativos. As tarefas atribuídas ao administrador são desempenhadas com disciplina e atempadamente. </p>
                                     <Row gutter={12}>
                                         <AboutInfoContent
@@ -199,28 +199,28 @@ class Home extends React.Component {
 
                         <Row className="homepage-content-container">
                             <FAQContent
-                                question="Can I accept both Paypal and Stripe?"
-                                answer="Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean."
+                                question="Qual o número de reuniões da assembleia por ano ?"
+                                answer="Deverá haver uma reunião na primeira quinzena do mês de Janeiro. A reunião é convocada pelo administrador com vista à discussão e aprovação das contas do último ano e aprovação do orçamento para o ano corrente."
                             />
                             <FAQContent
-                                question="Can I accept both Paypal and Stripe?"
-                                answer="Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean."
+                                question="Como calcular o valor das quotas ?"
+                                answer="As despesas correntes de condomínio devem ser pagas pelos condóminos na proporção do valor (permilagem) das suas fracções. Quota mensal = (Orçamento anual/12) * (Permilagem da fracção / 1000)."
                             />
                             <FAQContent
-                                question="Can I accept both Paypal and Stripe?"
-                                answer="Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean."
+                                question="Quem pode ser administrador ?"
+                                answer="Qualquer condómino poderá se tornar administrador, poderá ainda ser contratado um terceiro ou empresa especializada, após discussão e aprovação em assembleia de condóminos."
                             />
                             <FAQContent
-                                question="Can I accept both Paypal and Stripe?"
-                                answer="Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean."
+                                question="Quais as funções do administrador ?"
+                                answer="Convocar a assembleia de condóminos, elaborar os orçamentos anuais de receitas e despesas e prestar contas à assembleia, cobrar as receitas e efectuar as despesas comuns, exigir dos condóminos a sua quota-parte nas despesas aprovadas pela assembleia..."
                             />
                             <FAQContent
-                                question="Can I accept both Paypal and Stripe?"
-                                answer="Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean."
+                                question="Quais as limitações de animais ?"
+                                answer="Por cada fracção autónoma, não é permitido alojar mais de 3 cães adultos. A permanência de animais em habitações fica condicionada à existência de boas condições de alojamento dos referidos animais."
                             />
                             <FAQContent
-                                question="Can I accept both Paypal and Stripe?"
-                                answer="Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean."
+                                question="O que fazer em caso de barulho ?"
+                                answer="Reclamação junto da Câmara Municipal, caso falhe a reclamação, é alertar outras Entidades, nomeadamente o Ministério do Ambiente e o Governo Civil. Em último caso, recorra aos Tribunais, solicitando uma providência cautelar."
                             />
                         </Row>
 
