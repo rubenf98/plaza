@@ -23,6 +23,8 @@
 
     .category-container {
         margin-bottom: 10%;
+        display: flex;
+        justify-content: space-around;
 
         .category {
             width: 20%;
@@ -37,33 +39,39 @@
             cursor: pointer;
             transition: 0.2s ease;
             z-index: 2;
+            margin: 10px auto;
 
             &:hover {
                 border: 1px solid $customAccent;
                 box-shadow: 0 10px 20px 0 rgba($color: #000000, $alpha: 0.1);
-
-                .icon {
-                    color: $customAccent;
-                }
             }
 
             .icon {
-                transition: 0.2s ease;
-                font-size: 42px;
+                width: 60%;
+                margin: auto;
+                display: block;
             }
 
             .title {
+                font-size: 1.5em;
                 text-transform: capitalize;
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+
+                @include md {
+                    font-size: 1.3em;
+                }
+
+                @include sm {
+                    font-size: 1em;
+                }
             }
         }
 
         .active-category {
             border: 1px solid $customAccent;
             box-shadow: 0 10px 20px 0 rgba($color: #000000, $alpha: 0.1);
-
-            .icon {
-                color: $customAccent;
-            }
         }
     }
 

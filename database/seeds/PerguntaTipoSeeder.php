@@ -13,23 +13,23 @@ class PerguntaTipoSeeder extends Seeder
     public function run()
     {
         PerguntaTipo::Create([
-            "name" => "Pagamentos",
-            "image" => "placeholder1",
+            "name" => "Administração",
+            "image" => "/icon/faq/administracao.svg",
         ]);
 
         PerguntaTipo::Create([
-            "name" => "Administradores",
-            "image" => "placeholder2",
+            "name" => "Condomínio",
+            "image" => "/icon/faq/condominio.svg",
         ]);
 
         PerguntaTipo::Create([
-            "name" => "Arrendamento",
-            "image" => "placeholder3",
+            "name" => "Assembleias",
+            "image" => "/icon/faq/assembleia.svg",
         ]);
 
         PerguntaTipo::Create([
-            "name" => "Assembleia",
-            "image" => "placeholder4",
+            "name" => "Outras",
+            "image" => "/icon/faq/other.svg",
         ]);
     }
 }

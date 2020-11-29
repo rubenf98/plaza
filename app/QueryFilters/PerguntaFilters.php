@@ -10,6 +10,14 @@ use Cerbero\QueryFilters\QueryFilters;
  */
 class PerguntaFilters extends QueryFilters
 {
+    public function search($string)
+    {
+        $this->query->where(function ($query) use ($string) {
+            $query->where('answer', 'like', '%' . $string . '%')
+                ->orWhere('question', 'like', '%' . $string . '%');
+        });
+    }
+
     /**
      * Filter records based on the query parameter "tipo"
      * 

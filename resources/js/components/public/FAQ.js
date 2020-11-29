@@ -2,28 +2,19 @@ import React, { Fragment } from 'react'
 import PageFooter from "../common/PageFooter";
 import { connect } from "react-redux";
 import { Row, Form, Input, Collapse } from "antd";
-import { EuroOutlined, BankOutlined, DashboardOutlined, HomeOutlined } from '@ant-design/icons';
 import HeaderContainer from '../common/HeaderContainer';
 import { fetchPerguntaTipos } from "../../redux/perguntaTipos/actions";
 import { fetchPerguntas } from "../../redux/pergunta/actions";
+import NoDataContainer from '../common/NoDataContainer';
 
 const { Search } = Input;
 const { Panel } = Collapse;
 
-const text = `
-  A dog is a type of domesticated animal.
-  Known for its loyalty and faithfulness,
-  it can be found as a welcome guest in many households across the world.
-`;
-
-const questions = ['1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1'];
-
-
-
 
 class FAQ extends React.Component {
     state = {
-        activeCategory: null
+        activeCategory: null,
+        search: null
     }
 
     handleCategoryClick = (text) => {
@@ -31,7 +22,15 @@ class FAQ extends React.Component {
             activeCategory: text
         })
 
-        this.props.fetchPerguntas({ tipo: text });
+        this.props.fetchPerguntas({ tipo: text, search: this.state.search });
+    }
+
+    handleSearch = (e) => {
+        this.setState({
+            search: e
+        })
+
+        this.props.fetchPerguntas({ tipo: this.state.activeCategory, search: e });
     }
 
     componentDidMount() {
@@ -47,17 +46,11 @@ class FAQ extends React.Component {
                 className={`category ${this.state.activeCategory == text && "active-category"}`}
                 onClick={() => this.handleCategoryClick(text)}
             >
-                {icon}
+                <img className="icon" alt={text} src={icon} />
+
                 <h1 className="title"> {text}</h1>
             </div >
         );
-
-        const categoryIcon = {
-            'Pagamentos': <EuroOutlined className="icon" />,
-            "Administradores": <DashboardOutlined className="icon" />,
-            "Arrendamento": <HomeOutlined className="icon" />,
-            "Assembleia": <BankOutlined className="icon" />,
-        };
 
         return (
             <div className="page-dimensions">
@@ -70,6 +63,7 @@ class FAQ extends React.Component {
                                 <Form>
                                     <Form.Item name="search" className="faq-form-item">
                                         <Search
+                                            onSearch={this.handleSearch}
                                             className="search"
                                             placeholder="Pergunte-nos algo..."
                                             size="large"
@@ -88,7 +82,7 @@ class FAQ extends React.Component {
                                 return (
                                     <Category
                                         key={element.id}
-                                        icon={categoryIcon[element.name]}
+                                        icon={element.image}
                                         text={element.name}
                                     />)
                             })}
@@ -96,21 +90,23 @@ class FAQ extends React.Component {
 
                         <h1 className="page-title">Perguntas Frequentes</h1>
 
-                        <Collapse
-                            expandIconPosition="right"
-                            bordered={false}
-                            accordion
-                            className="faq-container"
-                        >
-                            {
-                                perguntas.map((element) => {
-                                    return (
-                                        <Panel header={element.question} key={element.id}>{element.answer}</Panel>
-                                    );
-                                })
-                            }
+                        <NoDataContainer data={perguntas.length > 0 && true}>
+                            <Collapse
+                                expandIconPosition="right"
+                                bordered={false}
+                                accordion
+                                className="faq-container"
+                            >
+                                {
+                                    perguntas.map((element) => {
+                                        return (
+                                            <Panel header={element.question} key={element.id}>{element.answer}</Panel>
+                                        );
+                                    })
+                                }
 
-                        </Collapse>
+                            </Collapse>
+                        </NoDataContainer>
                     </div>
                 </div>
                 <footer style={{ display: "block" }} className="layout-footer" >
