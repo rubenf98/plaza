@@ -1,5 +1,5 @@
 <div class="image-container flex-center" style="width: 200px;margin: auto;display: block;margin-bottom: 20px;">
-    <a href="http://prod.edificioplaza2.com/"><img src="http://prod.edificioplaza2.com/logo.png"
+    <a href="http://edificioplaza2.com/"><img src="http://edificioplaza2.com/logo.png"
             style="width: 100%;height: auto;"></a>
 </div>
 
