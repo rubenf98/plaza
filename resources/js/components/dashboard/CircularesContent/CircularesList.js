@@ -91,7 +91,7 @@ class CircularList extends React.Component {
                                 <Row type="flex" justify="center" className="pdf-document-container">
                                     <LoadingContainer loading={false}>
                                         {circular &&
-                                            <PdfDocument pdf={`${window.location.origin}${circular.link}`} />
+                                            <PdfDocument pdf={`${window.location.origin}/api/pdf${circular.link}`} />
                                         }
                                     </LoadingContainer>
                                 </Row>

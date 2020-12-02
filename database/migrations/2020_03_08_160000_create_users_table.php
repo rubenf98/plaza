@@ -23,7 +23,7 @@ class CreateUsersTable extends Migration
             $table->date('b_day')->nullable();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
-            $table->string('photo')->default('/profile-picture.jpg');
+            $table->string('photo')->default('/profile/profile-picture.jpg');
             $table->boolean('administrador')->default(false);
             $table->boolean('login')->default(false);
             $table->boolean('ativo')->default(false);

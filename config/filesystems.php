@@ -57,21 +57,21 @@ return [
 
         'circular' => [
             'driver' => 'local',
-            'root' => public_path('circular'),
+            'root' => storage_path('circular'),
             'url' => env('APP_URL') . '/storage',
             'visibility' => 'public',
         ],
 
         'arquivo' => [
             'driver' => 'local',
-            'root' => public_path('arquivo'),
+            'root' => storage_path('arquivo'),
             'url' => env('APP_URL') . '/storage',
             'visibility' => 'public',
         ],
 
         'profile' => [
             'driver' => 'local',
-            'root' => public_path('profile'),
+            'root' => storage_path('profile'),
             'url' => env('APP_URL') . '/storage',
             'visibility' => 'public',
         ],

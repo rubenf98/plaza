@@ -23,6 +23,7 @@ Route::group(['middleware' => 'api'], function () {
     Route::post('logout', 'AuthController@logout');
     Route::post('refresh', 'AuthController@refresh');
     Route::post('me/photo', 'AuthController@updatePhoto');
+    Route::get('photo/profile/{file}', 'AuthController@getPhoto');
     Route::get('me', 'AuthController@me');
     Route::put('me', 'AuthController@updateMe');
 });
@@ -39,17 +40,16 @@ Route::prefix('selector')->group(function () {
 });
 
 Route::prefix('pdf')->group(function () {
-    Route::get('orcamentos/:url', 'OrcamentoController@pdf');
-    Route::get('circulares/:url', 'CircularController@pdf');
-    Route::get('arquivos/:url', 'ArquivoController@pdf');
+    Route::get('circular/{file}', 'PDFController@showCircular');
+    Route::get('arquivo/{file}', 'PDFController@showArquivo');
 });
+
 Route::get('quota/first-and-last', 'QuotaController@firstAndLast');
 
 
 Route::apiResource('blocos', 'BlocoController');
 Route::apiResource('circular', 'CircularController');
 Route::apiResource('circular-tag', 'CircularTagController');
-Route::apiResource('pdf', 'PDFController');
 Route::apiResource('image', 'ImageController');
 Route::apiResource('edificio', 'EdificioController');
 Route::apiResource('fracao', 'FracaoController');
@@ -63,5 +63,3 @@ Route::apiResource('pergunta-tipos', 'PerguntaTipoController');
 Route::apiResource('pergunta', 'PerguntaController');
 
 Route::put('fracao', 'FracaoController@updateFracaos');
-
-

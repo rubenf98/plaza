@@ -1,8 +1,10 @@
 /node_modules
 /public/hot
 /public/storage
-/public/profile/*
-/public/arquivo/*
+/storage/profile/*
+!/storage/profile/profile-picture.jpg
+/storage/arquivo/*
+/storage/circular/*
 /storage/*.key
 /vendor
 .env

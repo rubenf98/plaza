@@ -49,7 +49,7 @@ let NavBar = ({ isAuthenticated, logout, currentUser }) => {
                                         <Avatar
                                             className="avatar"
                                             size={"large"}
-                                            icon={<img src={currentUser.photo} />}
+                                            icon={<img src={`${window.location.origin}/api/photo${currentUser.photo}`} />}
                                         />
                                     </Link>
 

@@ -92,7 +92,7 @@ class Profile extends React.Component {
                         <Col lg={24} xl={10} className="profile-picture-container">
                             <Row type="flex" justify="space-around">
                                 <Upload name='file' customRequest={this.handleUpload} accept=".jpg,.png" showUploadList={false} method="PUT">
-                                    <img className="profile-picture" src={user.photo} />
+                                    <img className="profile-picture" src={`${window.location.origin}/api/photo${user.photo}`} />
                                     <UploadOutlined className="upload-picture" />
                                 </Upload>
                             </Row>

@@ -61,7 +61,8 @@ class ArquivoController extends Controller
      */
     public function pdf($url)
     {
-        return response()->file(public_path($url));
+        return "teste";
+        //return response()->file(storage_path('arquivo/' . $url));
     }
 
     /**

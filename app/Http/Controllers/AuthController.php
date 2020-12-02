@@ -28,7 +28,7 @@ class AuthController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth:api', ['except' => ['login', 'register', 'updatePhoto', 'resetPassword', 'recoverPassword']]);
+        $this->middleware('auth:api', ['except' => ['login', 'register', 'updatePhoto', 'resetPassword', 'recoverPassword', 'getPhoto']]);
     }
 
     public function register(RegisterRequest $request)
@@ -204,7 +204,7 @@ class AuthController extends Controller
 
         if ($request->hasFile('photo')) {
             $oldPhoto = $user->photo;
-            $oldPhoto !== "/profile-picture.jpg" && File::delete(public_path($oldPhoto));
+            $oldPhoto !== "/profile/profile-picture.jpg" && File::delete(storage_path($oldPhoto));
 
             $path = $request->file('photo')->store('', 'profile');
             $user->photo = '/profile/' . $path;
@@ -213,6 +213,11 @@ class AuthController extends Controller
 
         DB::commit();
         return new UserResource($user);
+    }
+
+    public function getPhoto($file)
+    {
+        return response()->file(storage_path('profile/' . $file));
     }
 
     protected function respondWithToken($token, $login = false)

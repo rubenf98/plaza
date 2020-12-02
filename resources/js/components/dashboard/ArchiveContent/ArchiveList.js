@@ -20,7 +20,7 @@ class ArchiveList extends React.Component {
 
     handleModalOpen = (orcamento) => {
         this.setState({
-            active: `${window.location.origin}${orcamento}`,
+            active: `${window.location.origin}/api/pdf${orcamento}`,
             visible: true
         })
     }

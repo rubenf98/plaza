@@ -6,26 +6,12 @@ use Illuminate\Http\Request;
 
 class PDFController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
+
+    public function showArquivo($file)
     {
-        //
+        return response()->file(storage_path('arquivo/' . $file));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
 
     /**
      * Display the specified resource.
@@ -33,31 +19,8 @@ class PDFController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($file)
+    public function showCircular($file)
     {
-        return response()->file(public_path('circular/' . $file . '.pdf'));
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
+        return response()->file(storage_path('circular/' . $file));
     }
 }
