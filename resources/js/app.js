@@ -19,12 +19,12 @@ import moment from "moment";
 
 const store = createStore(
     rootReducer,
-    composeWithDevTools(
-        applyMiddleware(
-            thunk,
-            promise,
-        )
+
+    applyMiddleware(
+        thunk,
+        promise,
     )
+
 )
 
 moment.locale('pt');
