@@ -19,9 +19,5 @@ class UserEstadoSeeder extends Seeder
         UserEstado::Create([
             "estado" => "ex-residente"
         ]);
-
-        UserEstado::Create([
-            "estado" => "suspenso"
-        ]);
     }
 }

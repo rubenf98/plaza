@@ -49,17 +49,20 @@ class OrcamentosList extends React.Component {
                 </Modal>
 
                 <div className="list-container">
-                    {Object.values(data).map((element, index) => {
-                        return (
-                            <p
-                                className="list-item"
-                                key={element.id}
-                                onClick={() => this.handleModalOpen(element.url)}
-                            >
-                                {element.nome}
-                            </p>
-                        );
-                    })}
+                    <NoDataContainer data={data.length > 0 && true}>
+                        {Object.values(data).map((element, index) => {
+                            return (
+                                <p
+                                    className="list-item"
+                                    key={element.id}
+                                    onClick={() => this.handleModalOpen(element.url)}
+                                >
+                                    {element.nome}
+                                </p>
+                            );
+                        })}
+                    </NoDataContainer>
+
                 </div>
             </Row>
 

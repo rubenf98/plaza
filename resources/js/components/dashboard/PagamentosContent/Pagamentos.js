@@ -1,7 +1,7 @@
 
 import DashboardLayout from '../DashboardLayout';
 import React from 'react';
-import { Row } from 'antd';
+import { Row, notification } from 'antd';
 import PagamentosTableManager from './PagamentosTableManager';
 import PagamentosModalManager from './PagamentosModalManager';
 
@@ -13,6 +13,25 @@ class Pagamentos extends React.Component {
     handleModalVisible = (aVisible) => {
         this.setState({
             visible: aVisible
+        })
+    }
+
+    componentDidMount() {
+        notification.warning({
+            message: 'Introduzindo quotas...',
+            duration: 0,
+            description:
+                'As quotas ainda se encontram em atualização, pelo que os pagamentos de algumas frações ainda estão a ser introduzidos no sistema.',
+        });
+    }
+
+    componentWillUnmount() {
+        notification.destroy();
+    }
+
+    handleNotificationClose = () => {
+        this.setState({
+            notification: false
         })
     }
 

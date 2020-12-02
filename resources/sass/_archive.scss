@@ -31,7 +31,9 @@
             border-top-right-radius: 4px;
 
             @include md {
-                font-size: 1em;
+                font-size: 0.8em;
+                min-height: 60px;
+                padding: 0 6px;
             }
 
             &:hover {
@@ -47,12 +49,22 @@
             background: white;
         }
     }
+    .list-container {
+        min-height: 100px;
+        width: 100%;
+    }
 
     .list-item {
         cursor: pointer;
         margin: 3% 0;
 
         .archive {
+            &:hover {
+                .title {
+                    color: $customAccent;
+                    font-weight: bold;
+                }
+            }
             img {
                 width: 100%;
             }

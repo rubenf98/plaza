@@ -23,7 +23,7 @@ class RegisterRequest extends FormRequest
 
     protected function prepareForValidation()
     {
-        $password = Str::random(16);
+        $password = Str::random(8);
 
         $user = User::where('email', $this->email)->where('ativo', false)->count();
 

@@ -56,11 +56,14 @@ class Archive extends React.Component {
                                 <div onClick={this.handleTabClick} id='' className={activeTab == '' ? "tab-item active" : "tab-item"}>Todos</div>
                                 <div onClick={this.handleTabClick} id='orcamentos' className={activeTab == 'orcamentos' ? "tab-item active" : "tab-item"}>Orçamentos</div>
                                 <div onClick={this.handleTabClick} id='assembleias' className={activeTab == 'assembleias' ? "tab-item active" : "tab-item"}>Assembleias</div>
+                                <div onClick={this.handleTabClick} id='outros' className={activeTab == 'outros' ? "tab-item active" : "tab-item"}>Outros</div>
+
 
                                 <CreateButton
                                     handleModalVisible={(aVisible) => this.handleModalVisible(aVisible)}
                                     isAdministrator={this.props.isAdministrator}
                                 />
+
                             </Row>
                         }
                         bordered={false}

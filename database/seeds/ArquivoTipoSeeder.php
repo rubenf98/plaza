@@ -21,5 +21,10 @@ class ArquivoTipoSeeder extends Seeder
             'nome' => 'assembleias',
             'url' => '/icon/arquivo/assembleia.svg'
         ]);
+
+        ArquivoTipo::create([
+            'nome' => 'outros',
+            'url' => '/icon/arquivo/outro.svg'
+        ]);
     }
 }

@@ -15,12 +15,12 @@ class DatabaseSeeder extends Seeder
         $this->call(UserEstadoSeeder::class);
         $this->call(EdificioSeeder::class);
         $this->call(BlocoSeeder::class);
-        $this->call(UserSeeder::class);
+        //$this->call(UserSeeder::class);
         $this->call(FracaoSeeder::class);
         $this->call(QuotaSeeder::class);
         $this->call(FracaoHasQuotaSeeder::class);
         $this->call(CircularTagSeeder::class);
-        $this->call(CircularSeeder::class);
+        //$this->call(CircularSeeder::class);
 
         $this->call(ServicoTipoSeeder::class);
         $this->call(ServicoSeeder::class);
@@ -29,6 +29,6 @@ class DatabaseSeeder extends Seeder
         $this->call(PerguntaSeeder::class);
 
         $this->call(ArquivoTipoSeeder::class);
-        $this->call(OrcamentoSeeder::class);
+        //$this->call(OrcamentoSeeder::class);
     }
 }
