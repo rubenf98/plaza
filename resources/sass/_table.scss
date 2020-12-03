@@ -36,6 +36,19 @@
 .table-filter-container {
     padding: 10px 15px;
     background: white;
+    .header-filter-container {
+        width: 100%;
+
+        .filter-container {
+            @include md {
+                width: 50%;
+            }
+        }
+
+        .range-container {
+            width: 50%;
+        }
+    }
 }
 
 .table-legend-container {

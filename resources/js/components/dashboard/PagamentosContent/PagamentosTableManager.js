@@ -159,60 +159,64 @@ class PagamentosTableManager extends React.Component {
         return (
             <div className="table-container">
                 <Row className="table-filter-container" type="flex" align="middle">
-                    <Col xs={12} lg={20}>
-                        <Row type="flex" justify="start">
-                            <Dropdown
-                                overlay={
-                                    <Menu>
-                                        <Menu.ItemGroup title="Bloco">
-                                            <Radio.Group
-                                                onChange={this.handleFilterChange}
-                                                defaultValue={this.filters.bloco}
-                                            >
-                                                <Radio style={radioStyle} value="A">
-                                                    Bloco A
+                    <Col xs={24} lg={20}>
+                        <Row className="header-filter-container" type="flex" justify="start" align="middle">
+                            <div className="filter-container">
+                                <Dropdown
+                                    overlay={
+                                        <Menu>
+                                            <Menu.ItemGroup title="Bloco">
+                                                <Radio.Group
+                                                    onChange={this.handleFilterChange}
+                                                    defaultValue={this.filters.bloco}
+                                                >
+                                                    <Radio style={radioStyle} value="A">
+                                                        Bloco A
                                                 </Radio>
-                                                <Radio style={radioStyle} value="B">
-                                                    Bloco B
+                                                    <Radio style={radioStyle} value="B">
+                                                        Bloco B
                                                 </Radio>
-                                                <Radio style={radioStyle} value="C">
-                                                    Bloco C
+                                                    <Radio style={radioStyle} value="C">
+                                                        Bloco C
                                                 </Radio>
-                                            </Radio.Group>
-                                        </Menu.ItemGroup>
-                                        <Menu.ItemGroup title="Quota">
-                                            <Radio.Group onChange={this.onChange} defaultValue="normal">
-                                                <Radio style={radioStyle} value="normal">
-                                                    Normal
+                                                </Radio.Group>
+                                            </Menu.ItemGroup>
+                                            <Menu.ItemGroup title="Quota">
+                                                <Radio.Group onChange={this.onChange} defaultValue="normal">
+                                                    <Radio style={radioStyle} value="normal">
+                                                        Normal
                                                 </Radio>
-                                            </Radio.Group>
-                                        </Menu.ItemGroup>
+                                                </Radio.Group>
+                                            </Menu.ItemGroup>
 
-                                    </Menu>
-                                }
-                                placement="bottomLeft"
-                                trigger={['click']}>
-                                <Button
-                                    style={{ margin: "15px" }}
-                                >
-                                    <FilterOutlined /> Filtros
+                                        </Menu>
+                                    }
+                                    placement="bottomLeft"
+                                    trigger={['click']}>
+                                    <Button
+                                        style={{ margin: "15px" }}
+                                    >
+                                        <FilterOutlined /> Selecionar bloco
                                 </Button>
-                            </Dropdown>
-                            <RangePicker
-                                picker="month"
-                                bordered={false}
-                                locale={locale}
-                                disabledDate={disabledDate}
-                                onCalendarChange={value => {
-                                    this.handleCalendarChange(value);
-                                }}
-                            />
+                                </Dropdown>
+                            </div>
+                            <div className="range-container">
+                                <RangePicker
+                                    picker="month"
+                                    bordered={false}
+                                    locale={locale}
+                                    disabledDate={disabledDate}
+                                    onCalendarChange={value => {
+                                        this.handleCalendarChange(value);
+                                    }}
+                                />
+                            </div>
                         </Row>
                     </Col>
 
                     {isAdministrator &&
 
-                        <Col xs={12} lg={4}>
+                        <Col xs={24} lg={4}>
                             <Row type="flex" justify="end">
                                 <Button type="primary"
                                     onClick={this.handleEditClick}
