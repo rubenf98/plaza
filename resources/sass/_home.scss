@@ -19,8 +19,9 @@
         .title {
             width: 70%;
             line-height: 1.1;
-            font-weight: 500;
-            font-size: 4em;
+            font-weight: bold;
+            font-size: 4.5em;
+            margin-bottom: 0;
 
             @include lg {
                 font-size: 3em;
@@ -29,6 +30,42 @@
             @include md {
                 font-size: 2em;
                 width: 100%;
+            }
+        }
+
+        .subtitle {
+            color: $customLightText;
+            font-size: 1.5em;
+            margin-bottom: 20px;
+            width: 50%;
+
+            @include lg {
+                font-size: 1.2em;
+                width: 60%;
+            }
+
+            @include md {
+                width: 70%;
+            }
+        }
+
+        .register-link {
+            display: flex;
+            align-items: center;
+            .register-link-icon {
+                color: $customAccent;
+                font-size: 3em;
+                margin-right: 10px;
+            }
+            .register-link-text {
+                color: $customHeader;
+                font-size: 1.2em;
+            }
+
+            &:hover {
+                .register-link-icon {
+                    color: $darkenAccent;
+                }
             }
         }
     }

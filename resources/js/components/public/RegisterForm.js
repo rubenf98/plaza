@@ -31,16 +31,14 @@ class RegisterForm extends React.Component {
         ],
     };
 
-    componentDidMount() {
-        //
-    }
-
     onFinish = async (values) => {
         let form = this.formRef.current;
 
-        form.validateFields().then(async (values) => {
-            await this.props.register(values);
-            form.resetFields();
+        form.validateFields().then((values) => {
+            this.props.register(values).then(
+                () => {
+                    form.resetFields();
+                });
         });
     }
 
@@ -49,44 +47,30 @@ class RegisterForm extends React.Component {
     };
 
     render() {
-        const { footer } = this.props;
 
         return (
             <div className="register-container">
                 <Form ref={this.formRef} layout="inline" hideRequiredMark={true} onFinishFailed={this.onFinishFailed}>
-                    {
-                        footer ?
-                            <Row style={{ width: "100%" }} type="flex" justify="space-around">
-                                <Col span={18}>
-                                    <Form.Item label="" name="email" rules={this.rules.email}>
-                                        <Input
-                                            className="register-input"
-                                            type="email"
-                                            placeholder="Introduza o seu email..."
-                                        />
-                                    </Form.Item>
-                                </Col>
-                                <Col span={6}>
-                                    <Button
-                                        className="register-button"
-                                        onClick={this.onFinish}
-                                        size="large"
-                                    >
-                                        Registar
-                                    </Button>
-                                </Col>
-                            </Row>
-                            :
+                    <Row style={{ width: "100%" }} type="flex" justify="space-around">
+                        <Col span={18}>
                             <Form.Item label="" name="email" rules={this.rules.email}>
-                                <Search
-                                    onSearch={this.onFinish}
+                                <Input
+                                    className="register-input"
+                                    type="email"
                                     placeholder="Introduza o seu email..."
-                                    enterButton={<SendOutlined />}
-                                    size="large"
                                 />
                             </Form.Item>
-                    }
-
+                        </Col>
+                        <Col span={6}>
+                            <Button
+                                className="register-button"
+                                onClick={this.onFinish}
+                                size="large"
+                            >
+                                Registar
+                                    </Button>
+                        </Col>
+                    </Row>
                 </Form >
             </div>
         );

@@ -7,10 +7,9 @@ import { Link } from "react-router-dom";
 import { breakPoint } from "../../helper";
 import { Row, Col, Button } from "antd";
 import { Parallax } from 'react-parallax';
-const RegisterForm = React.lazy(() => import('./RegisterForm'));
 const PageFooter = React.lazy(() => import('../common/PageFooter'));
 import LoadingContainer from "../common/LoadingContainer";
-import { InfoCircleOutlined, QuestionCircleOutlined, FileOutlined, CommentOutlined, ContactsOutlined, PayCircleOutlined, EuroCircleOutlined } from '@ant-design/icons';
+import { InfoCircleOutlined, QuestionCircleOutlined, FileOutlined, CommentOutlined, ContactsOutlined, PayCircleOutlined, EuroCircleOutlined, ArrowRightOutlined, RightCircleOutlined } from '@ant-design/icons';
 
 const AboutInfoContent = ({ img, text }) => (
     <Col sm={24} md={12} >
@@ -90,10 +89,15 @@ class Home extends React.Component {
                     >
                         <Row className="homepage-header" type="flex" align="middle" style={{height: screenHeight}}>
                             <div className="header">
-                                <h1 className="title">Condomínio Plaza II</h1>
-                                <Suspense fallback={<div>Loading...</div>}>
-                                <RegisterForm ></RegisterForm>
-                                </Suspense>
+                                <h1 className="title ">Condomínio Plaza II</h1>
+                                <h2 className="subtitle ">Gestão administrativa e operacional do condomínio de forma responsável, segura e confiável.</h2>
+                                
+                                <Link className="register-link" to="/login?register=true">
+                                    <span className="register-link-icon">
+                                    <RightCircleOutlined />
+                                    </span>
+                                    <span className="register-link-text" > Registar</span>
+                                </Link>
                             </div>
                         </Row>
                     </Parallax>
@@ -118,7 +122,7 @@ class Home extends React.Component {
                             <Col lg={12} md={24}>
                                 <div className="about-content">
                                     <h1 className="subtitle"> Administração Plaza II</h1>
-                                    <h2 className="title"> Condomínio gerido e administrado por residentes!</h2>
+                                    <h2 className="title"> Condomínio gerido e administrado por locais!</h2>
                                     <p>O seu condomínio é administrado cumprindo todos os requisitos legais e administrativos. As tarefas atribuídas ao administrador são desempenhadas com disciplina e atempadamente. </p>
                                     <Row gutter={12}>
                                         <AboutInfoContent

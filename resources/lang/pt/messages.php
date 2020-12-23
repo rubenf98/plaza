@@ -3,14 +3,14 @@
 return [
     'login' => [
         'success' => 'Bem vindo',
-        'failCredentials' => 'Não é possível encontrar uma conta com estas credenciais. Verifique se introduziu os dados corretos.',
+        'failCredentials' => 'Não é possível encontrar uma conta com estas credenciais. Verifique se introduziu a palavra-passe correta.',
         'failToken' => 'Erro no login, por favor tente novamente.'
     ],
 
     'register' => [
         'success' => 'Obrigado por se registar! Verifique o seu email para completar o registo.',
         'failCredencials' => 'Falhou',
-        'failAccount' => 'O seu email não se encontra na lista de emails de condóminos. Caso seja um erro contacte a administração.'
+        'failAccount' => 'O seu email não se encontra na lista de emails de condóminos. Caso considere que seja um erro contacte a administração.'
     ],
 
     'logout' => [

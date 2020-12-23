@@ -37,6 +37,6 @@ class UniqueIf implements Rule
      */
     public function message()
     {
-        return 'Este :attribute já existe.';
+        return 'Esta conta já efetou registo, caso não se recorde, poderá realizar uma recuperação de palavra-passe';
     }
 }

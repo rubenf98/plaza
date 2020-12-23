@@ -5,8 +5,15 @@ import LoginForm from "./LoginForm";
 import { success, error } from "../../redux/notification/actions";
 
 class Login extends React.Component {
+    state = {
+        register: undefined,
+    }
     componentDidMount() {
         const token = new URLSearchParams(this.props.location.search).get('token');
+        const register = new URLSearchParams(this.props.location.search).get('register');
+        
+
+        this.setState({ register: register ? register : false })
 
         token && (
             this.props.recoverPassword(token).then(
@@ -19,9 +26,11 @@ class Login extends React.Component {
             ));
     }
     render() {
+        
         return (
             <div className="login-container">
-                <LoginForm></LoginForm>
+                {this.state.register != undefined && <LoginForm registerMode={this.state.register} />}
+
             </div>
         );
     }

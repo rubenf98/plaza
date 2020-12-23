@@ -2,7 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 import { Form, Input, Button, Row } from "antd";
 import { MailOutlined, LockOutlined, EyeTwoTone, EyeInvisibleOutlined } from '@ant-design/icons';
-import { login, resetPassword } from "../../redux/auth/actions";
+import { login, resetPassword, register } from "../../redux/auth/actions";
 import { success, error } from "../../redux/notification/actions";
 
 class LoginForm extends React.Component {
@@ -10,7 +10,8 @@ class LoginForm extends React.Component {
         super(props);
         this.state = {
             submitting: false,
-            reset: false
+            reset: false,
+            register: false,
         }
     }
 
@@ -36,12 +37,18 @@ class LoginForm extends React.Component {
     };
 
     componentDidMount() {
-        //
+        this.setState({ register: this.props.registerMode })
     }
 
     handleResetClick = () => {
         this.setState({
-            reset: !this.state.reset
+            reset: !this.state.reset,
+        })
+    }
+
+    handleRegisterClick = () => {
+        this.setState({
+            register: !this.state.register
         })
     }
 
@@ -64,7 +71,13 @@ class LoginForm extends React.Component {
                         }
                     )
                 }
-                else {
+                else if (this.state.register) {
+                    this.props.register(values).then(
+                        () => {
+                            this.formRef.resetFields();
+                        });
+
+                } else {
                     this.props.login(values);
                 }
 
@@ -76,7 +89,7 @@ class LoginForm extends React.Component {
     };
 
     render() {
-        var { reset } = this.state;
+        var { reset, register } = this.state;
         return (
             <div className="login-form-container">
                 <Row className="logo-container" type="flex" justify="center">
@@ -92,7 +105,7 @@ class LoginForm extends React.Component {
                         />
 
                     </Form.Item>
-                    {!reset &&
+                    {!reset && !register &&
                         <Form.Item hasFeedback name="password" rules={this.rules.password}>
                             <Input.Password
                                 size="large"
@@ -107,13 +120,19 @@ class LoginForm extends React.Component {
 
                     <Row type="flex" justify="end">
                         <a className="login-form-forgot" onClick={this.handleResetClick}>
-                            {reset ? 'Voltar ao login' : 'Recuperar Palavra-passe'}
+                            {reset ? 'Voltar ao login' : !register && 'Recuperar Palavra-passe'}
+                        </a>
+                    </Row>
+
+                    <Row type="flex" justify="end">
+                        <a className="login-form-forgot" onClick={this.handleRegisterClick}>
+                            {register ? 'Voltar ao login' : !reset && 'Registar'}
                         </a>
                     </Row>
 
                     <Form.Item>
                         <Button type="primary" htmlType="submit" className="login-form-button">
-                            {reset ? 'Recuperar' : 'Entrar'}
+                            {reset ? 'Recuperar' : register ? 'Registar' : 'Entrar'}
                         </Button>
                     </Form.Item>
                 </Form >
@@ -128,6 +147,7 @@ const mapDispatchToProps = dispatch => {
         resetPassword: (data) => dispatch(resetPassword(data)),
         success: (description, message) => dispatch(success(description, message)),
         error: (description, message) => dispatch(error(description, message)),
+        register: (data) => dispatch(register(data)),
     };
 };
 
