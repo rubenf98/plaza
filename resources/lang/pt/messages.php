@@ -10,6 +10,7 @@ return [
     'register' => [
         'success' => 'Obrigado por se registar! Verifique o seu email para completar o registo.',
         'failCredencials' => 'Falhou',
+        'failAccount' => 'O seu email não se encontra na lista de emails de condóminos. Caso seja um erro contacte a administração.'
     ],
 
     'logout' => [

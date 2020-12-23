@@ -41,10 +41,10 @@ class AuthController extends Controller
             $user->password = bcrypt($validator['password']);
             $user->save();
         } else {
-            $user = User::create([
-                'email' => $validator['email'],
-                'password' => bcrypt($validator['password']),
-            ]);
+            return response()->json([
+                'success' => false,
+                'message' => Lang::get('messages.register.failAccount')
+            ], 422);
         }
 
         DB::commit();

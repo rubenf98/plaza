@@ -25,11 +25,12 @@ class RegisterRequest extends FormRequest
     {
         $password = Str::random(8);
 
-        $user = User::where('email', $this->email)->where('ativo', false)->count();
+        $user = User::where('email', strtolower($this->email))->where('ativo', false)->count();
 
         $this->merge([
             'password' => $password,
-            'exists' => $user > 0 && true
+            'exists' => $user > 0 && true,
+            'email' => strtolower($this->email)
         ]);
     }
 

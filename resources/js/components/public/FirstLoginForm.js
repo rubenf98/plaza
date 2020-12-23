@@ -1,8 +1,8 @@
 import React from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
-import { Form, Input, Button, Cascader, Row } from "antd";
-import { UserOutlined, LockOutlined, KeyOutlined } from '@ant-design/icons';
+import { Form, Input, Button, Cascader } from "antd";
+import { UserOutlined, LockOutlined, EyeTwoTone, EyeInvisibleOutlined } from '@ant-design/icons';
 import { updateMe } from "../../redux/auth/actions";
 import { fetchBlocoSelector } from "../../redux/bloco/actions";
 import { history } from "../../routes";
@@ -101,10 +101,13 @@ class FirstLogin extends React.Component {
                         <Form.Item hasFeedback
                             name="password" rules={this.rules.password}
                         >
-                            <Input
+
+                            <Input.Password
+                                size="large"
                                 prefix={<LockOutlined />}
                                 type="password"
                                 placeholder="Password"
+                                iconRender={visible => (visible ? <EyeTwoTone /> : <EyeInvisibleOutlined />)}
                             />
 
                         </Form.Item>

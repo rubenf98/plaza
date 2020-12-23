@@ -22,7 +22,7 @@ class CreateUsersTable extends Migration
             $table->string('contacto')->nullable();
             $table->date('b_day')->nullable();
             $table->timestamp('email_verified_at')->nullable();
-            $table->string('password');
+            $table->string('password')->nullable();
             $table->string('photo')->default('/profile/profile-picture.jpg');
             $table->boolean('administrador')->default(false);
             $table->boolean('login')->default(false);

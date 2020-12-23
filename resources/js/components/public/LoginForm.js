@@ -1,7 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import { Form, Input, Button, Row } from "antd";
-import { MailOutlined, LockOutlined } from '@ant-design/icons';
+import { MailOutlined, LockOutlined, EyeTwoTone, EyeInvisibleOutlined } from '@ant-design/icons';
 import { login, resetPassword } from "../../redux/auth/actions";
 import { success, error } from "../../redux/notification/actions";
 
@@ -94,11 +94,12 @@ class LoginForm extends React.Component {
                     </Form.Item>
                     {!reset &&
                         <Form.Item hasFeedback name="password" rules={this.rules.password}>
-                            <Input
+                            <Input.Password
                                 size="large"
                                 prefix={<LockOutlined />}
                                 type="password"
                                 placeholder="Password"
+                                iconRender={visible => (visible ? <EyeTwoTone /> : <EyeInvisibleOutlined />)}
                             />
 
                         </Form.Item>
