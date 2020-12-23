@@ -14,7 +14,7 @@
         </div>
 
         <div class="button-container flex-center">
-            <a class="btn-url" href="http://localhost:8000/login?token={{$token}}" style="text-decoration: none;">
+            <a class="btn-url" href="https://edificioplaza2.com/login?token={{$token}}" style="text-decoration: none;">
                 <input class="button btn-slide-line" type="button" value="Reset Password"
                     style="margin: 25px auto;display: block; padding: 24px 36px;outline: none;border: none;text-decoration: none;cursor: pointer;text-transform: uppercase;border-radius: 8px;color: white;background: #ff7a5c;font-weight: bold;font-size: .9em;transition: .4s ease-out;">
             </a>
