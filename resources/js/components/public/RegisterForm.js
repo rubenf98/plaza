@@ -31,7 +31,7 @@ class RegisterForm extends React.Component {
         ],
     };
 
-    onFinish = async (values) => {
+    onFinish = (values) => {
         let form = this.formRef.current;
 
         form.validateFields().then((values) => {
