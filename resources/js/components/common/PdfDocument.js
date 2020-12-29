@@ -1,9 +1,8 @@
 import React from 'react';
-import { Button } from "antd";
+import { Button, Popconfirm } from "antd";
 import { Document } from 'react-pdf/dist/entry.webpack';
 import { Page } from 'react-pdf'
-import { LeftOutlined, RightOutlined, DownloadOutlined } from '@ant-design/icons';
-import { Link } from "react-router-dom";
+import { LeftOutlined, RightOutlined, DownloadOutlined, DeleteOutlined } from '@ant-design/icons';
 
 class PdfDocument extends React.Component {
     state = {
@@ -42,6 +41,22 @@ class PdfDocument extends React.Component {
                 onLoadSuccess={this.onDocumentLoadSuccess}
             >
                 <React.Fragment>
+                    {this.props.isAdministrator &&
+                        <Popconfirm
+                            title="Tem a certeza que pretende apagar este ficheiro?"
+                            onConfirm={this.props.handleDelete}
+                            okText="Sim"
+                            cancelText="Não"
+                        >
+                            <Button
+                                type="primary"
+                                shape="circle"
+                                icon={<DeleteOutlined />}
+                                className="pdf-control delete-button"
+                            />
+                        </Popconfirm>}
+
+
                     <a href={pdf} download>
                         <Button
                             type="primary"

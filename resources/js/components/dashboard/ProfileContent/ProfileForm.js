@@ -1,4 +1,5 @@
 import { Button, DatePicker, Form, Input, Row } from 'antd';
+import { LockOutlined, EyeTwoTone, EyeInvisibleOutlined } from '@ant-design/icons';
 import React, { Fragment } from 'react';
 import FracaoRemoteSelectContainer from '../FracaoContent/FracaoRemoteSelectContainer';
 
@@ -18,7 +19,6 @@ const ProfileForm = (props) => {
                     <Input placeholder="Nome" />
                 </Form.Item>
 
-                <h3 className="title">Informação Geral</h3>
                 <Form.Item
                     className="input"
                     name="b_day"

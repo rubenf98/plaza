@@ -79,6 +79,13 @@ export default (state = initialState, action = {}) => {
                 loading: false,
                 data: [action.payload.data.data, ...state.data]
             };
+
+        case `${types.DELETE_CIRCULAR}_FULFILLED`:
+            return {
+                ...state,
+                loading: false,
+                data: state.data.filter(record => record.id !== action.meta.id)
+            };
         default:
             return state
     }

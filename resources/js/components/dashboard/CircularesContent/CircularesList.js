@@ -8,7 +8,8 @@ import { connect } from "react-redux";
 import {
     fetchCirculares,
     fetchCircularTags,
-    fetchCircular
+    fetchCircular,
+    deleteCircular,
 } from "../../../redux/circular/actions";
 
 
@@ -29,7 +30,6 @@ class CircularList extends React.Component {
         this.props.fetchCirculares();
         this.props.fetchCircularTags();
     }
-
 
     handleCircularClick = (id) => {
         this.props.fetchCircular(id).then((response) => {
@@ -71,8 +71,13 @@ class CircularList extends React.Component {
         this.setState({ visible: false })
     }
 
+    handleDelete = () => {
+        this.props.deleteCircular(this.state.circular.id);
+        this.handleModalClose();
+    }
+
     render() {
-        let { circularData, circularMeta, circularLoading, circularTags, circularLoadingTags } = this.props;
+        let { circularData, circularMeta, circularLoading, circularTags, circularLoadingTags, isAdministrator } = this.props;
         let { visible, circular } = this.state;
         return (
             <div>
@@ -91,7 +96,7 @@ class CircularList extends React.Component {
                                 <Row type="flex" justify="center" className="pdf-document-container">
                                     <LoadingContainer loading={false}>
                                         {circular &&
-                                            <PdfDocument pdf={`${window.location.origin}/api/pdf${circular.link}`} />
+                                            <PdfDocument pdf={`${window.location.origin}/api/pdf${circular.link}`} handleDelete={this.handleDelete} isAdministrator={isAdministrator} />
                                         }
                                     </LoadingContainer>
                                 </Row>
@@ -183,6 +188,7 @@ const mapDispatchToProps = dispatch => {
         fetchCirculares: (page, filters) => dispatch(fetchCirculares(page, filters)),
         fetchCircularTags: () => dispatch(fetchCircularTags()),
         fetchCircular: (id) => dispatch(fetchCircular(id)),
+        deleteCircular: (id) => dispatch(deleteCircular(id)),
     };
 };
 
@@ -195,6 +201,8 @@ const mapStateToProps = (state) => {
 
         circularLoadingTags: state.circular.loadingTags,
         circularTags: state.circular.tags,
+
+        isAdministrator: state.auth.isAdministrator,
     };
 };
 

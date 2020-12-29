@@ -11,7 +11,7 @@
         bottom: 15px;
         z-index: 2;
     }
-    
+
     .page-info {
         left: 50%;
         -webkit-transform: translateX(-50%);
@@ -20,6 +20,11 @@
 
     .download-button {
         right: 15px;
+        top: 15px;
+    }
+    
+    .delete-button {
+        left: 15px;
         top: 15px;
     }
 

@@ -21,3 +21,9 @@ export const createArquivo = data => ({
     payload: axios.post(`${window.location.origin}/api/arquivos`, data),
 });
 
+export const deleteArquivo = (id) => ({
+    type: types.DELETE_ARQUIVO,
+    payload: axios.delete(`${window.location.origin}/api/arquivos/${id}`),
+    meta: { id }
+});
+

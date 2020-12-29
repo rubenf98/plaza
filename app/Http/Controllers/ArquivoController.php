@@ -8,6 +8,7 @@ use App\Http\Resources\ArquivoResource;
 use App\QueryFilters\ArquivoFilters;
 use Illuminate\Http\Request;
 use DB;
+use File;
 
 class ArquivoController extends Controller
 {
@@ -85,6 +86,11 @@ class ArquivoController extends Controller
      */
     public function destroy(Arquivo $arquivo)
     {
-        //
+        File::delete(storage_path($arquivo->url));
+        $arquivo->delete();
+
+        return response()->json([
+            'status' => 'success',
+        ], 200);
     }
 }

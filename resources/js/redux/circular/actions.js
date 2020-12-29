@@ -24,6 +24,7 @@ export const fetchCircular = (id) => ({
 export const deleteCircular = id => ({
     type: types.DELETE_CIRCULAR,
     payload: axios.delete(`${window.location.origin}/api/circular/${id}`),
+    meta: { id }
 });
 
 export const createCircular = data => ({

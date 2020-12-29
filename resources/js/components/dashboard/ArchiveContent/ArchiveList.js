@@ -1,6 +1,8 @@
 
 import React from 'react';
 import { Row, Modal, Col } from "antd";
+import { connect } from "react-redux";
+import { deleteArquivo } from '../../../redux/arquivo/actions';
 import PdfDocument from '../../common/PdfDocument';
 import PaginationControls from "../../common/PaginationControls";
 import LoadingContainer from '../../common/LoadingContainer';
@@ -20,8 +22,9 @@ class ArchiveList extends React.Component {
 
     handleModalOpen = (orcamento) => {
         this.setState({
-            active: `${window.location.origin}/api/pdf${orcamento}`,
-            visible: true
+            active: `${window.location.origin}/api/pdf${orcamento.url}`,
+            visible: true,
+            open: orcamento.id
         })
     }
 
@@ -29,10 +32,14 @@ class ArchiveList extends React.Component {
         this.setState({ visible: false })
     }
 
+    handleDelete = () => {
+        this.props.deleteArquivo(this.state.open);
+        this.handleModalClose();
+    }
+
     render() {
-        let { data, meta, loading } = this.props;
+        let { data, meta, loading, isAdministrator } = this.props;
         let { visible, active } = this.state;
-        console.log(data.length)
 
         return (
             <Row type="flex" justify="space-around">
@@ -45,7 +52,7 @@ class ArchiveList extends React.Component {
                     destroyOnClose={true}
                     style={{ top: 25 }}
                 >
-                    <PdfDocument pdf={active} />
+                    <PdfDocument pdf={active} handleDelete={this.handleDelete} isAdministrator={isAdministrator} />
                 </Modal>
 
                 <Row className="list-container" gutter={8}>
@@ -59,7 +66,7 @@ class ArchiveList extends React.Component {
                                         lg={8}
                                         className="list-item"
                                         key={element.id}
-                                        onClick={() => this.handleModalOpen(element.url)}
+                                        onClick={() => this.handleModalOpen(element)}
                                     >
                                         <Row className="archive" gutter={16}>
                                             <Col span={8}>
@@ -85,5 +92,16 @@ class ArchiveList extends React.Component {
     }
 }
 
+const mapDispatchToProps = dispatch => {
+    return {
+        deleteArquivo: (id) => dispatch(deleteArquivo(id)),
+    };
+};
 
-export default ArchiveList;
+const mapStateToProps = (state) => {
+    return {
+        isAdministrator: state.auth.isAdministrator,
+    };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(ArchiveList);

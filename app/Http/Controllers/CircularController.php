@@ -7,7 +7,7 @@ use App\Http\Requests\StoreCircularRequest;
 use App\Http\Resources\CircularResource;
 use App\QueryFilters\CircularFilters;
 use Illuminate\Http\Request;
-use Spatie\PdfToImage\Pdf;
+use File;
 use DB;
 
 
@@ -89,6 +89,11 @@ class CircularController extends Controller
      */
     public function destroy(Circular $circular)
     {
-        //
+        File::delete(storage_path($circular->link));
+        $circular->delete();
+
+        return response()->json([
+            'status' => 'success',
+        ], 200);
     }
 }
