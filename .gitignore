@@ -7,7 +7,6 @@
 /storage/circular/*
 /storage/*.key
 /vendor
-/vendor/*
 .env
 .env.backup
 .phpunit.result.cache
