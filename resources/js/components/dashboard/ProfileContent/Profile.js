@@ -1,7 +1,7 @@
 
 import DashboardLayout from '../DashboardLayout';
 import React, { Fragment } from 'react';
-import { Col, Row, Upload } from 'antd';
+import { Col, Row, Upload, Button } from 'antd';
 import ProfileOverview from './ProfileOverview';
 import ProfileForm from './ProfileForm';
 import { connect } from "react-redux";
@@ -12,7 +12,8 @@ import moment from 'moment';
 class Profile extends React.Component {
     state = {
         editing: false,
-        refactorUser: null
+        refactorUser: null,
+        profileEdit: true,
     }
 
     formRef = React.createRef();
@@ -29,8 +30,8 @@ class Profile extends React.Component {
         })
     }
 
-    handleStartEditing = () => {
-        this.setState({ editing: true })
+    handleStartEditing = (profileEdit = true) => {
+        this.setState({ editing: true, profileEdit: profileEdit })
     }
 
     handleCancelEditing = () => {
@@ -76,7 +77,7 @@ class Profile extends React.Component {
 
     render() {
         let { user, userHasFracao } = this.props;
-        let { editing } = this.state;
+        let { editing, profileEdit } = this.state;
 
         return (
             <DashboardLayout >
@@ -100,6 +101,7 @@ class Profile extends React.Component {
                         <Col lg={24} xl={14} className="profile-details">
                             {editing ?
                                 <ProfileForm
+                                    profileEdit={profileEdit}
                                     user={this.state.refactorUser}
                                     formRef={this.formRef}
                                     handleFinishEditing={this.handleFinishEditing}
@@ -107,10 +109,11 @@ class Profile extends React.Component {
                                 />
                                 :
                                 <Fragment>
-                                    <Row type="flex" justify="end">
-                                        <EditOutlined className="edit-button" onClick={this.handleStartEditing} />
-                                    </Row>
                                     <ProfileOverview user={user} userHasFracao={userHasFracao} />
+                                    <Row style={{ marginTop: '20px' }} type="flex" justify="space-between">
+                                        <Button onClick={() => this.handleStartEditing(false)}>Alterar Palavra-Passe</Button>
+                                        <Button type="primary" onClick={this.handleStartEditing}><EditOutlined ></EditOutlined>Editar</Button>
+                                    </Row>
                                 </Fragment>
 
                             }

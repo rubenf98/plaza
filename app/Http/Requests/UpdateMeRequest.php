@@ -26,15 +26,8 @@ class UpdateMeRequest extends FormRequest
         if ($this->header('Authorization'))
             $this->user = JWTAuth::setToken($this->header('Authorization'))->user()->id;
 
-        $fracao_id = null;
-        if ($this->exists('fracao')) {
-            if ($this->fracao[1])
-                $fracao_id = $this->fracao[1];
-        }
-
         $this->merge([
-            'user_id' =>  $this->user,
-            'fracao_id' => $fracao_id
+            'user_id' => $this->user,
         ]);
     }
 
@@ -47,11 +40,12 @@ class UpdateMeRequest extends FormRequest
     {
         return [
             'user_id' => 'required|integer|exists:users,id',
-            'nome' => 'required|string',
+            'nome' => 'nullable|string',
             'password' => 'nullable|string|min:4',
             'contacto' => 'nullable|string',
             'email' => Rule::unique('users')->ignore($this->user),
-            'fracao_id' => 'nullable|integer|exists:fracaos,id',
+            'fracao' => 'nullable',
+            'fracao.1' => 'integer|exists:fracaos,id',
             'b_day' => 'nullable|date'
         ];
     }

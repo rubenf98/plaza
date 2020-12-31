@@ -26,9 +26,9 @@ class Fracao extends Model
         return $this->belongsTo('App\FracaoEstado');
     }
 
-    public function user()
+    public function users()
     {
-        return $this->belongsTo('App\User');
+        return $this->belongsToMany('App\User', 'fracao_has_users');
     }
 
     public function quotas()
@@ -43,6 +43,7 @@ class Fracao extends Model
 
     public function getNormalQuotas($startDate, $endDate)
     {
+        $print = new \Symfony\Component\Console\Output\ConsoleOutput();
         $startDate ? $date = Carbon::createFromFormat('Y-m', $startDate) : $date = Carbon::now()->firstOfMonth()->subMonths(10);
         $endDate ? $diff = ($date->diffInMonths($endDate) + 1) : $diff = 11;
 
@@ -50,19 +51,23 @@ class Fracao extends Model
 
         $total = [];
 
-        for ($i = 0; $i <=  $diff; $i++) {
-            $first = Carbon::now()->month($date->month)->year($date->year)->firstOfMonth();
-            $last = Carbon::now()->month($date->month)->year($date->year)->lastOfMonth();
+        for ($i = 0; $i <= $diff; $i++) {
+            $first = new Carbon($date->year . '-' . $date->month);
+            $last = (new Carbon($first))->lastOfMonth();
+
+
+            $print->writeln($first . ' to ' . $last);
 
             $quota = $this->normalQuota()->value('id');
 
             $estado = DB::table('fracao_has_quotas')->whereBetween("data", [$first, $last])->whereFracaoId($fracao_id)->whereQuotaId($quota)->value('estado');
 
-            $total[Carbon::now()->month($date->month)->year($date->year)->firstOfMonth()->toDateString()] = $estado;
+            $total[(new Carbon($date->year . '-' . $date->month))->toDateString()] = $estado;
+
 
             $date->addMonths(1);
         }
-
+        $print->writeln('-----------------------------');
         return $total;
     }
 

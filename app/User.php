@@ -54,7 +54,7 @@ class User extends Authenticatable implements JWTSubject
 
     public function fracaos()
     {
-        return $this->hasMany('App\Fracao');
+        return $this->belongsToMany('App\Fracao', 'fracao_has_users');
     }
 
     public function divida()

@@ -177,18 +177,18 @@ class AuthController extends Controller
         DB::beginTransaction();
         $user = User::find($validator['user_id']);
         $user->update($validator);
+        if ($request->has('fracao')) {
 
-        if ($request->exists('fracao_id') && $request->fracao_id != null) {
-            $oldFracao =  Fracao::where('user_id', $user->id)->first();
-            if ($oldFracao) {
-                $oldFracao->user_id = null;
-                $oldFracao->save();
+            if ($validator['fracao'] && count($validator['fracao']) > 0) {
+
+                $user->fracaos()->detach();
+                $fracao = Fracao::find($validator['fracao'][1]);
+                $fracao->users()->attach($validator['user_id']);
+            } else {
+                $user->fracaos()->detach();
             }
-
-            $fracao = Fracao::find($validator['fracao_id']);
-            $fracao->user_id = $validator['user_id'];
-            $fracao->save();
         }
+
 
         DB::commit();
         return new UserResource($user);
