@@ -209,45 +209,48 @@
         }
     }
 
+    .partners-container {
+        margin: auto;
+        .partner {
+            min-width: 220px;
+            width: 23%;
+            text-align: center;
+
+            @include md {
+                width: 40%;
+            }
+
+            @include sm {
+                width: 90%;
+            }
+
+            .image-container {
+                min-height: 120px;
+                display: flex;
+                align-items: center;
+
+                .image {
+                    width: 60%;
+                    margin: auto;
+                    display: block;
+                }
+            }
+
+            .name {
+                color: $customHeader;
+                font-size: 1.2em;
+            }
+
+            .description {
+                color: customLightText;
+                font-size: 1em;
+            }
+        }
+    }
+
     .section-content {
         width: 90%;
         margin: auto;
-
-        .circular-container {
-            .circular-image-container {
-                .image {
-                    transition: 0.4s ease;
-                    width: 100%;
-                }
-            }
-
-            .circular-info {
-                z-index: 2;
-                margin: 20px auto;
-                width: 100%;
-                border-radius: 5px;
-
-                .date,
-                .title {
-                    margin: 0;
-                }
-
-                .title {
-                    color: $customHeader;
-                    font-size: 1.8em;
-                }
-
-                .date {
-                    color: gray;
-                    font-size: 1em;
-                }
-
-                .tag {
-                    text-transform: capitalize;
-                    color: $customAccent;
-                }
-            }
-        }
     }
 }
 

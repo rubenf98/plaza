@@ -1,14 +1,9 @@
 import React , {Suspense} from 'react'
-import {
-    fetchCirculares
-} from "../../redux/circular/actions";
-import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import { breakPoint } from "../../helper";
 import { Row, Col, Button } from "antd";
 import { Parallax } from 'react-parallax';
 const PageFooter = React.lazy(() => import('../common/PageFooter'));
-import LoadingContainer from "../common/LoadingContainer";
 import { InfoCircleOutlined, QuestionCircleOutlined, FileOutlined, CommentOutlined, ContactsOutlined, PayCircleOutlined, EuroCircleOutlined, ArrowRightOutlined, RightCircleOutlined } from '@ant-design/icons';
 
 const AboutInfoContent = ({ img, text }) => (
@@ -52,9 +47,6 @@ class Home extends React.Component {
         this.state = {
             screenHeight: "750px",
             breakPoint: false,
-            filters: {
-                limit: 3
-            }
         }
     }
 
@@ -67,7 +59,6 @@ class Home extends React.Component {
 
       componentDidMount() {
         this.updateDimensions();
-        this.props.fetchCirculares(1, this.state.filters);
         window.addEventListener('resize', this.updateDimensions);
       }
       
@@ -77,8 +68,20 @@ class Home extends React.Component {
 
 
     render() {
-        const { circularData, circularLoading } = this.props;
         const { screenHeight, breakPoint } = this.state;
+
+        const partners = [
+            {name:"Consultório do Condomínio", image:"consultorio.webp", description:"Gabinete de Apoio ao Administrador na área contabilística e jurídica"},
+            {name:"Mãos Sem Fronteiras", image:"default.png", description:"Empresa de Limpeza e Jardinagem"},
+            {name:"Thyssenkrupp", image:"thyssenkrupp.gif", description:"Empresa responsável pela assistência aos elevadores"},
+            {name:"SERLIMA Ambiente", image:"serlima.png", description:"Limpeza e desentupimento de esgotos, coletores e outras tubagens."},
+            {name:"António Vitorino Barros", image:"default.png", description:"Limpeza de bombas e esgotos"},
+            {name:"Eletrocusto", image:"eletrocusto.png", description:"Conceção e comercialização de vários produtos para manutenção industrial"},
+            {name:"Robert Mauser", image:"robertmauser.jpg", description:"Comercialização de componentes eléctricos, audiovisuais e informáticos"},
+            {name:"Sódinâmica", image:"sodinamica.jpg", description:"Comercialização de produtos em alumínio com serviços de lacagem própria"},
+            {name:"MVASCONCELOS", image:"mvasconcelos.png", description:"Comércio de materiais para a construção, remodelação e manutenção de imóveis"},
+            {name:"PTServidor", image:"ptservidor.png", description:"Serviços de alojamento Web, registo de domínios, entre outros"},
+        ]
         
         return (
             <div className="page-dimensions">
@@ -150,42 +153,21 @@ class Home extends React.Component {
 
                     <div className="homepage-content-container">
                         <Header
-                            title="Círculares"
-                            subtitle="Informações relativas a acontecimentos no condomínio"
+                            title="Parceiros"
+                            subtitle="Empresas e Serviços que coloboram com o Edifício"
                         />
 
-                        <Row className="section-content" type="flex" justify="space-between" align="middle">
-                            <LoadingContainer loading={circularLoading} >
-                                <Row gutter={32}>
-                                    {
-                                        Object.values(circularData).map(function (el, index) {
-                                            return (
-                                                <Col md={8} sm={24}
-                                                    className="circular-container"
-                                                    key={index}
-                                                >
-                                                    <div className="circular-image-container" key={index}>
-
-                                                        <img className="image" src={el.tags[0].image} alt="circular-img" />
-
-                                                        <div className="circular-info">
-                                                            <div className="title">
-                                                                {el.titulo}
-                                                            </div>
-
-                                                            <p className="date">
-                                                                {el.created_at} • <span className="tag">{el.tags[0].nome}</span>
-                                                            </p>
-
-                                                        </div>
-
-                                                    </div>
-                                                </Col>
-                                            )
-                                        })
-                                    }
-                                </Row>
-                            </LoadingContainer>
+                        <Row gutter={16} className="partners-container" type="flex" justify="space-around" align="middle">
+                            {partners.map((partner, index) => (
+                                <div className="partner" key={index}>
+                                    <div className="image-container">
+                                        <img className="image" src={`/icon/partners/${partner.image}`} alt="consultorio-logo" />
+                                    </div>
+                                    
+                                    <h1 className="name">{partner.name}</h1>
+                                    <p className="description">{partner.description}</p>
+                                </div>
+                            ))}
                         </Row>
 
                         <WatchMoreButton to="/painel/circulares" />
@@ -293,17 +275,6 @@ class Home extends React.Component {
         );
     }
 }
-const mapDispatchToProps = dispatch => {
-    return {
-        fetchCirculares: (page, filters) => dispatch(fetchCirculares(page, filters)),
-    };
-};
 
-const mapStateToProps = (state) => {
-    return {
-        circularData: state.circular.data,
-        circularLoading: state.circular.loading,
-    };
-};
 
-export default connect(mapStateToProps, mapDispatchToProps)(Home);
+export default Home;
