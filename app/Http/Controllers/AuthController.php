@@ -178,9 +178,7 @@ class AuthController extends Controller
         $user = User::find($validator['user_id']);
         $user->update($validator);
         if ($request->has('fracao')) {
-
             if ($validator['fracao'] && count($validator['fracao']) > 0) {
-
                 $user->fracaos()->detach();
                 $fracao = Fracao::find($validator['fracao'][1]);
                 $fracao->users()->attach($validator['user_id']);

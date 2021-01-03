@@ -103,18 +103,15 @@ class Home extends React.Component {
                     </Parallax>
                     <div className="homepage-content-container">
                         <Row className="administrator-container " type="flex" justify="space-around" align="middle">
-
                             <div className="administrator">
                                 <div className="name">Marco Abreu</div>
-                                <div className="contact">962 860 429</div>
                             </div>
-
                             <div className="administrator">
                                 <div className="name">Maurílio Fernandes</div>
-                                <div className="contact">966 169 159</div>
                             </div>
-
-
+                            <div className="administrator">
+                                <div className="name">Igor Gomes</div>
+                            </div>
                         </Row>
                     </div>
                     <div className="homepage-content-container">
