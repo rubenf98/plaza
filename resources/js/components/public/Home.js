@@ -186,8 +186,8 @@ class Home extends React.Component {
                                 answer="Deverá haver uma reunião na primeira quinzena do mês de Janeiro. A reunião é convocada pelo administrador com vista à discussão e aprovação das contas do último ano e aprovação do orçamento para o ano corrente."
                             />
                             <FAQContent
-                                question="Como calcular o valor das quotas ?"
-                                answer="As despesas correntes de condomínio devem ser pagas pelos condóminos na proporção do valor (permilagem) das suas fracções. Quota mensal = (Orçamento anual/12) * (Permilagem da fracção / 1000)."
+                                question="O que é o fundo comum de reserva ?"
+                                answer="Este fundo é formado por contribuições de cada condómino, para além dos encargos correntes de condomínio, destina-se a custear despesas de conservação do prédio. "
                             />
                             <FAQContent
                                 question="Quem pode ser administrador ?"
