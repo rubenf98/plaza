@@ -38,6 +38,6 @@ class NotifyContactEmail implements ShouldQueue
     {
         Mail::to('joseruben98@hotmail.com')->queue(new ContactMail($this->user, $this->message));
         Mail::to('abreutati95@hotmail.com')->queue(new ContactMail($this->user, $this->message));
-        // Mail::to('edificioplazaii@gmail.com')->queue(new ContactMail($this->user, $this->message));
+        Mail::to('edificioplazaii@gmail.com')->queue(new ContactMail($this->user, $this->message));
     }
 }
