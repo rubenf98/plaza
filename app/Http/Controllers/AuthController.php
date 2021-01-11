@@ -133,7 +133,7 @@ class AuthController extends Controller
             $row = $query->first();
 
             if ($row) {
-                $password = Str::random(16);
+                $password = Str::random(8);
 
                 $user = User::where('email', $row->email)->first();
                 $user->update([

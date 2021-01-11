@@ -10,11 +10,14 @@ import NoDataContainer from '../common/NoDataContainer';
 const { Search } = Input;
 const { Panel } = Collapse;
 
-
 class FAQ extends React.Component {
-    state = {
-        activeCategory: null,
-        search: null
+    constructor(props) {
+        super(props)
+        this.myRef = React.createRef();
+        this.state = {
+            activeCategory: null,
+            search: null
+        }
     }
 
     handleCategoryClick = (text) => {
@@ -31,6 +34,7 @@ class FAQ extends React.Component {
         })
 
         this.props.fetchPerguntas({ tipo: this.state.activeCategory, search: e });
+        window.scrollTo(0, this.myRef.current.offsetTop - 100);
     }
 
     componentDidMount() {
@@ -40,6 +44,7 @@ class FAQ extends React.Component {
 
     render() {
         var { data, perguntas } = this.props;
+
 
         const Category = ({ icon, text }) => (
             <div
@@ -88,10 +93,11 @@ class FAQ extends React.Component {
                             })}
                         </Row>
 
-                        <h1 className="page-title">Perguntas Frequentes</h1>
+                        <h1 ref={this.myRef} className="page-title">Perguntas Frequentes</h1>
 
-                        <NoDataContainer data={perguntas.length > 0 && true}>
+                        <NoDataContainer data={perguntas.length > 0 && true} message="Nenhuma pergunta se enquadra com os dados inseridos">
                             <Collapse
+
                                 expandIconPosition="right"
                                 bordered={false}
                                 accordion
@@ -106,7 +112,9 @@ class FAQ extends React.Component {
                                 }
 
                             </Collapse>
+
                         </NoDataContainer>
+
                     </div>
                 </div>
                 <footer style={{ display: "block" }} className="layout-footer" >

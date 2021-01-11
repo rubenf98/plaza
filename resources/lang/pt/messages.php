@@ -26,4 +26,8 @@ return [
         'success' => 'Foi criada uma nova palavra-passe! Verifique o seu email para completar o processo.',
         'fail' => 'Dados inválidos, por favor repita o processo de recuperação.',
     ],
+
+    'contact' => [
+        'success' => 'Obrigado pela sua mensagem! Poderá esperar uma resposta por email nos próximos dias.',
+    ],
 ];

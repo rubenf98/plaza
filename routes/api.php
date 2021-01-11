@@ -61,5 +61,6 @@ Route::apiResource('arquivo-tipos', 'ArquivoTipoController');
 Route::apiResource('servico-tipos', 'ServicoTipoController');
 Route::apiResource('pergunta-tipos', 'PerguntaTipoController');
 Route::apiResource('pergunta', 'PerguntaController');
+Route::apiResource('contacts', 'ContactoController');
 
 Route::put('fracao', 'FracaoController@updateFracaos');

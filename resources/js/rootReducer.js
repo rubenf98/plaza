@@ -10,6 +10,7 @@ import arquivo from './redux/arquivo'
 import servicoTipos from './redux/servicoTipos'
 import perguntaTipos from './redux/perguntaTipos'
 import pergunta from './redux/pergunta'
+import contact from './redux/contact'
 
 const rootReducer = combineReducers({
     bloco,
@@ -22,6 +23,7 @@ const rootReducer = combineReducers({
     servicoTipos,
     perguntaTipos,
     pergunta,
+    contact
 })
 
 export default rootReducer

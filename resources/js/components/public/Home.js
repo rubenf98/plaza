@@ -154,7 +154,7 @@ class Home extends React.Component {
                     <div className="homepage-content-container">
                         <Header
                             title="Parceiros"
-                            subtitle="Empresas e Serviços que coloboram com o Edifício"
+                            subtitle="Empresas e Serviços que colaboram com o Edifício"
                         />
 
                         <Row gutter={16} className="partners-container" type="flex" justify="space-around" align="middle">
@@ -169,9 +169,6 @@ class Home extends React.Component {
                                 </div>
                             ))}
                         </Row>
-
-                        <WatchMoreButton to="/painel/circulares" />
-
                     </div>
 
                     <div className="faq-homepage-container">

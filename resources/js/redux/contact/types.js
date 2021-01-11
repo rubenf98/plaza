@@ -1,0 +1,4 @@
+export const types = {
+    FETCH_CONTACTS: 'FETCH_CONTACTS',
+    CREATE_CONTACT: 'CREATE_CONTACT',
+};

@@ -18,7 +18,7 @@ const NoDataContainer = (props) => {
                         }}
                         description={
                             <span>
-                                Não existem dados
+                                {props.message ? props.message : "Não existem dados"}
                             </span>
                         }
                     />
