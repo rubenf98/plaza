@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\DownloadQuotaController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -46,6 +47,7 @@ Route::prefix('pdf')->group(function () {
 
 Route::get('quota/first-and-last', 'QuotaController@firstAndLast');
 
+Route::get('/download/quotas', 'DownloadQuotaController');
 
 Route::apiResource('blocos', 'BlocoController');
 Route::apiResource('circular', 'CircularController');

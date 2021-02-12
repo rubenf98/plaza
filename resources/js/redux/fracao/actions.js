@@ -1,6 +1,7 @@
 import { types } from "./types";
 import { stringify } from "query-string";
 import axios from "axios";
+import { download } from "../../helper";
 
 export const fetchFracaos = (filters = {}) => ({
     type: types.FETCH_FRACAOS,
@@ -53,4 +54,24 @@ export const finishFetchCurrentFracaos = () => ({
 
 export const fetchCurrentFracaos = () => ({
     type: types.FETCH_CURRENT_FRACAOS
+});
+
+export const downloadQuotas = (filters = {}) => ({
+    
+    type: types.DOWNLOAD_QUOTAS,
+    payload: axios({
+        url: `${window.location.origin}/api/download/quotas?${stringify(filters, {
+            arrayFormat: "index"
+        })}`,
+        method: "GET",
+        responseType: "blob",
+    }).then(
+        response => {
+            download(response, 'bloco_' + filters.bloco + '.xlsx')
+        },
+        error => {
+            return error.data;
+        }
+    ),
+    meta: { globalError: true }
 });

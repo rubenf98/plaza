@@ -1,9 +1,9 @@
 import DashboardLayout from '../DashboardLayout';
-import React from 'react';
+import React, { Fragment } from 'react';
 import { connect } from "react-redux";
 import { Button, Row, DatePicker, Col, Dropdown, Menu, Radio } from 'antd';
 import { colorConverter } from '../../../helper'
-import { fetchFracaos, fetchFracao, setCurrentFracaos, fetchCurrentFracaos, finishFetchCurrentFracaos, fetchFirstAndLastQuota } from '../../../redux/fracao/actions';
+import { fetchFracaos, fetchFracao, setCurrentFracaos, fetchCurrentFracaos, finishFetchCurrentFracaos, fetchFirstAndLastQuota, downloadQuotas } from '../../../redux/fracao/actions';
 import locale from 'antd/es/date-picker/locale/pt_PT';
 import { FilterOutlined } from '@ant-design/icons';
 import moment from 'moment';
@@ -81,6 +81,10 @@ class PagamentosTableManager extends React.Component {
         });
 
 
+    };
+
+    handleDownload = () => {
+        this.props.downloadQuotas(this.filters);
     };
 
     handleFilterChange = e => {
@@ -215,17 +219,24 @@ class PagamentosTableManager extends React.Component {
                     </Col>
 
                     {isAdministrator &&
-
-                        <Col xs={24} lg={4}>
-                            <Row type="flex" justify="end">
-                                <Button type="primary"
-                                    onClick={this.handleEditClick}
-                                    disabled={!hasSelected}
-                                    loading={loading}>
-                                    Editar
+                        <Fragment>
+                            <Col xs={24} lg={4}>
+                                <Row type="flex" justify="space-around">
+                                    <Button type="primary"
+                                        onClick={this.handleDownload}
+                                    >
+                                        Download
+                                    </Button>
+                                    <Button type="primary"
+                                        onClick={this.handleEditClick}
+                                        disabled={!hasSelected}
+                                        loading={loading}>
+                                        Editar
                             </Button>
-                            </Row>
-                        </Col>
+                                </Row>
+                            </Col>
+
+                        </Fragment>
                     }
 
 
@@ -280,6 +291,7 @@ const mapDispatchToProps = dispatch => {
         fetchCurrentFracaos: () => dispatch(fetchCurrentFracaos()),
         finishFetchCurrentFracaos: () => dispatch(finishFetchCurrentFracaos()),
         fetchFirstAndLastQuota: () => dispatch(fetchFirstAndLastQuota()),
+        downloadQuotas: (filters) => dispatch(downloadQuotas(filters)),
     };
 };
 

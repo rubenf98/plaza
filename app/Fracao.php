@@ -43,7 +43,8 @@ class Fracao extends Model
 
     public function getNormalQuotas($startDate, $endDate)
     {
-        $print = new \Symfony\Component\Console\Output\ConsoleOutput();
+        //Helper::printToConsole($startDate);
+        //$print = new \Symfony\Component\Console\Output\ConsoleOutput();
         $startDate ? $date = Carbon::createFromFormat('Y-m', $startDate) : $date = Carbon::now()->firstOfMonth()->subMonths(10);
         $endDate ? $diff = ($date->diffInMonths($endDate) + 1) : $diff = 11;
 
@@ -56,7 +57,7 @@ class Fracao extends Model
             $last = (new Carbon($first))->lastOfMonth();
 
 
-            $print->writeln($first . ' to ' . $last);
+            //$print->writeln($first . ' to ' . $last);
 
             $quota = $this->normalQuota()->value('id');
 
@@ -67,7 +68,38 @@ class Fracao extends Model
 
             $date->addMonths(1);
         }
-        $print->writeln('-----------------------------');
+        //$print->writeln('-----------------------------');
+        return $total;
+    }
+
+    public function getCell()
+    {
+
+        if ($this->bloco_id == 1) {
+            return $this->id + 1;
+        } else if ($this->bloco_id == 2) {
+            return $this->id - 23;
+        }
+        return $this->id - 47;
+    }
+
+    public function getQuotaState($startDate, $endDate)
+    {
+        $date = Carbon::createFromFormat('Y-m', $startDate);
+        $diff = ($date->diffInMonths($endDate));
+        $fracao_id = $this->id;
+        $total = [];
+
+        for ($i = 0; $i <= $diff; $i++) {
+            $first = new Carbon($date->year . '-' . $date->month);
+            $last = (new Carbon($first))->lastOfMonth();
+            $quota = $this->normalQuota()->value('id');
+            $estado = DB::table('fracao_has_quotas')->whereBetween("data", [$first, $last])->whereFracaoId($fracao_id)->whereQuotaId($quota)->value('estado');
+            array_push($total, $estado);
+
+
+            $date->addMonth();
+        }
         return $total;
     }
 
