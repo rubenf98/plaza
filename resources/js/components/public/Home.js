@@ -107,13 +107,13 @@ class Home extends React.Component {
                     <div className="homepage-content-container">
                         <Row className="administrator-container " type="flex" justify="space-around" align="middle">
                             <div className="administrator">
+                                <div className="name">João Alves</div>
+                            </div>
+                            <div className="administrator">
+                                <div className="name">Rui Martins</div>
+                            </div>
+                            <div className="administrator">
                                 <div className="name">Marco Abreu</div>
-                            </div>
-                            <div className="administrator">
-                                <div className="name">Maurílio Fernandes</div>
-                            </div>
-                            <div className="administrator">
-                                <div className="name">Igor Gomes</div>
                             </div>
                         </Row>
                     </div>

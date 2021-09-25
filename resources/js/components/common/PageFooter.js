@@ -31,9 +31,9 @@ let PageFooter = () => {
                     <div className="info-container">
                         <div className="info-title">administradores</div>
                         <div className="info-content">
+                            <p>João Alves</p>
+                            <p>Rui Martins</p>
                             <p>Marco Abreu</p>
-                            <p>Maurilio Fernandes</p>
-                            <p>Igor Gomes</p>
                         </div>
                     </div>
                 </Row>

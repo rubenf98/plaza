@@ -84,9 +84,9 @@ class DashboardHome extends React.Component {
                                 <ContactInfo
                                     icon={<PhoneOutlined className="icon" />}
                                     content={[
+                                        { title: "João Alves", subtitle: "925 744 316" },
+                                        { title: "Rui Martins", subtitle: "963 465 175" },
                                         { title: "Marco Abreu", subtitle: "962 860 429" },
-                                        { title: "Maurílio Fernandes", subtitle: "966 169 159" },
-                                        { title: "Igor Gomes", subtitle: "--- --- ---" },
                                     ]}
                                 />
                             </Col>
