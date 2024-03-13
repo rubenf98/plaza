@@ -71,6 +71,8 @@ class FracaoController extends Controller
         $validator = $request->validated();
         foreach ($validator['fracaos'] as $key => $fracao_id) {
             $fracao = Fracao::find($fracao_id);
+            $fracao->divida = $validator['divida'];
+            $fracao->save();
             foreach ($validator['dates'] as $k => $date) {
                 $formattedDate = new Carbon($date);
                 $pivot = FracaoHasQuota::whereFracaoId($fracao_id)->whereQuotaId(1)->whereData($date)->first();

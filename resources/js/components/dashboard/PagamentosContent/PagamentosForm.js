@@ -1,5 +1,5 @@
 import React from "react";
-import { Form, Select, Col, Row } from "antd";
+import { Form, Select, Col, Row, Input } from "antd";
 import LoadingContainer from '../../common/LoadingContainer';
 import moment from 'moment';
 
@@ -44,6 +44,12 @@ class PagamentosForm extends React.Component {
                         hideRequiredMark={true}
                         initialValues={initialValues}
                     >
+                        <Form.Item
+                            name="divida"
+                            label="Valor em dívida"
+                        >
+                            <Input placeholder="Valor em dívida" addonAfter="€" />
+                        </Form.Item>
                         {
                             Object.values(currentFracaos).map((element, index) => {
                                 return (

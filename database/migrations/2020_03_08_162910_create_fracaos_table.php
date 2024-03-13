@@ -19,6 +19,7 @@ class CreateFracaosTable extends Migration
             $table->integer('user_id')->unsigned()->nullable();
             $table->integer('bloco_id')->unsigned();
             $table->string('nome')->unique();
+            $table->integer('divida')->default(0);
             $table->enum('piso', ['R/C', '1º', '2º', '3º', '4º', '5º']);
             $table->enum('tipo', ['T0', 'T1', 'T2', 'T3', 'T4', 'T5']);
             $table->double('area', 5, 2);

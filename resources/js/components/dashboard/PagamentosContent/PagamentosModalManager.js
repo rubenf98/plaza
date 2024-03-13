@@ -30,35 +30,40 @@ class PagamentosModalManager extends Component {
             Object.entries(fracaos).map((element, index) => {
                 let parsed = element[0].split('_');
 
-                if (!fracoes.includes(parsed[0]))
-                    fracoes.push(parsed[0]);
+                if (parsed.length > 1) {
+                    if (!fracoes.includes(parsed[0]))
+                        fracoes.push(parsed[0]);
 
-                if (!dates.includes(parsed[1]))
-                    dates.push(parsed[1]);
+                    if (!dates.includes(parsed[1]))
+                        dates.push(parsed[1]);
 
-                pagamentos.map((e) => {
-                    if (e[parsed[1]]) {
+                    pagamentos.map((e) => {
+                        if (e[parsed[1]]) {
+                            pagamentosT.push(estado);
+                            pagamentos = [];
+                            estado = [];
+                        }
+                    })
+
+                    let obj = {};
+                    obj[parsed[1]] = element[1];
+                    pagamentos.push(obj);
+                    estado.push(element[1] ? element[1] : "pendente");
+
+                    if (index == fracaosLength) {
                         pagamentosT.push(estado);
-                        pagamentos = [];
-                        estado = [];
                     }
-                })
 
-                let obj = {};
-                obj[parsed[1]] = element[1];
-                pagamentos.push(obj);
-                estado.push(element[1] ? element[1] : "pendente");
-
-                if (index == fracaosLength) {
-                    pagamentosT.push(estado);
                 }
+
 
             })
 
             let obj = {
                 'fracaos': fracoes,
                 'dates': dates,
-                'pagamentos': pagamentosT
+                'pagamentos': pagamentosT,
+                'divida': fracaos["divida"]
             };
 
             this.props

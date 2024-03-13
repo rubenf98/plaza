@@ -23,3 +23,7 @@ mix.webpackConfig({
         ]
     }
 });
+
+if (mix.inProduction()) {
+    mix.version();
+}

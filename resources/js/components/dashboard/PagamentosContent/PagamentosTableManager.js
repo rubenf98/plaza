@@ -112,6 +112,11 @@ class PagamentosTableManager extends React.Component {
                         title: 'Fração',
                         dataIndex: 'nome',
                     },
+                    {
+                        title: 'Valor em divida',
+                        dataIndex: 'divida',
+                        render: (e) => e + "€",
+                    },
                 ];
 
 
@@ -176,20 +181,20 @@ class PagamentosTableManager extends React.Component {
                                                 >
                                                     <Radio style={radioStyle} value="A">
                                                         Bloco A
-                                                </Radio>
+                                                    </Radio>
                                                     <Radio style={radioStyle} value="B">
                                                         Bloco B
-                                                </Radio>
+                                                    </Radio>
                                                     <Radio style={radioStyle} value="C">
                                                         Bloco C
-                                                </Radio>
+                                                    </Radio>
                                                 </Radio.Group>
                                             </Menu.ItemGroup>
                                             <Menu.ItemGroup title="Quota">
                                                 <Radio.Group onChange={this.onChange} defaultValue="normal">
                                                     <Radio style={radioStyle} value="normal">
                                                         Normal
-                                                </Radio>
+                                                    </Radio>
                                                 </Radio.Group>
                                             </Menu.ItemGroup>
 
@@ -201,7 +206,7 @@ class PagamentosTableManager extends React.Component {
                                         style={{ margin: "15px" }}
                                     >
                                         <FilterOutlined /> Selecionar bloco
-                                </Button>
+                                    </Button>
                                 </Dropdown>
                             </div>
                             <div className="range-container">
@@ -232,7 +237,7 @@ class PagamentosTableManager extends React.Component {
                                         disabled={!hasSelected}
                                         loading={loading}>
                                         Editar
-                            </Button>
+                                    </Button>
                                 </Row>
                             </Col>
 
