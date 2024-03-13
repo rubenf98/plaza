@@ -26,6 +26,11 @@ class PagamentosTableManager extends React.Component {
                     title: 'Fração',
                     dataIndex: 'nome',
                 },
+                {
+                    title: 'Valor em divida',
+                    dataIndex: 'divida',
+                    render: (e) => e + "€",
+                },
             ]
         }
         this.filters = {};
