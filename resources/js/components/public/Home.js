@@ -1,4 +1,4 @@
-import React , {Suspense} from 'react'
+import React, { Suspense } from 'react'
 import { Link } from "react-router-dom";
 import { breakPoint } from "../../helper";
 import { Row, Col, Button } from "antd";
@@ -55,34 +55,34 @@ class Home extends React.Component {
             screenHeight: document.body.clientHeight - 70 + "px",
             breakPoint: breakPoint(document.body.clientWidth)
         })
-      };
+    };
 
-      componentDidMount() {
+    componentDidMount() {
         this.updateDimensions();
         window.addEventListener('resize', this.updateDimensions);
-      }
-      
-      componentWillUnmount() {
+    }
+
+    componentWillUnmount() {
         window.removeEventListener('resize', this.updateDimensions);
-      }
+    }
 
 
     render() {
         const { screenHeight, breakPoint } = this.state;
 
         const partners = [
-            {name:"Consultório do Condomínio", image:"consultorio.webp", description:"Gabinete de Apoio ao Administrador na área contabilística e jurídica"},
-            {name:"Mãos Sem Fronteiras", image:"default.png", description:"Empresa de Limpeza e Jardinagem"},
-            {name:"Thyssenkrupp", image:"thyssenkrupp.gif", description:"Empresa responsável pela assistência aos elevadores"},
-            {name:"SERLIMA Ambiente", image:"serlima.png", description:"Limpeza e desentupimento de esgotos, coletores e outras tubagens."},
-            {name:"António Vitorino Barros", image:"default.png", description:"Limpeza de bombas e esgotos"},
-            {name:"Eletrocusto", image:"eletrocusto.png", description:"Conceção e comercialização de vários produtos para manutenção industrial"},
-            {name:"Robert Mauser", image:"robertmauser.jpg", description:"Comercialização de componentes eléctricos, audiovisuais e informáticos"},
-            {name:"Sódinâmica", image:"sodinamica.jpg", description:"Comercialização de produtos em alumínio com serviços de lacagem própria"},
-            {name:"MVASCONCELOS", image:"mvasconcelos.png", description:"Comércio de materiais para a construção, remodelação e manutenção de imóveis"},
-            {name:"PTServidor", image:"ptservidor.png", description:"Serviços de alojamento Web, registo de domínios, entre outros"},
+            { name: "Consultório do Condomínio", image: "consultorio.webp", description: "Gabinete de Apoio ao Administrador na área contabilística e jurídica" },
+            { name: "Mãos Sem Fronteiras", image: "default.png", description: "Empresa de Limpeza e Jardinagem" },
+            { name: "Thyssenkrupp", image: "thyssenkrupp.gif", description: "Empresa responsável pela assistência aos elevadores" },
+            { name: "SERLIMA Ambiente", image: "serlima.png", description: "Limpeza e desentupimento de esgotos, coletores e outras tubagens." },
+            { name: "António Vitorino Barros", image: "default.png", description: "Limpeza de bombas e esgotos" },
+            { name: "Eletrocusto", image: "eletrocusto.png", description: "Conceção e comercialização de vários produtos para manutenção industrial" },
+            { name: "Robert Mauser", image: "robertmauser.jpg", description: "Comercialização de componentes eléctricos, audiovisuais e informáticos" },
+            { name: "Sódinâmica", image: "sodinamica.jpg", description: "Comercialização de produtos em alumínio com serviços de lacagem própria" },
+            { name: "MVASCONCELOS", image: "mvasconcelos.png", description: "Comércio de materiais para a construção, remodelação e manutenção de imóveis" },
+            { name: "PTServidor", image: "ptservidor.png", description: "Serviços de alojamento Web, registo de domínios, entre outros" },
         ]
-        
+
         return (
             <div className="page-dimensions">
                 <div className="homepage-container">
@@ -90,14 +90,14 @@ class Home extends React.Component {
                         bgImage="/background-image.webp"
                         strength={500}
                     >
-                        <Row className="homepage-header" type="flex" align="middle" style={{height: screenHeight}}>
+                        <Row className="homepage-header" type="flex" align="middle" style={{ height: screenHeight }}>
                             <div className="header">
                                 <h1 className="title ">Condomínio Plaza II</h1>
                                 <h2 className="subtitle ">Gestão administrativa e operacional do condomínio de forma responsável, segura e confiável.</h2>
-                                
+
                                 <Link className="register-link" to="/login?register=true">
                                     <span className="register-link-icon">
-                                    <RightCircleOutlined />
+                                        <RightCircleOutlined />
                                     </span>
                                     <span className="register-link-text" > Registar</span>
                                 </Link>
@@ -108,9 +108,6 @@ class Home extends React.Component {
                         <Row className="administrator-container " type="flex" justify="space-around" align="middle">
                             <div className="administrator">
                                 <div className="name">João Alves</div>
-                            </div>
-                            <div className="administrator">
-                                <div className="name">Rui Martins</div>
                             </div>
                             <div className="administrator">
                                 <div className="name">Marco Abreu</div>
@@ -163,7 +160,7 @@ class Home extends React.Component {
                                     <div className="image-container">
                                         <img className="image" src={`/icon/partners/${partner.image}`} alt="consultorio-logo" />
                                     </div>
-                                    
+
                                     <h1 className="name">{partner.name}</h1>
                                     <p className="description">{partner.description}</p>
                                 </div>
@@ -240,8 +237,8 @@ class Home extends React.Component {
                                 <h2 className="title">Pagamentos</h2>
                                 <div className="info">
                                     O edíficio Plaza II permite que o pagamento das quotas seja realizado tanto no balcão de apoio do condomínio, como por transferência multibanco
-                                
-                                   
+
+
                                 </div>
                             </div>
                             <div className="info-content">
@@ -249,8 +246,8 @@ class Home extends React.Component {
                                 <h2 className="title">Contactos</h2>
                                 <div className="info">
                                     O edíficio Plaza II possui um endereço eletrónico comum a todos os membros da administração, pelo qual é possível esclarecer as suas dúvidas
-                                
-                                 
+
+
                                 </div>
                             </div>
                         </Row>
@@ -260,14 +257,14 @@ class Home extends React.Component {
 
 
                 </div>
-                
-                    <footer style={{ display: "block" }} className="layout-footer" >
+
+                <footer style={{ display: "block" }} className="layout-footer" >
                     <Suspense fallback={<div>Loading...</div>}>
                         <PageFooter />
                     </Suspense>
-                    </footer>
-                
-                
+                </footer>
+
+
             </div>
         );
     }

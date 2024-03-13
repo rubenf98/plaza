@@ -85,7 +85,6 @@ class DashboardHome extends React.Component {
                                     icon={<PhoneOutlined className="icon" />}
                                     content={[
                                         { title: "João Alves", subtitle: "925 744 316" },
-                                        { title: "Rui Martins", subtitle: "963 465 175" },
                                         { title: "Marco Abreu", subtitle: "962 860 429" },
                                     ]}
                                 />
