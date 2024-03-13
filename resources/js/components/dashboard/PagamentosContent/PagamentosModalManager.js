@@ -24,13 +24,13 @@ class PagamentosModalManager extends Component {
     onOkEditClick = () => {
         const form = this.formRef.current;
         form.validateFields().then((fracaos) => {
-            let fracoes = [], pagamentosT = [], pagamentos = [], dates = [], estado = [];
+            let fracoes = [], pagamentosT = [], pagamentos = [], dates = [], estado = [], dividas = [];
             let fracaosLength = Object.keys(fracaos).length - 1;
 
             Object.entries(fracaos).map((element, index) => {
                 let parsed = element[0].split('_');
 
-                if (parsed.length > 1) {
+                if (parsed.length > 1 && parsed[1] != "divida") {
                     if (!fracoes.includes(parsed[0]))
                         fracoes.push(parsed[0]);
 
@@ -54,6 +54,8 @@ class PagamentosModalManager extends Component {
                         pagamentosT.push(estado);
                     }
 
+                } else {
+                    dividas.push(parsed[1]);
                 }
 
 
@@ -63,7 +65,7 @@ class PagamentosModalManager extends Component {
                 'fracaos': fracoes,
                 'dates': dates,
                 'pagamentos': pagamentosT,
-                'divida': fracaos["divida"]
+                'dividas': dividas,
             };
 
             this.props
@@ -94,7 +96,7 @@ class PagamentosModalManager extends Component {
 
             Object.values(currentFracaos).map((element, index) => {
                 fracaos.push(element.id);
-
+                obj[element.id + '_divida'] = element.divida;
                 Object.entries(element.pagamentos).map((el, i) => {
 
                     obj[element.id + '_' + el[0]] = el[1];

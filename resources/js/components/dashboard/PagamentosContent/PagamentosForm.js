@@ -44,17 +44,18 @@ class PagamentosForm extends React.Component {
                         hideRequiredMark={true}
                         initialValues={initialValues}
                     >
-                        <Form.Item
-                            name="divida"
-                            label="Valor em dívida"
-                        >
-                            <Input placeholder="Valor em dívida" addonAfter="€" />
-                        </Form.Item>
+
                         {
                             Object.values(currentFracaos).map((element, index) => {
                                 return (
                                     <div key={index}>
                                         <h1>Fração {element.nome}</h1>
+                                        <Form.Item
+                                            name={element.id + '_divida'}
+                                            label="Valor em dívida"
+                                        >
+                                            <Input placeholder="Valor em dívida" addonAfter="€" />
+                                        </Form.Item>
                                         <Row>
                                             {
                                                 Object.entries(element.pagamentos).map((el, i) => {

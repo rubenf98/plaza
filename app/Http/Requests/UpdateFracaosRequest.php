@@ -31,10 +31,10 @@ class UpdateFracaosRequest extends FormRequest
             'dates' => 'required',
             'dates.*' => 'date',
             'pagamentos' => 'required',
-            'divida' => 'required',
             'pagamentos.*.*' => 'string|in:pago,divida,plano,pendente',
             'fracaos' => 'required',
             'fracaos.*' => 'integer|distinct|exists:fracaos,id',
+            'dividas' => 'required|array',
         ];
     }
 
