@@ -55,7 +55,7 @@ class PagamentosModalManager extends Component {
                     }
 
                 } else {
-                    dividas.push(parsed[1]);
+                    dividas.push(element[1]);
                 }
 
 
