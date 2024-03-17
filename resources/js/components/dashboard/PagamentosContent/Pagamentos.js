@@ -16,24 +16,24 @@ class Pagamentos extends React.Component {
         })
     }
 
-    componentDidMount() {
-        notification.warning({
-            message: 'Introduzindo quotas...',
-            duration: 0,
-            description:
-                'As quotas ainda se encontram em atualização, pelo que os pagamentos de algumas frações ainda estão a ser introduzidos no sistema.',
-        });
-    }
+    // componentDidMount() {
+    //     notification.warning({
+    //         message: 'Introduzindo quotas...',
+    //         duration: 0,
+    //         description:
+    //             'As quotas ainda se encontram em atualização, pelo que os pagamentos de algumas frações ainda estão a ser introduzidos no sistema.',
+    //     });
+    // }
 
-    componentWillUnmount() {
-        notification.destroy();
-    }
+    // componentWillUnmount() {
+    //     notification.destroy();
+    // }
 
-    handleNotificationClose = () => {
-        this.setState({
-            notification: false
-        })
-    }
+    // handleNotificationClose = () => {
+    //     this.setState({
+    //         notification: false
+    //     })
+    // }
 
     render() {
         return (

@@ -72,8 +72,8 @@ class Home extends React.Component {
 
         const partners = [
             { name: "Consultório do Condomínio", image: "consultorio.webp", description: "Gabinete de Apoio ao Administrador na área contabilística e jurídica" },
-            { name: "Mãos Sem Fronteiras", image: "default.png", description: "Empresa de Limpeza e Jardinagem" },
-            { name: "Thyssenkrupp", image: "thyssenkrupp.gif", description: "Empresa responsável pela assistência aos elevadores" },
+            { name: "Edifício Plaza II", image: "default.png", description: "Empresa de Limpeza e Jardinagem" },
+            { name: "TK Elevator Portugal", image: "tke.jpg", description: "Empresa responsável pela assistência aos elevadores" },
             { name: "SERLIMA Ambiente", image: "serlima.png", description: "Limpeza e desentupimento de esgotos, coletores e outras tubagens." },
             { name: "António Vitorino Barros", image: "default.png", description: "Limpeza de bombas e esgotos" },
             { name: "Eletrocusto", image: "eletrocusto.png", description: "Conceção e comercialização de vários produtos para manutenção industrial" },
