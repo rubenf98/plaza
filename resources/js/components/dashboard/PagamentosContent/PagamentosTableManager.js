@@ -29,7 +29,7 @@ class PagamentosTableManager extends React.Component {
                 {
                     title: 'Valor em divida',
                     dataIndex: 'divida',
-                    render: (e) => e + "€",
+                    render: (e) => this.props.isAdministrator ? <span>{e + "€"}</span> : <div className={'has_divida_indicator ' + (parseFloat(e) > 0 ? "has_divida" : "not divida")} />,
                 },
             ]
         }
@@ -120,7 +120,7 @@ class PagamentosTableManager extends React.Component {
                     {
                         title: 'Valor em divida',
                         dataIndex: 'divida',
-                        render: (e) => e + "€",
+                        render: (e) => this.props.isAdministrator ? <span>{e + "€"}</span> : <div className={'has_divida_indicator ' + (parseFloat(e) > 0 ? "has_divida" : "not divida")} />,
                     },
                 ];
 

@@ -51,6 +51,21 @@
     }
 }
 
+.has_divida_indicator {
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+}
+
+.has_divida {
+    background: red;
+}
+
+.not_divida {
+    background: green;
+}
+
+
 .table-legend-container {
     width: 100%;
     float: right;
