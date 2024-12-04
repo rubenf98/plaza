@@ -52,9 +52,15 @@ class PagamentosForm extends React.Component {
                                         <h1>Fração {element.nome}</h1>
                                         <Form.Item
                                             name={element.id + '_divida'}
-                                            label="Valor em dívida"
+                                            label="Quota em dívida"
                                         >
-                                            <Input placeholder="Valor em dívida" addonAfter="€" />
+                                            <Input placeholder="Quota em dívida" addonAfter="€" />
+                                        </Form.Item>
+                                        <Form.Item
+                                            name={element.id + '_extradivida'}
+                                            label="Quota extra em dívida"
+                                        >
+                                            <Input placeholder="Quota extra em dívida" addonAfter="€" />
                                         </Form.Item>
                                         <Row>
                                             {

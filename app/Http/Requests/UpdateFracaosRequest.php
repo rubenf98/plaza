@@ -35,6 +35,7 @@ class UpdateFracaosRequest extends FormRequest
             'fracaos' => 'required',
             'fracaos.*' => 'integer|distinct|exists:fracaos,id',
             'dividas' => 'required|array',
+            'extradividas' => 'required|array',
         ];
     }
 

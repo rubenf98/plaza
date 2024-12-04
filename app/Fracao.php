@@ -13,7 +13,7 @@ class Fracao extends Model
     use FiltersRecords;
 
     protected $fillable = [
-        'area', 'nome', 'divida'
+        'area', 'nome', 'divida', 'extradivida'
     ];
 
     public function bloco()

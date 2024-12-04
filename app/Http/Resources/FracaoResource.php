@@ -19,6 +19,7 @@ class FracaoResource extends JsonResource
             'nome' => $this->nome,
             'area' => $this->area,
             'divida' => $this->divida,
+            'extra_divida' => $this->extra_divida,
             'estado' => $this->fracaoEstado->estado,
             'users' => $this->users,
             'pagamentos' => $this->getNormalQuotas($request->startDate, $request->endDate)
