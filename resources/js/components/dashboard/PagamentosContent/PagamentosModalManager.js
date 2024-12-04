@@ -100,6 +100,7 @@ class PagamentosModalManager extends Component {
             Object.values(currentFracaos).map((element, index) => {
                 fracaos.push(element.id);
                 obj[element.id + '_divida'] = element.divida;
+                obj[element.id + '_extradivida'] = element.extra_divida;
                 Object.entries(element.pagamentos).map((el, i) => {
 
                     obj[element.id + '_' + el[0]] = el[1];
